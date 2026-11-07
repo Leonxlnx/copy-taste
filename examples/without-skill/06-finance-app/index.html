@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keel — The budget that keeps you level</title>
+<meta name="description" content="Keel turns your accounts into one honest number: what you can safely spend today. Budgeting for people who hate budgeting.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6f3ec;
+    --paper-2:#efeadf;
+    --card:#fffdf8;
+    --ink:#14261f;
+    --ink-2:#3c4f47;
+    --muted:#6d7c75;
+    --line:#dcd5c6;
+    --green:#1f4d3a;
+    --green-2:#2f6b52;
+    --mint:#cfe6d7;
+    --amber:#e8a33d;
+    --amber-soft:#f7e2bd;
+    --coral:#d9694a;
+    --radius:20px;
+    --wrap:1160px;
+    --display:"Fraunces", Georgia, serif;
+    --sans:"Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-family:var(--display);font-weight:500;letter-spacing:-0.02em;line-height:1.08}
+  h2{font-size:clamp(34px,4.4vw,54px)}
+  h3{font-size:22px;letter-spacing:-0.01em;line-height:1.2}
+  .eyebrow{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--green-2);margin-bottom:18px}
+  .lede{font-size:19px;color:var(--ink-2);max-width:560px}
+  section{padding:120px 0}
+  .section-head{max-width:720px;margin-bottom:64px}
+  .section-head p{margin-top:20px}
+  .num{font-variant-numeric:tabular-nums}
+
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:16px;padding:15px 26px;border-radius:999px;transition:transform .2s ease, background .2s ease, box-shadow .2s ease;white-space:nowrap}
+  .btn-primary{background:var(--green);color:var(--paper)}
+  .btn-primary:hover{background:var(--ink);transform:translateY(-1px);box-shadow:0 10px 24px -10px rgba(20,38,31,.5)}
+  .btn-ghost{border:1.5px solid var(--ink);color:var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper)}
+  .btn .arrow{transition:transform .2s ease}
+  .btn:hover .arrow{transform:translateX(3px)}
+
+  /* Nav */
+  header{position:sticky;top:0;z-index:50;background:rgba(246,243,236,.86);backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);border-bottom:1px solid transparent}
+  nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:26px;font-weight:600;letter-spacing:-0.03em}
+  .logo-mark{width:30px;height:30px;border-radius:9px;background:var(--green);position:relative;overflow:hidden}
+  .logo-mark::before{content:"";position:absolute;left:5px;right:5px;bottom:7px;height:4px;border-radius:2px;background:var(--amber)}
+  .logo-mark::after{content:"";position:absolute;left:13px;width:4px;top:6px;bottom:7px;border-radius:2px;background:var(--paper)}
+  .nav-links{display:flex;gap:34px;font-size:15px;font-weight:500;color:var(--ink-2)}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{display:flex;align-items:center;gap:22px;font-size:15px;font-weight:500}
+  .nav-cta .btn{padding:11px 20px;font-size:15px}
+
+  /* 1. Hero */
+  .hero{padding:72px 0 96px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero h1{font-size:clamp(46px,6.4vw,84px)}
+  .hero h1 em{font-style:italic;color:var(--green-2)}
+  .hero .lede{margin-top:26px}
+  .hero-actions{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap}
+  .hero-note{margin-top:22px;font-size:14px;color:var(--muted)}
+  .hero-stage{position:relative;height:620px;border-radius:32px;background:
+      radial-gradient(120% 80% at 80% 10%, #e9c58a 0%, rgba(233,197,138,0) 55%),
+      radial-gradient(90% 70% at 10% 90%, #8fb9a2 0%, rgba(143,185,162,0) 60%),
+      linear-gradient(160deg,#2f6b52 0%,#1f4d3a 55%,#14261f 100%);
+    overflow:hidden}
+  .hero-stage::before{content:"";position:absolute;inset:auto -10% -38% -10%;height:70%;border-radius:50%;background:radial-gradient(closest-side,rgba(246,243,236,.18),rgba(246,243,236,0))}
+  .hero-stage .horizon{position:absolute;left:0;right:0;top:58%;height:1px;background:rgba(246,243,236,.22)}
+
+  .phone{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-3deg);width:290px;height:560px;border-radius:44px;background:#0d1914;padding:12px;box-shadow:0 40px 80px -30px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.06) inset}
+  .screen{width:100%;height:100%;border-radius:34px;background:var(--paper);overflow:hidden;padding:46px 20px 20px;position:relative}
+  .screen::before{content:"";position:absolute;top:12px;left:50%;transform:translateX(-50%);width:84px;height:24px;border-radius:14px;background:#0d1914}
+  .s-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .s-big{font-family:var(--display);font-size:54px;font-weight:500;letter-spacing:-0.03em;line-height:1;margin-top:6px}
+  .s-big small{font-size:26px;vertical-align:top;margin-right:2px}
+  .s-sub{font-size:12.5px;color:var(--ink-2);margin-top:8px}
+  .s-meter{margin-top:20px;height:10px;border-radius:6px;background:var(--paper-2);overflow:hidden;display:flex}
+  .s-meter i{display:block;height:100%}
+  .s-legend{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:8px}
+  .s-list{margin-top:22px;display:grid;gap:10px}
+  .s-row{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 12px;font-size:13px}
+  .s-dot{width:30px;height:30px;border-radius:10px;flex:none}
+  .s-row b{font-weight:600;display:block;font-size:13px}
+  .s-row span{color:var(--muted);font-size:11.5px}
+  .s-row .amt{margin-left:auto;font-weight:600}
+  .s-tabbar{position:absolute;left:14px;right:14px;bottom:14px;height:52px;border-radius:18px;background:var(--ink);display:flex;justify-content:space-around;align-items:center}
+  .s-tabbar i{width:18px;height:18px;border-radius:6px;background:rgba(246,243,236,.3)}
+  .s-tabbar i:first-child{background:var(--amber)}
+
+  .float-card{position:absolute;background:var(--card);border-radius:18px;padding:14px 16px;box-shadow:0 20px 40px -18px rgba(0,0,0,.45);font-size:13px;line-height:1.4}
+  .float-card b{display:block;font-size:14px}
+  .float-card span{color:var(--muted)}
+  .fc-1{top:64px;left:22px;max-width:200px;transform:rotate(-2deg)}
+  .fc-1 .tag{display:inline-block;background:var(--mint);color:var(--green);font-weight:600;font-size:11px;padding:3px 8px;border-radius:999px;margin-bottom:6px}
+  .fc-2{bottom:70px;right:22px;max-width:210px;transform:rotate(2deg)}
+  .fc-2 .bar{height:6px;border-radius:4px;background:var(--paper-2);margin-top:8px;overflow:hidden}
+  .fc-2 .bar i{display:block;height:100%;width:72%;background:var(--amber);border-radius:4px}
+
+  .trust{margin-top:84px;padding-top:36px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .trust div{font-size:14px;color:var(--muted)}
+  .trust strong{display:block;font-family:var(--display);font-weight:500;font-size:38px;color:var(--ink);letter-spacing:-0.02em;line-height:1.1;margin-bottom:4px}
+
+  /* 2. How it works */
+  .how{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:step}
+  .step{padding:34px 30px 36px;border-radius:var(--radius);background:var(--paper);border:1px solid var(--line);position:relative}
+  .step::before{counter-increment:step;content:"0" counter(step);font-family:var(--display);font-size:15px;font-weight:600;color:var(--green-2);display:block;margin-bottom:56px}
+  .step p{color:var(--ink-2);margin-top:12px;font-size:16px}
+  .step-visual{height:120px;border-radius:14px;margin-bottom:26px;position:relative;overflow:hidden}
+  .sv-1{background:linear-gradient(135deg,var(--mint),#e8f1ea)}
+  .sv-1 i{position:absolute;width:46px;height:46px;border-radius:14px;top:37px}
+  .sv-1 i:nth-child(1){left:24px;background:var(--green)}
+  .sv-1 i:nth-child(2){left:82px;background:var(--amber)}
+  .sv-1 i:nth-child(3){left:140px;background:var(--coral)}
+  .sv-1 i:nth-child(4){left:198px;background:var(--ink);opacity:.15;border:2px dashed var(--ink)}
+  .sv-2{background:linear-gradient(135deg,var(--amber-soft),#fbf0dc);display:flex;align-items:flex-end;gap:10px;padding:18px 24px}
+  .sv-2 i{flex:1;border-radius:6px 6px 2px 2px;background:var(--amber)}
+  .sv-2 i:nth-child(odd){background:var(--green-2)}
+  .sv-3{background:linear-gradient(135deg,var(--ink),var(--green));color:var(--paper);display:flex;flex-direction:column;justify-content:center;padding:0 24px}
+  .sv-3 small{font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.7}
+  .sv-3 strong{font-family:var(--display);font-weight:500;font-size:42px;letter-spacing:-0.03em;line-height:1.1}
+
+  /* 3. Features bento */
+  .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:32px;display:flex;flex-direction:column;min-height:280px;overflow:hidden;position:relative}
+  .tile p{color:var(--ink-2);font-size:16px;margin-top:10px;max-width:420px}
+  .t-wide{grid-column:span 4}
+  .t-narrow{grid-column:span 2}
+  .t-half{grid-column:span 3}
+  .tile .art{margin-top:auto;padding-top:28px}
+  .tile.dark{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .tile.dark p{color:rgba(246,243,236,.72)}
+  .tile.amber{background:var(--amber-soft);border-color:#ecd3a6}
+
+  .envelopes{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .env{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px}
+  .env small{display:block;font-size:12px;color:var(--muted)}
+  .env b{font-size:17px;font-weight:600}
+  .env .track{height:6px;border-radius:4px;background:var(--paper-2);margin-top:10px;overflow:hidden}
+  .env .track i{display:block;height:100%;border-radius:4px}
+
+  .bill-list{display:grid;gap:8px}
+  .bill{display:flex;justify-content:space-between;font-size:14px;padding:10px 14px;border-radius:12px;background:rgba(246,243,236,.08);border:1px solid rgba(246,243,236,.12)}
+  .bill span:last-child{opacity:.7}
+
+  .ring{width:120px;height:120px;border-radius:50%;background:conic-gradient(var(--green) 0 68%, rgba(31,77,58,.15) 68% 100%);display:grid;place-items:center}
+  .ring::after{content:"68%";width:88px;height:88px;border-radius:50%;background:var(--amber-soft);display:grid;place-items:center;font-family:var(--display);font-size:28px;font-weight:500}
+
+  .chat{display:grid;gap:10px;max-width:440px}
+  .bubble{font-size:14px;padding:12px 16px;border-radius:16px;line-height:1.45}
+  .bubble.me{background:var(--green);color:var(--paper);justify-self:end;border-bottom-right-radius:4px}
+  .bubble.them{background:var(--paper);border:1px solid var(--line);border-bottom-left-radius:4px}
+
+  .split-people{display:flex;align-items:center}
+  .split-people i{width:46px;height:46px;border-radius:50%;border:3px solid var(--card);margin-left:-12px}
+  .split-people i:first-child{margin-left:0;background:linear-gradient(135deg,#e9c58a,#d9694a)}
+  .split-people i:nth-child(2){background:linear-gradient(135deg,#8fb9a2,#1f4d3a)}
+  .split-people i:nth-child(3){background:linear-gradient(135deg,#cfd7e6,#55657f)}
+  .split-people span{margin-left:14px;font-size:14px;color:var(--ink-2)}
+
+  /* 4. Safe-to-spend deep dive */
+  .deep{background:var(--green);color:var(--paper);border-radius:40px;margin:0 24px;padding:110px 0}
+  .deep .eyebrow{color:var(--amber)}
+  .deep .lede{color:rgba(246,243,236,.78)}
+  .deep-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+  .equation{background:rgba(246,243,236,.06);border:1px solid rgba(246,243,236,.16);border-radius:28px;padding:36px}
+  .eq-row{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:1px dashed rgba(246,243,236,.18);font-size:16px}
+  .eq-row:last-of-type{border-bottom:none}
+  .eq-row span:first-child{color:rgba(246,243,236,.75)}
+  .eq-row span:last-child{font-weight:600;font-size:18px}
+  .eq-total{margin-top:14px;padding:22px 24px;border-radius:18px;background:var(--paper);color:var(--ink);display:flex;justify-content:space-between;align-items:center}
+  .eq-total small{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .eq-total b{font-family:var(--display);font-size:46px;font-weight:500;letter-spacing:-0.03em;line-height:1}
+  .eq-total em{font-style:normal;font-size:14px;color:var(--green-2);font-weight:600;text-align:right}
+  .deep-points{margin-top:36px;display:grid;gap:20px}
+  .deep-points div{display:grid;grid-template-columns:28px 1fr;gap:14px;font-size:16px;color:rgba(246,243,236,.85)}
+  .deep-points div::before{content:"";width:22px;height:22px;border-radius:50%;background:var(--amber);margin-top:3px;box-shadow:inset 0 0 0 6px var(--green)}
+  .deep-points b{color:var(--paper);font-weight:600}
+
+  /* 5. Security */
+  .security-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:start}
+  .vault{height:420px;border-radius:32px;position:relative;overflow:hidden;background:
+     radial-gradient(60% 60% at 50% 45%, #f7e2bd 0%, rgba(247,226,189,0) 70%),
+     linear-gradient(180deg,#efeadf,#e3dccb)}
+  .vault .door{position:absolute;left:50%;top:50%;width:230px;height:230px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 35% 30%,#3a7a5e,#14261f 75%);box-shadow:0 30px 60px -20px rgba(20,38,31,.6),inset 0 0 0 14px rgba(246,243,236,.08)}
+  .vault .door::before{content:"";position:absolute;inset:58px;border-radius:50%;border:3px solid rgba(246,243,236,.35);background:repeating-conic-gradient(rgba(246,243,236,.25) 0 4deg, transparent 4deg 30deg)}
+  .vault .door::after{content:"";position:absolute;left:50%;top:50%;width:34px;height:34px;transform:translate(-50%,-50%);border-radius:50%;background:var(--amber)}
+  .vault .badge{position:absolute;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:13px;font-weight:600;box-shadow:0 10px 20px -12px rgba(0,0,0,.3)}
+  .vault .b1{top:40px;left:30px}
+  .vault .b2{top:96px;right:28px}
+  .vault .b3{bottom:44px;left:56px}
+  .sec-list{display:grid;grid-template-columns:1fr 1fr;gap:36px 40px;margin-top:48px}
+  .sec-list h3{font-size:19px;font-family:var(--sans);font-weight:600;letter-spacing:-0.01em}
+  .sec-list p{color:var(--ink-2);font-size:15.5px;margin-top:8px}
+  .sec-list div{padding-top:20px;border-top:2px solid var(--ink)}
+
+  /* 6. Testimonials */
+  .voices{background:var(--paper-2)}
+  .quote-feature{display:grid;grid-template-columns:1.3fr .7fr;gap:28px;margin-bottom:28px}
+  .qf-main{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:52px}
+  .qf-main blockquote{font-family:var(--display);font-size:clamp(26px,2.8vw,36px);line-height:1.25;letter-spacing:-0.015em}
+  .qf-stat{background:var(--amber);border-radius:28px;padding:40px;display:flex;flex-direction:column;justify-content:space-between}
+  .qf-stat strong{font-family:var(--display);font-size:84px;font-weight:500;letter-spacing:-0.04em;line-height:1}
+  .qf-stat p{font-size:16px;color:var(--ink);max-width:240px}
+  .who{display:flex;align-items:center;gap:14px;margin-top:34px;font-size:15px}
+  .who i{width:48px;height:48px;border-radius:50%;flex:none}
+  .who b{display:block;font-weight:600}
+  .who span{color:var(--muted);font-size:14px}
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .q{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:32px;display:flex;flex-direction:column}
+  .q blockquote{font-size:17px;color:var(--ink-2);line-height:1.6}
+  .q .who{margin-top:auto;padding-top:28px}
+  .stars{color:var(--amber);letter-spacing:3px;font-size:15px;margin-bottom:14px}
+
+  /* 7. Pricing */
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+  .plan{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:38px 34px;display:flex;flex-direction:column}
+  .plan h3{font-family:var(--sans);font-weight:600;font-size:18px}
+  .plan .desc{color:var(--muted);font-size:15px;margin-top:6px;min-height:48px}
+  .price{font-family:var(--display);font-size:58px;font-weight:500;letter-spacing:-0.03em;line-height:1;margin:26px 0 6px}
+  .price small{font-family:var(--sans);font-size:16px;color:var(--muted);font-weight:500;letter-spacing:0}
+  .billing{font-size:14px;color:var(--muted)}
+  .plan ul{list-style:none;margin:28px 0 34px;display:grid;gap:12px;font-size:15.5px}
+  .plan li{display:grid;grid-template-columns:22px 1fr;gap:10px}
+  .plan li::before{content:"";width:16px;height:16px;border-radius:50%;margin-top:4px;background:var(--mint);box-shadow:inset 0 0 0 4px var(--mint),inset 0 0 0 16px var(--green-2)}
+  .plan .btn{margin-top:auto;justify-content:center}
+  .plan.pop{background:var(--ink);color:var(--paper);border-color:var(--ink);position:relative}
+  .plan.pop .desc,.plan.pop .billing,.plan.pop .price small{color:rgba(246,243,236,.65)}
+  .plan.pop li::before{background:var(--amber);box-shadow:inset 0 0 0 4px var(--amber),inset 0 0 0 16px var(--ink)}
+  .plan.pop .btn-primary{background:var(--amber);color:var(--ink)}
+  .plan.pop .btn-primary:hover{background:var(--paper)}
+  .pop-tag{position:absolute;top:-13px;left:34px;background:var(--amber);color:var(--ink);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:999px}
+  .guarantee{text-align:center;margin-top:40px;color:var(--muted);font-size:15px}
+
+  /* 8. Footer */
+  footer{background:var(--ink);color:var(--paper);padding:110px 0 40px;border-radius:40px 40px 0 0}
+  .final{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:end;padding-bottom:84px;border-bottom:1px solid rgba(246,243,236,.14)}
+  .final h2{font-size:clamp(40px,5.6vw,72px)}
+  .final h2 em{color:var(--amber);font-style:italic}
+  .final p{color:rgba(246,243,236,.72);font-size:18px;margin-bottom:28px}
+  .final .btn-primary{background:var(--amber);color:var(--ink)}
+  .final .btn-primary:hover{background:var(--paper)}
+  .stores{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
+  .store{border:1px solid rgba(246,243,236,.3);border-radius:12px;padding:8px 16px;font-size:12px;line-height:1.25;color:rgba(246,243,236,.7)}
+  .store:hover{border-color:var(--paper);color:var(--paper)}
+  .store b{display:block;color:var(--paper);font-size:15px;font-weight:600}
+  .foot-cols{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:40px;padding:64px 0}
+  .foot-cols .logo{color:var(--paper)}
+  .foot-cols .logo-mark{background:var(--green-2)}
+  .foot-cols .logo-mark::after{background:var(--paper)}
+  .foot-about{color:rgba(246,243,236,.6);font-size:15px;margin-top:16px;max-width:300px}
+  .foot-cols h4{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(246,243,236,.5);margin-bottom:18px}
+  .foot-cols ul{list-style:none;display:grid;gap:10px;font-size:15px}
+  .foot-cols ul a{color:rgba(246,243,236,.82)}
+  .foot-cols ul a:hover{color:var(--amber)}
+  .legal{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:13px;color:rgba(246,243,236,.5);padding-top:28px;border-top:1px solid rgba(246,243,236,.14)}
+  .legal p{max-width:720px}
+
+  /* Responsive */
+  @media (max-width:980px){
+    section{padding:88px 0}
+    .nav-links{display:none}
+    .hero-grid,.deep-grid,.security-grid,.final,.quote-feature{grid-template-columns:1fr}
+    .hero-stage{height:560px}
+    .trust{grid-template-columns:repeat(2,1fr);row-gap:32px}
+    .steps,.quotes,.plans{grid-template-columns:1fr}
+    .t-wide,.t-narrow,.t-half{grid-column:span 6}
+    .foot-cols{grid-template-columns:1fr 1fr}
+    .foot-cols > div:first-child{grid-column:span 2}
+    .deep{margin:0 12px;padding:80px 0;border-radius:28px}
+    .plans{max-width:520px;margin:0 auto}
+  }
+  @media (max-width:600px){
+    body{font-size:16px}
+    .wrap{padding:0 16px}
+    .nav-cta .signin{display:none}
+    .hero{padding:40px 0 72px}
+    .hero-stage{height:520px;border-radius:24px}
+    .phone{width:250px;height:490px}
+    .s-big{font-size:46px}
+    .fc-1{left:10px;top:20px}
+    .fc-2{right:10px;bottom:24px}
+    .envelopes{grid-template-columns:repeat(2,1fr)}
+    .sec-list{grid-template-columns:1fr}
+    .qf-main{padding:32px}
+    .tile{padding:26px}
+    .equation{padding:24px}
+    .eq-total b{font-size:38px}
+    .vault{height:320px}
+    .vault .door{width:180px;height:180px}
+    .vault .door::before{inset:44px}
+    .foot-cols{grid-template-columns:1fr}
+    .foot-cols > div:first-child{grid-column:auto}
+    .deep{margin:0 8px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav aria-label="Primary">
+      <a href="#" class="logo" aria-label="Keel home"><span class="logo-mark" aria-hidden="true"></span>Keel</a>
+      <div class="nav-links">
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#security">Security</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <div class="nav-cta">
+        <a href="#" class="signin">Sign in</a>
+        <a href="#pricing" class="btn btn-primary">Start free</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- 1. Hero -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">Budgeting for people who hate budgeting</span>
+          <h1>Know what you can spend. <em>Then go spend it.</em></h1>
+          <p class="lede">Keel connects your accounts, sets aside your bills and goals automatically, and gives you one honest number every morning: what's safe to spend today. No spreadsheets. No guilt.</p>
+          <div class="hero-actions">
+            <a href="#pricing" class="btn btn-primary">Try Keel free for 30 days <span class="arrow" aria-hidden="true">→</span></a>
+            <a href="#how" class="btn btn-ghost">See how it works</a>
+          </div>
+          <p class="hero-note">No card required. Set up in about four minutes.</p>
+        </div>
+
+        <div class="hero-stage" aria-label="Keel app showing $86 safe to spend today">
+          <div class="horizon"></div>
+          <div class="phone">
+            <div class="screen">
+              <div class="s-label">Safe to spend today</div>
+              <div class="s-big num"><small>$</small>86</div>
+              <div class="s-sub">Rent, bills and savings are already covered.</div>
+              <div class="s-meter" aria-hidden="true">
+                <i style="width:46%;background:var(--green)"></i>
+                <i style="width:22%;background:var(--amber)"></i>
+                <i style="width:12%;background:var(--coral)"></i>
+              </div>
+              <div class="s-legend"><span>Bills</span><span>Goals</span><span>Spent</span><span>Free</span></div>
+              <div class="s-list">
+                <div class="s-row"><i class="s-dot" style="background:var(--mint)"></i><div><b>Rent</b><span>Set aside · due Nov 1</span></div><span class="amt num">$1,450</span></div>
+                <div class="s-row"><i class="s-dot" style="background:var(--amber-soft)"></i><div><b>Lisbon trip</b><span>On track · 64%</span></div><span class="amt num">$40/wk</span></div>
+                <div class="s-row"><i class="s-dot" style="background:#f3d3c8"></i><div><b>Groceries</b><span>$62 left this week</span></div><span class="amt num">$138</span></div>
+              </div>
+              <div class="s-tabbar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="float-card fc-1">
+            <span class="tag">Covered</span>
+            <b>Phone bill moved aside</b>
+            <span>$55 tucked away 3 days early.</span>
+          </div>
+          <div class="float-card fc-2">
+            <b>Emergency fund</b>
+            <span class="num">$3,600 of $5,000</span>
+            <div class="bar"><i></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="trust">
+        <div><strong class="num">410,000+</strong>people budgeting with Keel</div>
+        <div><strong class="num">$612</strong>average saved in the first 90 days</div>
+        <div><strong>4.8 ★</strong>from 38,000 App Store reviews</div>
+        <div><strong class="num">12,000+</strong>banks and credit unions supported</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. How it works -->
+  <section class="how" id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">How it works</span>
+        <h2>Three steps, then it mostly runs itself.</h2>
+        <p class="lede">You don't have to categorize every coffee. Keel learns your patterns and does the tedious parts, so you only check in when something actually needs you.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-visual sv-1" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <h3>Connect your accounts</h3>
+          <p>Link checking, savings and cards in a few taps. Keel reads your history and spots your paycheck, rent and recurring bills on its own.</p>
+        </div>
+        <div class="step">
+          <div class="step-visual sv-2" aria-hidden="true"><i style="height:40%"></i><i style="height:70%"></i><i style="height:55%"></i><i style="height:90%"></i><i style="height:65%"></i><i style="height:80%"></i></div>
+          <h3>Tell it what matters</h3>
+          <p>Add the goals you care about, like a trip, a cushion or paying off a card. Keel works out how much to set aside each payday to get there on time.</p>
+        </div>
+        <div class="step">
+          <div class="step-visual sv-3" aria-hidden="true"><small>Today</small><strong class="num">$86</strong></div>
+          <h3>Check one number</h3>
+          <p>Every morning you get your safe-to-spend amount. Stay under it and everything else is handled. Go over and Keel quietly adjusts tomorrow.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Features -->
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Features</span>
+        <h2>Everything a budget should do, nothing it shouldn't.</h2>
+        <p class="lede">We cut the charts nobody reads and kept the tools that change how your month actually goes.</p>
+      </div>
+      <div class="bento">
+        <div class="tile t-wide">
+          <h3>Envelopes that fill themselves</h3>
+          <p>Every paycheck is split across your bills, goals and everyday spending the moment it lands. You decide the rules once.</p>
+          <div class="art envelopes">
+            <div class="env"><small>Rent</small><b class="num">$1,450</b><div class="track"><i style="width:100%;background:var(--green)"></i></div></div>
+            <div class="env"><small>Groceries</small><b class="num">$138</b><div class="track"><i style="width:55%;background:var(--amber)"></i></div></div>
+            <div class="env"><small>Fun money</small><b class="num">$120</b><div class="track"><i style="width:30%;background:var(--coral)"></i></div></div>
+            <div class="env"><small>Car repair</small><b class="num">$300</b><div class="track"><i style="width:78%;background:var(--green-2)"></i></div></div>
+          </div>
+        </div>
+        <div class="tile t-narrow dark">
+          <h3>Bill radar</h3>
+          <p>Every subscription and due date in one calendar, with a heads-up before anything hits.</p>
+          <div class="art bill-list">
+            <div class="bill"><span>Internet</span><span>Fri</span></div>
+            <div class="bill"><span>Streaming</span><span>Nov 12</span></div>
+            <div class="bill"><span>Car insurance</span><span>Nov 18</span></div>
+          </div>
+        </div>
+        <div class="tile t-narrow amber">
+          <h3>Goals with a finish line</h3>
+          <p>Pick a target and a date. Keel tells you exactly what to save each week.</p>
+          <div class="art"><div class="ring" aria-label="Goal 68 percent complete"></div></div>
+        </div>
+        <div class="tile t-wide">
+          <h3>Ask it anything</h3>
+          <p>Plain-language answers about your own money, from the data you've already connected. No hunting through statements.</p>
+          <div class="art chat">
+            <div class="bubble me">Can I afford the concert on Saturday?</div>
+            <div class="bubble them">Yes. Tickets are $74 and you'll have $210 free by Saturday. You'd still hit your trip goal on time.</div>
+          </div>
+        </div>
+        <div class="tile t-half">
+          <h3>Shared budgets for households</h3>
+          <p>Invite a partner or roommate. Share the rent and grocery envelopes, keep your personal spending private. Everyone sees what they need to and nothing more.</p>
+          <div class="art split-people" aria-hidden="true"><i></i><i></i><i></i><span>3 people sharing "Apartment 4B"</span></div>
+        </div>
+        <div class="tile t-half">
+          <h3>Subscription cleanup</h3>
+          <p>Keel flags the charges you forgot about and the ones that crept up in price. Members cancel an average of $23 a month in subscriptions they no longer use within the first week.</p>
+          <div class="art" style="font-family:var(--display);font-size:46px;letter-spacing:-0.03em;line-height:1;color:var(--green-2)"><span class="num">−$23</span><span style="font-family:var(--sans);font-size:15px;color:var(--muted);letter-spacing:0;margin-left:10px">per month, on average</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Safe-to-spend deep dive -->
+  <section class="deep" aria-labelledby="deep-title">
+    <div class="wrap">
+      <div class="deep-grid">
+        <div>
+          <span class="eyebrow">The safe-to-spend number</span>
+          <h2 id="deep-title">One number you can trust, because you can see the math.</h2>
+          <p class="lede" style="margin-top:22px">Most apps show you a balance and leave you to guess. Keel starts with what you have, subtracts everything already spoken for, and spreads the rest across the days until your next paycheck.</p>
+          <div class="deep-points">
+            <div><span><b>It updates as you go.</b> Buy lunch and the number drops right away. Get a refund and it comes back.</span></div>
+            <div><span><b>It forgives bad days.</b> Overspend on Tuesday and Keel spreads the difference across the rest of the week instead of flashing red.</span></div>
+            <div><span><b>It handles odd paychecks.</b> Freelance, tips or shifts that change week to week. Keel plans around your low months, not your best ones.</span></div>
+          </div>
+        </div>
+        <div class="equation" aria-label="Example calculation of safe to spend">
+          <div class="eq-row"><span>In your accounts</span><span class="num">$2,914</span></div>
+          <div class="eq-row"><span>Bills due before payday</span><span class="num">− $1,682</span></div>
+          <div class="eq-row"><span>Goals this pay period</span><span class="num">− $260</span></div>
+          <div class="eq-row"><span>Buffer for surprises</span><span class="num">− $100</span></div>
+          <div class="eq-row"><span>Days until payday</span><span class="num">÷ 10</span></div>
+          <div class="eq-total">
+            <div><small>Safe to spend today</small><b class="num">$87.20</b></div>
+            <em>Recalculated<br>every purchase</em>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Security -->
+  <section id="security">
+    <div class="wrap">
+      <div class="security-grid">
+        <div class="vault" aria-hidden="true">
+          <div class="door"></div>
+          <span class="badge b1">256-bit encryption</span>
+          <span class="badge b2">Read-only access</span>
+          <span class="badge b3">SOC 2 Type II</span>
+        </div>
+        <div>
+          <span class="eyebrow">Security and privacy</span>
+          <h2>Your money stays where it is. Your data stays yours.</h2>
+          <p class="lede" style="margin-top:20px">Keel can see your transactions. It can never move money, and it will never sell what it sees. That's not a setting. It's how we built it.</p>
+          <div class="sec-list">
+            <div>
+              <h3>Read-only by design</h3>
+              <p>We connect through regulated data partners with view-only permissions. Nobody at Keel can transfer a cent.</p>
+            </div>
+            <div>
+              <h3>No ads, no data sales</h3>
+              <p>You pay us, so we don't need to profit from your spending habits. We don't sell, rent or share your data with advertisers.</p>
+            </div>
+            <div>
+              <h3>Bank-grade encryption</h3>
+              <p>Data is encrypted in transit and at rest. Your bank login details never touch our servers.</p>
+            </div>
+            <div>
+              <h3>Leave whenever you want</h3>
+              <p>Export everything to a spreadsheet anytime. Delete your account and your data is gone within 30 days.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Testimonials -->
+  <section class="voices" aria-labelledby="voices-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">From people using it</span>
+        <h2 id="voices-title">Less checking, less worrying, more left over.</h2>
+      </div>
+      <div class="quote-feature">
+        <figure class="qf-main">
+          <blockquote>"I've downloaded every budgeting app there is and quit all of them by week two. Keel is the first one I still open every morning, because it takes five seconds and it's never wrong."</blockquote>
+          <figcaption class="who"><i style="background:linear-gradient(135deg,#e9c58a,#d9694a)"></i><div><b>Priya Raman</b><span>Product designer, Austin · member since 2024</span></div></figcaption>
+        </figure>
+        <div class="qf-stat">
+          <strong class="num">83%</strong>
+          <p>of members say they feel less anxious about money after their first two months.</p>
+        </div>
+      </div>
+      <div class="quotes">
+        <figure class="q">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>"My income is all over the place as a freelance photographer. Keel plans around my slow months, so I'm not eating ramen every January anymore."</blockquote>
+          <figcaption class="who"><i style="background:linear-gradient(135deg,#8fb9a2,#1f4d3a)"></i><div><b>Marcus Bell</b><span>Photographer, Chicago</span></div></figcaption>
+        </figure>
+        <figure class="q">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>"We used to argue about money every few weeks. Now we share the house envelopes and keep our own spending separate. We haven't had that argument since spring."</blockquote>
+          <figcaption class="who"><i style="background:linear-gradient(135deg,#cfd7e6,#55657f)"></i><div><b>Dana and Jo Whitfield</b><span>Homeowners, Portland</span></div></figcaption>
+        </figure>
+        <figure class="q">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>"Paid off $7,400 of credit card debt in 14 months. I didn't earn more. I just finally knew where my money was going."</blockquote>
+          <figcaption class="who"><i style="background:linear-gradient(135deg,#f7e2bd,#e8a33d)"></i><div><b>Luis Ortega</b><span>Nurse, Phoenix</span></div></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Pricing -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="section-head" style="text-align:center;margin-left:auto;margin-right:auto">
+        <span class="eyebrow">Pricing</span>
+        <h2>Costs less than the subscriptions it finds.</h2>
+        <p class="lede" style="margin-left:auto;margin-right:auto">Every plan starts with a 30-day free trial. No card needed to start, and you can cancel in two taps.</p>
+      </div>
+      <div class="plans">
+        <div class="plan">
+          <h3>Basic</h3>
+          <p class="desc">The safe-to-spend number and the essentials.</p>
+          <div class="price num">$0 <small>/ forever</small></div>
+          <p class="billing">Free for one person, always</p>
+          <ul>
+            <li>Up to 2 linked accounts</li>
+            <li>Daily safe-to-spend number</li>
+            <li>Bill radar and due-date alerts</li>
+            <li>1 savings goal</li>
+          </ul>
+          <a href="#" class="btn btn-ghost">Get started</a>
+        </div>
+        <div class="plan pop">
+          <span class="pop-tag">Most popular</span>
+          <h3>Plus</h3>
+          <p class="desc">The full toolkit for running your money on autopilot.</p>
+          <div class="price num">$6 <small>/ month</small></div>
+          <p class="billing">$59 billed yearly, or $8 month to month</p>
+          <ul>
+            <li>Unlimited accounts and goals</li>
+            <li>Self-filling envelopes</li>
+            <li>Ask Keel, in plain language</li>
+            <li>Subscription cleanup</li>
+            <li>Irregular income planning</li>
+          </ul>
+          <a href="#" class="btn btn-primary">Start 30-day free trial</a>
+        </div>
+        <div class="plan">
+          <h3>Household</h3>
+          <p class="desc">Plus for up to four people under one roof.</p>
+          <div class="price num">$10 <small>/ month</small></div>
+          <p class="billing">$99 billed yearly, or $13 month to month</p>
+          <ul>
+            <li>Everything in Plus, for 4 people</li>
+            <li>Shared and private envelopes</li>
+            <li>Split bills automatically</li>
+            <li>Monthly household check-in</li>
+          </ul>
+          <a href="#" class="btn btn-ghost">Start free trial</a>
+        </div>
+      </div>
+      <p class="guarantee">If Keel doesn't save you more than it costs in your first year, email us and we'll refund every cent.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- 8. Footer with final CTA -->
+<footer>
+  <div class="wrap">
+    <div class="final">
+      <h2>Payday shouldn't feel like <em>a fresh start</em> every two weeks.</h2>
+      <div>
+        <p>Get your first safe-to-spend number in about four minutes. Free for 30 days, then pick the plan that fits.</p>
+        <a href="#pricing" class="btn btn-primary">Start budgeting free <span class="arrow" aria-hidden="true">→</span></a>
+        <div class="stores">
+          <a href="#" class="store">Download on the<b>App Store</b></a>
+          <a href="#" class="store">Get it on<b>Google Play</b></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-cols">
+      <div>
+        <a href="#" class="logo"><span class="logo-mark" aria-hidden="true"></span>Keel</a>
+        <p class="foot-about">Keel is a calm, honest budgeting app made by a small team in Denver. We've been helping people stay level since 2021.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#">What's new</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press kit</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Help center</a></li>
+          <li><a href="#security">Security</a></li>
+          <li><a href="#">Privacy policy</a></li>
+          <li><a href="#">Terms of service</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="legal">
+      <p>Keel is a budgeting tool, not a bank. Account connections are provided through licensed data partners with read-only access. Savings figures are averages reported by Keel Plus members and individual results will vary.</p>
+      <span>© 2026 Keel Money, Inc.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

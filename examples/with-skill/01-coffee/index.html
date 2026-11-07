@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vesna's Coffee, James Street North, Hamilton</title>
+<meta name="description" content="Filter coffee by the cup or the pot at 214 James Street North, Hamilton. Three coffees on the board each morning. Open 6:30 a.m. weekdays.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Caveat+Brush&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f1ece1;
+    --paper-2: #e7dfcf;
+    --ink: #1d1a16;
+    --ink-soft: #4a443b;
+    --line: #cfc5b2;
+    --felt: #141312;
+    --enamel: #2c5a4b;
+    --enamel-deep: #1f4337;
+    --grease: #c23b22;
+    --coffee: #3a2214;
+    --steel: #9b9a95;
+    --max: 1180px;
+    --gutter: clamp(16px, 4vw, 40px);
+    --display: "Archivo", "Arial Narrow", sans-serif;
+    --serif: "Newsreader", Georgia, serif;
+    --hand: "Caveat Brush", "Comic Sans MS", cursive;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  img, svg { max-width: 100%; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+  .skip { position: absolute; left: -9999px; top: 0; background: var(--ink); color: var(--paper); padding: 10px 14px; z-index: 50; }
+  .skip:focus { left: 12px; top: 12px; }
+
+  h1, h2, h3 {
+    font-family: var(--display);
+    font-stretch: 72%;
+    font-weight: 750;
+    line-height: 0.98;
+    letter-spacing: -0.005em;
+    margin: 0;
+  }
+  h2 { font-size: clamp(38px, 5.2vw, 64px); }
+  h3 { font-size: 24px; font-stretch: 80%; font-weight: 700; line-height: 1.1; }
+  p { margin: 0 0 1em; }
+
+  .btn {
+    display: inline-block;
+    font-family: var(--display);
+    font-stretch: 90%;
+    font-weight: 650;
+    font-size: 17px;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    padding: 15px 22px 14px;
+    border: 2px solid var(--ink);
+    border-radius: 2px;
+    transition: background-color .15s ease, color .15s ease, transform .15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:focus-visible, a:focus-visible { outline: 3px solid var(--grease); outline-offset: 3px; }
+  .btn-solid { background: var(--ink); color: var(--paper); }
+  .btn-solid:hover { background: var(--grease); border-color: var(--grease); }
+  .btn-line { background: transparent; color: var(--ink); }
+  .btn-line:hover { background: var(--ink); color: var(--paper); }
+
+  /* ---------- nav ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(241, 236, 225, 0.94);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 64px; }
+  .logo {
+    font-family: var(--display); font-stretch: 68%; font-weight: 800; font-size: 28px;
+    text-decoration: none; letter-spacing: 0.01em;
+  }
+  .logo span { color: var(--grease); }
+  .nav ul { list-style: none; display: flex; gap: 26px; margin: 0; padding: 0; font-family: var(--display); font-stretch: 90%; font-size: 16px; font-weight: 550; }
+  .nav ul a { text-decoration: none; }
+  .nav ul a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .nav .btn { padding: 9px 14px 8px; font-size: 15px; }
+  @media (max-width: 900px) { .nav ul { display: none; } }
+
+  /* ---------- 1 hero ---------- */
+  .hero { padding: clamp(40px, 7vw, 88px) 0 0; border-bottom: 1px solid var(--line); overflow: hidden; }
+  .hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(28px, 5vw, 72px); align-items: end; }
+  .hero-where { font-family: var(--display); font-stretch: 85%; font-size: 15px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 22px; }
+  .hero h1 { font-size: clamp(60px, 10.5vw, 148px); font-stretch: 64%; font-weight: 800; line-height: 0.88; letter-spacing: -0.01em; }
+  .hero-sub { font-size: clamp(19px, 1.7vw, 22px); max-width: 30em; margin: 28px 0 32px; color: var(--ink-soft); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero-hours { font-family: var(--display); font-stretch: 90%; font-size: 15px; color: var(--ink-soft); margin: 22px 0 clamp(36px, 6vw, 72px); }
+
+  .scene {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background: radial-gradient(120% 80% at 85% 0%, #fbf3df 0%, rgba(251,243,223,0) 55%), linear-gradient(180deg, #ddd2bc 0%, #c9baa0 100%);
+    border-radius: 4px 4px 0 0;
+    overflow: hidden;
+  }
+  .scene::before { /* window light */
+    content: ""; position: absolute; right: -10%; top: -6%; width: 70%; height: 80%;
+    background: repeating-linear-gradient(90deg, rgba(255,250,236,.55) 0 46px, rgba(255,250,236,0) 46px 58px);
+    transform: skewX(-14deg); filter: blur(2px); opacity: .7;
+  }
+  .counter { position: absolute; left: 0; right: 0; bottom: 0; height: 24%; background: linear-gradient(180deg, #8a6a4c 0 6px, #6e533b 6px 100%); }
+  .counter::after { content: ""; position: absolute; inset: 6px 0 0; background: repeating-linear-gradient(90deg, rgba(0,0,0,.06) 0 2px, transparent 2px 23px); }
+  .warmer { position: absolute; left: 18%; right: 22%; bottom: 23%; height: 4.5%; background: linear-gradient(180deg, #2b2a28, #111); border-radius: 3px 3px 0 0; }
+  .warmer::after { content: ""; position: absolute; left: 4%; top: -6px; width: 92%; height: 7px; background: #3b3936; border-radius: 50%; }
+  .pot { position: absolute; left: 22%; bottom: 27%; width: 52%; aspect-ratio: 1 / 1.08; }
+  .pot .glass {
+    position: absolute; inset: 22% 0 0 0;
+    border-radius: 48% 48% 42% 42% / 40% 40% 54% 54%;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.35) 0 34%, rgba(0,0,0,0) 34%),
+      linear-gradient(180deg, rgba(0,0,0,0) 0 36%, #4a2c19 36%, #2a170c 70%, #1a0d06 100%);
+    box-shadow: inset 0 0 0 3px rgba(255,255,255,.55), inset -14px -10px 30px rgba(0,0,0,.35);
+  }
+  .pot .glass::before { content: ""; position: absolute; left: 12%; top: 14%; width: 9%; height: 58%; border-radius: 40px; background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.08)); }
+  .pot .glass::after { content: ""; position: absolute; left: 6%; right: 6%; top: 34%; height: 5%; border-radius: 50%; background: #6b4529; opacity: .9; }
+  .pot .collar { position: absolute; left: 22%; right: 22%; top: 8%; height: 18%; background: linear-gradient(180deg, #232120, #0d0c0b); border-radius: 10px 10px 4px 4px; }
+  .pot .collar::before { content: ""; position: absolute; left: -8%; top: -18%; width: 34%; height: 40%; background: #0d0c0b; border-radius: 8px 4px 2px 8px; transform: skewX(-20deg); }
+  .pot .handle { position: absolute; right: -14%; top: 14%; width: 30%; height: 52%; border: 14px solid #141312; border-left: 0; border-radius: 0 40px 40px 0; }
+  .pot .time { position: absolute; left: 28%; top: 50%; font-family: var(--hand); color: var(--grease); font-size: clamp(28px, 3.6vw, 48px); transform: rotate(-7deg); line-height: 1; text-shadow: 0 0 1px rgba(194,59,34,.6); }
+  .steam { position: absolute; left: 40%; bottom: 74%; width: 12%; height: 22%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,.55), rgba(255,255,255,0)); filter: blur(6px); }
+  .steam.s2 { left: 48%; bottom: 82%; width: 9%; height: 16%; opacity: .7; }
+  .cup { position: absolute; right: 8%; bottom: 23%; width: 16%; aspect-ratio: 1 / .78; background: linear-gradient(90deg, #f7f4ee, #ddd8ce); border-radius: 4px 4px 40% 40% / 4px 4px 60% 60%; }
+  .cup::before { content: ""; position: absolute; left: 6%; right: 6%; top: -4%; height: 16%; background: radial-gradient(#3c2312 55%, #e9e4da 60%); border-radius: 50%; }
+  .cup::after { content: ""; position: absolute; right: -26%; top: 16%; width: 34%; height: 46%; border: 6px solid #e4dfd5; border-left: 0; border-radius: 0 20px 20px 0; }
+
+  /* ---------- 2 board ---------- */
+  .board-sec { padding: clamp(64px, 9vw, 120px) 0; }
+  .board-head { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: end; margin-bottom: 36px; }
+  .board-head p { margin: 0; color: var(--ink-soft); max-width: 30em; }
+  .letterboard {
+    background:
+      repeating-linear-gradient(180deg, rgba(255,255,255,0) 0 31px, rgba(255,255,255,.055) 31px 33px),
+      var(--felt);
+    border: 16px solid var(--steel);
+    border-image: linear-gradient(135deg, #c9c8c3, #858480 40%, #b7b6b1 60%, #7a7975) 1;
+    box-shadow: 0 30px 60px -30px rgba(0,0,0,.5);
+    color: #f4f1ea;
+    padding: clamp(24px, 4vw, 48px);
+    font-family: var(--display);
+    font-stretch: 70%;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .lb-row { display: grid; grid-template-columns: 1fr auto auto; gap: 8px 36px; padding: 18px 0; border-bottom: 1px dashed rgba(255,255,255,.18); align-items: baseline; }
+  .lb-row:last-of-type { border-bottom: 0; }
+  .lb-name { font-size: clamp(26px, 3.4vw, 40px); font-weight: 700; line-height: 1.05; }
+  .lb-name em { font-style: normal; color: #e9a089; }
+  .lb-note { grid-column: 1 / 2; font-family: var(--serif); text-transform: none; letter-spacing: 0; font-size: 17px; color: #c9c4b8; }
+  .lb-price { font-size: clamp(22px, 2.6vw, 30px); font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+  .lb-price small { display: block; font-size: 12px; letter-spacing: .12em; color: #a7a298; font-weight: 500; }
+  .lb-foot { margin-top: 20px; font-family: var(--serif); text-transform: none; letter-spacing: 0; font-size: 16px; color: #c9c4b8; }
+  .bakery { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(28px, 5vw, 64px); margin-top: clamp(40px, 6vw, 64px); align-items: start; }
+  .bakery h3 { margin-bottom: 10px; }
+  .bakery p { color: var(--ink-soft); }
+  .bakery ul { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
+  .bakery li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  .bakery li b { font-weight: 600; }
+
+  /* ---------- 3 story ---------- */
+  .story { background: var(--paper-2); padding: clamp(64px, 9vw, 120px) 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .story .wrap { display: grid; grid-template-columns: minmax(0, 0.5fr) minmax(0, 640px) minmax(250px, 1fr); gap: 48px; }
+  .story h2 { grid-column: 1 / -1; max-width: 15ch; font-size: clamp(42px, 6.4vw, 84px); margin-bottom: clamp(32px, 5vw, 56px); }
+  .story-body { grid-column: 2; font-size: 21px; line-height: 1.6; }
+  .story-body p:first-child::first-letter { font-family: var(--display); font-stretch: 64%; font-weight: 800; float: left; font-size: 92px; line-height: .8; margin: 6px 10px 0 0; color: var(--grease); }
+  .notice {
+    grid-column: 3; align-self: start; position: sticky; top: 96px;
+    background: #fbf8f1; padding: 22px 22px 26px; transform: rotate(2.2deg);
+    box-shadow: 0 1px 0 #ddd5c6, 0 18px 30px -18px rgba(0,0,0,.35);
+    font-family: "Courier New", Courier, monospace; font-size: 13.5px; line-height: 1.5; color: #2f2b25;
+  }
+  .notice b { display: block; font-size: 15px; letter-spacing: .08em; margin-bottom: 10px; }
+  .notice .stamp { display: inline-block; margin-top: 14px; border: 3px solid rgba(194,59,34,.8); color: rgba(194,59,34,.85); padding: 4px 10px; font-weight: 700; letter-spacing: .12em; transform: rotate(-8deg); font-size: 15px; }
+  .ray { grid-column: 2; margin: 28px 0 0; padding: 26px 0 0; border-top: 2px solid var(--ink); }
+  .ray blockquote { margin: 0; font-family: var(--display); font-stretch: 80%; font-weight: 600; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.2; }
+  .ray figcaption { margin-top: 12px; font-size: 16px; color: var(--ink-soft); }
+  @media (max-width: 1080px) {
+    .story .wrap { grid-template-columns: minmax(0, 1fr); }
+    .story-body, .ray, .notice { grid-column: 1; }
+    .notice { position: static; max-width: 340px; margin: 8px 0 0 6px; }
+  }
+
+  /* ---------- 4 process ---------- */
+  .process { background: var(--enamel); color: #eef0e9; padding: clamp(64px, 9vw, 120px) 0; }
+  .process-head { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; align-items: end; margin-bottom: clamp(40px, 6vw, 64px); }
+  .process-head p { margin: 0; font-size: 21px; color: #cfdcd4; }
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border-top: 2px solid rgba(238,240,233,.5); }
+  .steps li { padding: 22px 20px 6px 0; border-right: 1px solid rgba(238,240,233,.18); padding-left: 20px; }
+  .steps li:first-child { padding-left: 0; }
+  .steps li:last-child { border-right: 0; }
+  .steps .n { font-family: var(--display); font-stretch: 70%; font-weight: 800; font-size: 15px; letter-spacing: .1em; color: #9fc0b1; }
+  .steps h3 { margin: 6px 0 10px; font-size: 30px; }
+  .steps p { font-size: 17px; color: #d7e1db; }
+  .steps .grease { font-family: var(--hand); color: #ff9a7d; font-size: 22px; white-space: nowrap; }
+  .steps li.last { background: var(--enamel-deep); padding-right: 20px; }
+  @media (max-width: 980px) {
+    .steps { grid-template-columns: 1fr 1fr; }
+    .steps li, .steps li:first-child { padding: 22px 16px 6px; border-right: 0; border-bottom: 1px solid rgba(238,240,233,.18); }
+    .steps li.last { grid-column: 1 / -1; }
+  }
+
+  /* ---------- 5 not on the board ---------- */
+  .elsewhere { padding: clamp(64px, 9vw, 120px) 0; }
+  .elsewhere .wrap { display: grid; grid-template-columns: 0.75fr 1.25fr; gap: clamp(32px, 6vw, 88px); }
+  .elsewhere-intro p { color: var(--ink-soft); margin-top: 22px; max-width: 22em; }
+  .ledger { margin: 0; border-top: 2px solid var(--ink); }
+  .ledger div { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .ledger dt { font-family: var(--display); font-stretch: 80%; font-weight: 700; font-size: 22px; line-height: 1.15; }
+  .ledger dd { margin: 0; font-size: 18px; color: var(--ink-soft); }
+  .ledger dd strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- 6 carafes ---------- */
+  .carafes { background: var(--ink); color: var(--paper); padding: clamp(64px, 9vw, 120px) 0; }
+  .carafes .wrap { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
+  .airpot-wrap { position: relative; aspect-ratio: 3 / 4; background: radial-gradient(80% 60% at 50% 40%, #2b2824 0%, #1d1a16 70%); border: 1px solid #39342d; }
+  .airpot { position: absolute; left: 30%; width: 40%; bottom: 10%; height: 66%; background: linear-gradient(90deg, #5f5e5a 0%, #d4d3ce 28%, #8f8e89 55%, #4d4c48 100%); border-radius: 10px 10px 6px 6px; }
+  .airpot::before { content: ""; position: absolute; left: -6%; right: -6%; top: -16%; height: 18%; background: linear-gradient(180deg, #2a2927, #111); border-radius: 50% 50% 8px 8px / 80% 80% 8px 8px; }
+  .airpot::after { content: ""; position: absolute; left: 30%; width: 40%; top: -28%; height: 14%; background: #111; border-radius: 6px 6px 2px 2px; }
+  .airpot .spout { position: absolute; left: -26%; top: -10%; width: 32%; height: 7%; background: #151413; border-radius: 6px 0 0 6px; transform: rotate(-8deg); }
+  .airpot .band { position: absolute; left: 0; right: 0; top: 64%; height: 9%; background: var(--grease); }
+  .airpot .band::after { content: "HOUSE POT · 6:15"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--display); font-stretch: 70%; font-weight: 700; font-size: 12px; letter-spacing: .12em; color: #fff; }
+  .airpot-wrap .shadow { position: absolute; left: 22%; right: 22%; bottom: 7%; height: 5%; background: radial-gradient(closest-side, rgba(0,0,0,.6), transparent); }
+  .carafes h2 { max-width: 14ch; }
+  .carafes .lede { font-size: 21px; color: #d6cfc2; margin: 24px 0 28px; max-width: 32em; }
+  .prices { width: 100%; border-collapse: collapse; margin-bottom: 26px; font-variant-numeric: tabular-nums; }
+  .prices td { padding: 12px 0; border-bottom: 1px solid #3b362f; vertical-align: top; }
+  .prices td:last-child { text-align: right; font-family: var(--display); font-stretch: 85%; font-weight: 650; font-size: 20px; white-space: nowrap; padding-left: 16px; }
+  .prices .fine { display: block; font-size: 15px; color: #a9a196; }
+  .carafes .how { color: #d6cfc2; font-size: 18px; max-width: 34em; }
+  .carafes .btn-solid { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+  .carafes .btn-solid:hover { background: var(--grease); border-color: var(--grease); color: #fff; }
+  .carafes .phone { margin-left: 16px; font-family: var(--display); font-stretch: 90%; font-size: 17px; color: #d6cfc2; }
+
+  /* ---------- 7 visit ---------- */
+  .visit { padding: clamp(64px, 9vw, 120px) 0; }
+  .visit .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); }
+  .map {
+    position: relative; aspect-ratio: 1 / 1; background: #e3dccd; border: 2px solid var(--ink); overflow: hidden;
+    background-image: repeating-linear-gradient(0deg, transparent 0 38px, rgba(29,26,22,.05) 38px 39px), repeating-linear-gradient(90deg, transparent 0 38px, rgba(29,26,22,.05) 38px 39px);
+  }
+  .map .bay { position: absolute; left: -10%; right: -10%; top: -30%; height: 38%; background: #b9cbc4; border-radius: 0 0 50% 40%; }
+  .map .bay span { position: absolute; left: 18%; bottom: 22%; font-family: var(--serif); font-style: italic; font-size: 15px; color: #3e5a50; }
+  .map .st { position: absolute; background: #fbf8f1; box-shadow: 0 0 0 1px rgba(29,26,22,.18); }
+  .map .st span { position: absolute; font-family: var(--display); font-stretch: 80%; font-size: 12px; font-weight: 650; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; }
+  .map .james { left: 52%; top: 0; bottom: 0; width: 22px; }
+  .map .james span { left: 30px; bottom: 16px; }
+  .map .h { left: 0; right: 0; height: 16px; }
+  .map .h span { left: 12px; top: -18px; }
+  .map .barton { top: 42%; }
+  .map .cannon { top: 78%; }
+  .map .rail { position: absolute; left: 0; right: 0; top: 30%; height: 4px; background: repeating-linear-gradient(90deg, var(--ink) 0 10px, transparent 10px 16px); opacity: .5; }
+  .map .go { position: absolute; left: calc(52% - 70px); top: calc(30% - 34px); font-family: var(--display); font-stretch: 85%; font-size: 13px; font-weight: 700; background: var(--enamel); color: #fff; padding: 4px 8px; border-radius: 2px; }
+  .map .pin { position: absolute; left: calc(52% + 11px); top: 60%; width: 28px; height: 28px; margin: -28px 0 0 -14px; background: var(--grease); border-radius: 50% 50% 50% 0; transform: rotate(-45deg); box-shadow: 0 6px 12px -4px rgba(0,0,0,.4); }
+  .map .pin::after { content: ""; position: absolute; inset: 9px; background: #fff; border-radius: 50%; }
+  .map .pin-label { position: absolute; left: calc(52% + 34px); top: calc(60% - 30px); background: var(--ink); color: var(--paper); font-family: var(--display); font-stretch: 85%; font-weight: 700; font-size: 14px; padding: 5px 9px; }
+  .visit h2 { margin-bottom: 26px; }
+  .hours { width: 100%; border-collapse: collapse; border-top: 2px solid var(--ink); margin-bottom: 28px; font-variant-numeric: tabular-nums; }
+  .hours th, .hours td { text-align: left; padding: 12px 0; border-bottom: 1px solid var(--line); font-weight: 400; }
+  .hours th { font-family: var(--display); font-stretch: 85%; font-weight: 650; font-size: 18px; }
+  .hours td { text-align: right; }
+  .visit p { color: var(--ink-soft); }
+  .review { margin: 28px 0; padding: 18px 20px; background: #fbf8f1; border-left: 4px solid var(--grease); }
+  .review blockquote { margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 17px; color: var(--ink); }
+  .review figcaption { font-size: 15px; color: var(--ink-soft); margin-top: 6px; }
+  .visit .hero-actions { margin-top: 8px; }
+
+  /* ---------- 8 footer ---------- */
+  footer { background: var(--felt); color: #cfc8bb; padding: 56px 0 40px; font-family: var(--display); font-stretch: 90%; font-size: 16px; }
+  footer .wrap { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 32px; }
+  footer .logo { color: var(--paper); font-size: 34px; display: inline-block; margin-bottom: 10px; }
+  footer h4 { margin: 0 0 10px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #8d867a; font-weight: 650; }
+  footer p { margin: 0 0 6px; line-height: 1.5; }
+  footer a { text-decoration: none; border-bottom: 1px solid #4a453e; }
+  footer a:hover { color: #fff; border-color: #fff; }
+  footer .legal { grid-column: 1 / -1; border-top: 1px solid #2e2b27; padding-top: 20px; margin-top: 16px; font-size: 14px; color: #8d867a; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 860px) {
+    body { font-size: 18px; }
+    .hero .wrap, .board-head, .bakery, .process-head, .elsewhere .wrap, .carafes .wrap, .visit .wrap { grid-template-columns: minmax(0, 1fr); }
+    .scene { aspect-ratio: 5 / 4; }
+    .hero-hours { margin-bottom: 8px; }
+    .lb-row { grid-template-columns: 1fr auto; }
+    .lb-row .lb-price:last-child { grid-column: 2; }
+    .lb-note { grid-column: 1 / -1; }
+    .ledger div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+    .airpot-wrap { max-width: 360px; aspect-ratio: 1 / 1; }
+    footer .wrap { grid-template-columns: 1fr 1fr; }
+    .carafes .phone { display: block; margin: 16px 0 0; }
+  }
+  @media (max-width: 520px) {
+    .steps { grid-template-columns: minmax(0, 1fr); }
+    .steps li.last { grid-column: 1; }
+    .lb-row { grid-template-columns: 1fr; gap: 4px; }
+    .lb-price { text-align: left; }
+    .lb-price small { display: inline; margin-right: 8px; }
+    .lb-row .lb-price:last-child { grid-column: 1; }
+    footer .wrap { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn { transition: none; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#board">Skip to today's coffees</a>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="logo" href="#top">Vesna's<span>.</span></a>
+    <ul>
+      <li><a href="#board">The board</a></li>
+      <li><a href="#story">The machine</a></li>
+      <li><a href="#elsewhere">Not on the board</a></li>
+      <li><a href="#carafes">Carafes</a></li>
+      <li><a href="#visit">Hours</a></li>
+    </ul>
+    <a class="btn btn-solid" href="#carafes">Order a carafe</a>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- 1. Hero -->
+  <header class="hero">
+    <div class="wrap">
+      <div>
+        <p class="hero-where">214 James Street North, Hamilton</p>
+        <h1>We only make filter coffee.</h1>
+        <p class="hero-sub">Three coffees on the board each morning, brewed in glass pots and poured at the counter. A cup is $3.75, and a refill is a dollar for as long as you stay on your stool.</p>
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="#board">See today's board</a>
+          <a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&amp;query=214+James+Street+North+Hamilton+Ontario">Get directions</a>
+        </div>
+        <p class="hero-hours">Open 6:30 a.m. on weekdays and 7:30 on Saturdays. Closed Sundays.</p>
+      </div>
+      <div class="scene" role="img" aria-label="A glass coffee pot on a hot plate with the time 6:52 written on it in red grease pencil, next to a white cup on a wooden counter.">
+        <div class="counter"></div>
+        <div class="warmer"></div>
+        <div class="steam"></div>
+        <div class="steam s2"></div>
+        <div class="pot">
+          <div class="handle"></div>
+          <div class="glass"></div>
+          <div class="collar"></div>
+          <div class="time" aria-hidden="true">6:52</div>
+        </div>
+        <div class="cup"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. The board -->
+  <section class="board-sec" id="board" aria-labelledby="board-h">
+    <div class="wrap">
+      <div class="board-head">
+        <h2 id="board-h">Today's board</h2>
+        <p>Spelled out in plastic letters at 6:15 by whoever opens, and changed when a bag runs out. Hollow Oak Roasters in Dundas roasts for us every Monday. We don't roast, and we have no plans to start.</p>
+      </div>
+
+      <div class="letterboard">
+        <div class="lb-row">
+          <div class="lb-name"><em>House pot</em> · Brazil, Mogiana</div>
+          <div class="lb-price"><small>Cup</small>$3.75</div>
+          <div class="lb-price"><small>Pot for four</small>$12</div>
+          <div class="lb-note">Cocoa and walnut, low acidity. Most of the 6:40 crowd from the mill drinks this one with milk.</div>
+        </div>
+        <div class="lb-row">
+          <div class="lb-name">Colombia, Huila</div>
+          <div class="lb-price"><small>Cup</small>$4.25</div>
+          <div class="lb-price"><small>Pot for four</small>$14</div>
+          <div class="lb-note">Grown by Ana Lucía Ortiz near Pitalito. Red apple and panela, with a heavier body than you'd guess from the colour.</div>
+        </div>
+        <div class="lb-row">
+          <div class="lb-name">Ethiopia, Guji, washed</div>
+          <div class="lb-price"><small>Cup</small>$4.50</div>
+          <div class="lb-price"><small>Pot for four</small>$15</div>
+          <div class="lb-note">Bergamot and lemon, thin and tea-like. If you usually drink the house pot, ask for a taste before you order a whole cup.</div>
+        </div>
+        <p class="lb-foot">Whole milk and oat milk are in jugs on the counter. Sugar is in the tin beside them.</p>
+      </div>
+
+      <div class="bakery">
+        <div>
+          <h3>Pastry from two doors down</h3>
+          <p>Pekara Dalmacija at 218 James North bakes these, and Milan carries them over on a sheet pan at around 7:15. Before then, it's coffee only.</p>
+        </div>
+        <ul>
+          <li><span>Cheese burek</span><b>$5.50</b></li>
+          <li><span>Meat burek</span><b>$6</b></li>
+          <li><span>Poppy seed roll</span><b>$4</b></li>
+          <li><span>Fritule, bag of eight (Saturdays)</span><b>$6</b></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Story -->
+  <section class="story" id="story" aria-labelledby="story-h">
+    <div class="wrap">
+      <h2 id="story-h">The espresso machine left on a flatbed in March 2019.</h2>
+      <div class="story-body">
+        <p>Vesna Kovač opened in November 2018 with a leased two-group espresso machine and a menu board listing twenty-two drinks. She had spent eleven years testing drinking water for the City of Hamilton and no time at all making lattes, and the lattes showed it. By February she was three payments behind.</p>
+        <p>The leasing company's flatbed came on a Tuesday at seven in the morning, in the middle of the busiest hour she'd had. She asked the driver to wait while she finished the order in front of her. He unplugged the machine anyway.</p>
+        <p>That afternoon she borrowed the batch brewer from the Croatian hall on Barton Street, where it had made coffee for christenings and funerals for about forty years, and bought two glass pots at a restaurant supply down the road. She wrote the brew time on each pot in grease pencil so she would know when to pour it out.</p>
+        <p>A few people asked where the latte had gone. Most of them came back the next morning, and plenty of them still do. She returned the hall's brewer in 2020, bought two of her own, and took the twenty-two drinks off the wall. The board has had three lines on it ever since.</p>
+      </div>
+      <aside class="notice" aria-label="The equipment collection notice from 2019">
+        <b>COLLECTION NOTICE</b>
+        Lease no. 4471-HAM<br>
+        Item: espresso machine, 2 group<br>
+        Site: 214 James St N<br>
+        Collect: Tue 12 Mar 2019, 07:00<br>
+        Reason: 3 payments outstanding<br>
+        <span class="stamp">COLLECTED</span>
+      </aside>
+      <figure class="ray">
+        <blockquote>“I told her the lattes were bad. First week. She didn't like that. The pot coffee's good, I have two before shift.”</blockquote>
+        <figcaption>Ray Tessier, overhead crane operator, in most weekdays at 6:40</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 4. Process -->
+  <section class="process" id="pots" aria-labelledby="pots-h">
+    <div class="wrap">
+      <div class="process-head">
+        <h2 id="pots-h">Every pot has a time written on it.</h2>
+        <p>Coffee sitting in a glass pot on a hot plate tastes fine for about half an hour. After that it starts to taste like the hot plate, so we keep count.</p>
+      </div>
+      <ol class="steps">
+        <li>
+          <span class="n">STEP 1</span>
+          <h3>Weigh</h3>
+          <p>105 grams of coffee for each 1.9-litre pot, ground coarse on the grinder by the window.</p>
+        </li>
+        <li>
+          <span class="n">STEP 2</span>
+          <h3>Brew</h3>
+          <p>Water at 94°C runs through for about five minutes. You'll smell it from the door while the pot fills from the bottom up.</p>
+        </li>
+        <li>
+          <span class="n">STEP 3</span>
+          <h3>Mark</h3>
+          <p>Whoever brewed it writes the time on the glass in red grease pencil, like <span class="grease">7:20</span> or <span class="grease">7:41</span>.</p>
+        </li>
+        <li>
+          <span class="n">STEP 4</span>
+          <h3>Pour</h3>
+          <p>When you order, look at the pot. The time faces you, so you can see how long your cup has been waiting.</p>
+        </li>
+        <li class="last">
+          <span class="n">STEP 5</span>
+          <h3>Pour out</h3>
+          <p>Thirty minutes after the time on the glass, whatever's left goes down the sink. On a slow Wednesday afternoon that can be most of a pot, and it still goes.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 5. Not on the board -->
+  <section class="elsewhere" id="elsewhere" aria-labelledby="elsewhere-h">
+    <div class="wrap">
+      <div class="elsewhere-intro">
+        <h2 id="elsewhere-h">Not on the board</h2>
+        <p>People ask for all of these every week. Here's where we send them, and most of the places on this list send people back to us for a pot.</p>
+      </div>
+      <dl class="ledger">
+        <div>
+          <dt>Espresso, cortado, flat white</dt>
+          <dd><strong>Bar Turin</strong>, two blocks north on James. Paolo opens at 7 and pulls a short, thick shot.</dd>
+        </div>
+        <div>
+          <dt>Oat latte, chai, matcha</dt>
+          <dd><strong>Glasshouse</strong> on King William Street, open until 6 p.m.</dd>
+        </div>
+        <div>
+          <dt>Decaf</dt>
+          <dd>Bar Turin again. We brewed a decaf pot every morning for most of 2021 and poured more of it down the sink than we sold.</dd>
+        </div>
+        <div>
+          <dt>Tea</dt>
+          <dd><strong>Pekara Dalmacija</strong> keeps a kettle on for the bakers and will sell you a cup of chamomile for two dollars.</dd>
+        </div>
+        <div>
+          <dt>Wi-fi and outlets</dt>
+          <dd>The <strong>Central Library</strong> at 55 York Boulevard. We have eleven stools, and on weekday mornings they turn over every twenty minutes.</dd>
+        </div>
+        <div>
+          <dt>Iced coffee in January</dt>
+          <dd>From June to August we brew one double-strength pot over ice at 11 a.m. It's usually gone by noon. The other nine months, ask Bar Turin.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 6. Carafes -->
+  <section class="carafes" id="carafes" aria-labelledby="carafes-h">
+    <div class="wrap">
+      <div class="airpot-wrap" role="img" aria-label="A steel pump carafe with a red band labelled House pot, 6:15.">
+        <div class="shadow"></div>
+        <div class="airpot"><div class="spout"></div><div class="band"></div></div>
+      </div>
+      <div>
+        <h2 id="carafes-h">Carafes for job sites and early meetings</h2>
+        <p class="lede">A pump carafe holds 2.5 litres, about twelve cups. A sealed carafe has no hot plate under it, so the coffee holds up for around three hours and the half-hour rule doesn't apply.</p>
+        <table class="prices">
+          <tr><td>House pot carafe<span class="fine">12 paper cups, a litre of milk, sugar, stir sticks</span></td><td>$34</td></tr>
+          <tr><td>Colombia or Ethiopia carafe<span class="fine">Same kit, either single-origin coffee</span></td><td>$40</td></tr>
+          <tr><td>Carafe deposit<span class="fine">Refunded in full when the carafe comes back</span></td><td>$40</td></tr>
+        </table>
+        <p class="how">Email by 2 p.m. the day before with the date, a pickup time and which coffee you want. If you don't mind, we'll fill it with the house pot. Pickup starts at 6:15 a.m. We can't deliver, because there's no van and nobody to drive it.</p>
+        <a class="btn btn-solid" href="mailto:carafes@vesnascoffee.ca?subject=Carafe%20order">Email a carafe order</a>
+        <span class="phone">or call <a href="tel:+19055550148">905-555-0148</a> after 6:30</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Visit -->
+  <section class="visit" id="visit" aria-labelledby="visit-h">
+    <div class="wrap">
+      <div class="map" role="img" aria-label="Map: Vesna's is on James Street North between Barton Street and Cannon Street, south of West Harbour GO station.">
+        <div class="bay"><span>Hamilton Harbour</span></div>
+        <div class="st james"><span>James St N</span></div>
+        <div class="st h barton"><span>Barton St</span></div>
+        <div class="st h cannon"><span>Cannon St</span></div>
+        <div class="rail"></div>
+        <div class="go">West Harbour GO</div>
+        <div class="pin"></div>
+        <div class="pin-label">Vesna's, 214</div>
+      </div>
+      <div>
+        <h2 id="visit-h">214 James Street North</h2>
+        <table class="hours">
+          <tr><th scope="row">Monday to Friday</th><td>6:30 a.m. to 2 p.m.</td></tr>
+          <tr><th scope="row">Saturday</th><td>7:30 a.m. to 2 p.m.</td></tr>
+          <tr><th scope="row">Sunday</th><td>Closed</td></tr>
+        </table>
+        <p>Eleven stools along the window counter and a bench outside. There's one step up at the door, and the washroom is down a flight of stairs. If either is a problem, tell whoever's at the counter and we'll bring your cup out to the bench.</p>
+        <p>Saturdays from 9 to 11 are the busy stretch. If the pot runs out just before you order, a fresh one takes about seven minutes.</p>
+        <figure class="review">
+          <blockquote>waited 9 min for a pot on saturday. fine. it was good</blockquote>
+          <figcaption>Teodora Vuković, Google review, August 2026</figcaption>
+        </figure>
+        <p>It's about a ten-minute walk south from West Harbour GO. Street parking on James North is metered until 6 p.m.</p>
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="https://www.google.com/maps/search/?api=1&amp;query=214+James+Street+North+Hamilton+Ontario">Open in Google Maps</a>
+          <a class="btn btn-line" href="tel:+19055550148">Call the counter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- 8. Footer -->
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="logo" href="#top">Vesna's<span>.</span></a>
+      <p>214 James Street North<br>Hamilton, Ontario L8R 2L3</p>
+    </div>
+    <div>
+      <h4>Hours</h4>
+      <p>Mon to Fri, 6:30 a.m. to 2 p.m.</p>
+      <p>Sat, 7:30 a.m. to 2 p.m.</p>
+      <p>Sun, closed</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p><a href="tel:+19055550148">905-555-0148</a></p>
+      <p><a href="mailto:hello@vesnascoffee.ca">hello@vesnascoffee.ca</a></p>
+      <p><a href="mailto:carafes@vesnascoffee.ca">carafes@vesnascoffee.ca</a></p>
+      <p><a href="https://www.instagram.com/vesnascoffee/">Instagram</a>, where the board goes up at 6:20</p>
+    </div>
+    <div>
+      <h4>Suppliers</h4>
+      <p>Coffee: Hollow Oak Roasters, Dundas</p>
+      <p>Pastry: Pekara Dalmacija, 218 James Street North</p>
+    </div>
+    <div class="legal">
+      <span>© 2026 Vesna's Coffee Ltd.</span>
+      <span>We take cash, debit and credit. Tipping is up to you.</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

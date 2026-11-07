@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kiln Studio — Brand &amp; Identity, Rotterdam</title>
+<meta name="description" content="Kiln is a brand and identity studio in Rotterdam. We build identities, packaging and digital brand systems for companies about to get a lot bigger.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4efe6;
+    --paper-2:#ebe4d7;
+    --ink:#1b1712;
+    --ink-2:#5a5248;
+    --line:#d6cdbd;
+    --ember:#d9542b;
+    --ember-deep:#a83a19;
+    --glow:#f2a03d;
+    --clay:#c98b6b;
+    --night:#16130f;
+    --serif:"Fraunces", Georgia, serif;
+    --sans:"Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --wrap:1240px;
+    --gutter:clamp(20px,4vw,48px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter)}
+  .eyebrow{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ember-deep)}
+  h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-height:1.05}
+  h2{font-size:clamp(38px,5.4vw,72px)}
+  h2 em,h1 em{font-style:italic;color:var(--ember)}
+  .lede{font-size:clamp(18px,1.6vw,21px);color:var(--ink-2);max-width:56ch}
+  section{padding:clamp(88px,11vw,152px) 0}
+  .sec-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:clamp(48px,6vw,80px)}
+  .sec-head .eyebrow{margin-bottom:20px;display:block}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 26px;border-radius:999px;font-weight:600;font-size:16px;border:1.5px solid var(--ink);transition:background .2s,color .2s,transform .2s}
+  .btn-solid{background:var(--ink);color:var(--paper)}
+  .btn-solid:hover{background:var(--ember);border-color:var(--ember)}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper)}
+  .btn .arr{transition:transform .2s}
+  .btn:hover .arr{transform:translateX(4px)}
+
+  /* NAV */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(244,239,230,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:26px;font-weight:500;letter-spacing:-.03em}
+  .logo-mark{width:26px;height:30px;border-radius:13px 13px 4px 4px;background:linear-gradient(180deg,var(--glow),var(--ember) 60%,var(--ember-deep));position:relative}
+  .logo-mark::after{content:"";position:absolute;left:8px;right:8px;bottom:4px;height:10px;border-radius:5px 5px 2px 2px;background:var(--paper)}
+  .nav-links{display:flex;gap:34px;font-size:15px;font-weight:500}
+  .nav-links a{color:var(--ink-2);transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav .btn{padding:11px 20px;font-size:15px}
+
+  /* 1 HERO */
+  .hero{padding:clamp(56px,7vw,96px) 0 0;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1.25fr .95fr;gap:clamp(32px,5vw,72px);align-items:center}
+  .hero h1{font-size:clamp(52px,8.2vw,120px);margin:24px 0 32px}
+  .hero .lede{margin-bottom:40px}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-note{margin-top:36px;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-2)}
+  .dot{width:9px;height:9px;border-radius:50%;background:#3d9a5b;box-shadow:0 0 0 4px rgba(61,154,91,.18)}
+  .hero-art{position:relative;aspect-ratio:4/5;border-radius:28px;overflow:hidden;background:
+      radial-gradient(120% 70% at 50% 108%,#ffd28a 0%,var(--glow) 18%,var(--ember) 42%,#5a1f0e 72%,var(--night) 100%)}
+  .hero-art .arch{position:absolute;left:14%;right:14%;top:16%;bottom:0;border-radius:999px 999px 0 0;border:1.5px solid rgba(255,226,190,.35)}
+  .hero-art .arch.two{left:26%;right:26%;top:32%}
+  .hero-art .arch.three{left:38%;right:38%;top:48%;background:rgba(255,236,200,.18)}
+  .hero-art .tag{position:absolute;left:24px;top:24px;right:24px;display:flex;justify-content:space-between;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,236,210,.8);font-weight:600}
+  .hero-art .temp{position:absolute;left:24px;bottom:24px;font-family:var(--serif);font-size:clamp(40px,4vw,56px);color:#fff3e2;line-height:1}
+  .hero-art .temp small{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.75;margin-top:8px}
+  .clients{margin-top:clamp(64px,8vw,104px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0;overflow:hidden;white-space:nowrap}
+  .clients-track{display:inline-flex;gap:64px;animation:slide 38s linear infinite;font-family:var(--serif);font-size:24px;color:var(--ink-2)}
+  .clients-track span{display:inline-flex;align-items:center;gap:64px}
+  .clients-track span::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--ember)}
+  @keyframes slide{to{transform:translateX(-50%)}}
+
+  /* 2 WORK */
+  .work-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:28px}
+  .card{grid-column:span 6;display:block}
+  .card.wide{grid-column:span 7}
+  .card.narrow{grid-column:span 5}
+  .art{position:relative;aspect-ratio:5/4;border-radius:22px;overflow:hidden;margin-bottom:22px;transition:transform .35s ease}
+  .card:hover .art{transform:translateY(-6px)}
+  .card-meta{display:flex;justify-content:space-between;gap:20px;align-items:baseline}
+  .card h3{font-size:30px}
+  .card .kind{font-size:14px;color:var(--ink-2);text-align:right}
+  .card p{color:var(--ink-2);margin-top:8px;max-width:52ch}
+  .card .result{display:inline-block;margin-top:14px;font-size:14px;font-weight:600;padding:6px 12px;border-radius:999px;background:var(--paper-2)}
+  /* art: Marlow */
+  .a-marlow{background:#1f3a5a}
+  .a-marlow .tin{position:absolute;left:18%;right:18%;top:24%;bottom:24%;border-radius:40px;background:linear-gradient(180deg,#f1e6cf,#e3d3b2);box-shadow:0 30px 60px rgba(0,0,0,.3)}
+  .a-marlow .tin::before{content:"";position:absolute;left:0;right:0;top:38%;height:24%;background:var(--ember)}
+  .a-marlow .tin::after{content:"M&D";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-style:italic;font-size:clamp(28px,3.4vw,46px);color:#f1e6cf}
+  .a-marlow .ring{position:absolute;width:44%;aspect-ratio:1;border-radius:50%;border:1.5px solid rgba(241,230,207,.25);right:-10%;top:-14%}
+  /* art: Ostra */
+  .a-ostra{background:linear-gradient(160deg,#cfe36a,#9fc23e)}
+  .a-ostra .wheel{position:absolute;width:34%;aspect-ratio:1;border-radius:50%;border:12px solid #18230a;bottom:18%}
+  .a-ostra .wheel.l{left:10%}.a-ostra .wheel.r{right:10%}
+  .a-ostra .frame{position:absolute;left:27%;right:27%;bottom:35%;height:28%;border-top:10px solid #18230a;border-right:10px solid #18230a;transform:skewX(-24deg)}
+  .a-ostra .word{position:absolute;left:24px;top:20px;font-family:var(--serif);font-size:clamp(32px,4vw,52px);color:#18230a;letter-spacing:-.04em}
+  /* art: Fieldnote */
+  .a-field{background:#e7ecef}
+  .a-field .grid{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr)}
+  .a-field .grid i{border-right:1px solid #c9d3d9;border-bottom:1px solid #c9d3d9;position:relative}
+  .a-field .grid i:nth-child(2)::after,.a-field .grid i:nth-child(7)::after,.a-field .grid i:nth-child(9)::after{content:"";position:absolute;inset:18%;border-radius:50% 50% 0 50%;background:#3b6e8f}
+  .a-field .grid i:nth-child(4)::after,.a-field .grid i:nth-child(11)::after{content:"";position:absolute;inset:18%;border-radius:50%;background:var(--ember)}
+  .a-field .grid i:nth-child(5)::after{content:"";position:absolute;inset:18%;border-radius:0 50% 50% 50%;background:#9cb7c8}
+  /* art: Halcyon */
+  .a-halcyon{background:radial-gradient(90% 90% at 80% 10%,#ffd9b8,#f4a28a 45%,#d9688a)}
+  .a-halcyon .can{position:absolute;width:26%;top:16%;bottom:16%;border-radius:18px;background:linear-gradient(90deg,#fdf3ea,#fff 40%,#f0dccc);box-shadow:0 24px 50px rgba(120,30,50,.3)}
+  .a-halcyon .can.c1{left:22%}.a-halcyon .can.c2{left:52%;top:22%;bottom:10%;background:linear-gradient(90deg,#2d2a4a,#45406e 40%,#2a2644)}
+  .a-halcyon .can::after{content:"";position:absolute;left:22%;right:22%;top:38%;aspect-ratio:1;border-radius:50%;background:var(--glow)}
+  .work-foot{margin-top:56px;display:flex;justify-content:center}
+
+  /* 3 SERVICES */
+  .services{background:var(--night);color:var(--paper)}
+  .services .eyebrow{color:var(--glow)}
+  .services .lede{color:#b5ab9c}
+  .svc-list{border-top:1px solid #3a332b}
+  .svc{display:grid;grid-template-columns:80px 1.1fr 1.4fr 1fr;gap:32px;padding:40px 0;border-bottom:1px solid #3a332b;align-items:start;transition:background .25s}
+  .svc:hover{background:linear-gradient(90deg,rgba(217,84,43,.08),transparent 70%)}
+  .svc .n{font-family:var(--serif);font-size:20px;color:var(--glow)}
+  .svc h3{font-size:clamp(28px,3vw,40px)}
+  .svc p{color:#b5ab9c}
+  .svc ul{list-style:none;font-size:15px;color:#d8cfc1}
+  .svc li{padding:4px 0}
+  .svc li::before{content:"— ";color:var(--ember)}
+  .svc-note{margin-top:48px;display:flex;flex-wrap:wrap;gap:16px 40px;justify-content:space-between;align-items:center;color:#b5ab9c;font-size:16px}
+  .svc-note strong{color:var(--paper);font-weight:600}
+  .services .btn{border-color:var(--paper);color:var(--paper)}
+  .services .btn:hover{background:var(--ember);border-color:var(--ember)}
+
+  /* 4 PROCESS */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;counter-reset:s}
+  .step{background:#fffaf2;border:1px solid var(--line);border-radius:22px;padding:32px 28px 36px;position:relative;overflow:hidden}
+  .step .heat{height:6px;border-radius:3px;margin-bottom:36px;background:linear-gradient(90deg,var(--glow),var(--ember))}
+  .step:nth-child(1) .heat{width:25%}.step:nth-child(2) .heat{width:50%}.step:nth-child(3) .heat{width:100%}.step:nth-child(4) .heat{width:75%;background:linear-gradient(90deg,var(--clay),#8a7a68)}
+  .step .wk{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+  .step h3{font-size:34px;margin:10px 0 14px}
+  .step p{color:var(--ink-2);font-size:16px}
+
+  /* 5 STUDIO */
+  .studio{background:var(--paper-2)}
+  .studio-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,96px);align-items:center}
+  .studio-art{aspect-ratio:1;border-radius:28px;position:relative;overflow:hidden;background:linear-gradient(180deg,#d9cdb8 0%,#cbbba0 62%,#8a6f55 62%,#7a604a 100%)}
+  .studio-art .win{position:absolute;top:10%;width:22%;height:42%;border-radius:999px 999px 6px 6px;background:linear-gradient(180deg,#fbe6c4,#f2b778)}
+  .studio-art .win:nth-child(1){left:8%}.studio-art .win:nth-child(2){left:39%}.studio-art .win:nth-child(3){left:70%}
+  .studio-art .table{position:absolute;left:10%;right:10%;top:58%;height:5%;border-radius:4px;background:#3d2f23}
+  .studio-art .p{position:absolute;bottom:38%;width:9%;aspect-ratio:1/1.9;border-radius:999px 999px 0 0}
+  .studio-art .p::before{content:"";position:absolute;left:12%;right:12%;top:-48%;aspect-ratio:1;border-radius:50%;background:inherit}
+  .studio-art .p1{left:18%;background:var(--ember)}.studio-art .p2{left:36%;background:#2f4a5e}.studio-art .p3{left:56%;background:#6e7f3f}.studio-art .p4{left:73%;background:var(--ink)}
+  .studio-art .cap{position:absolute;left:24px;bottom:22px;font-size:13px;color:#f4efe6;letter-spacing:.04em}
+  .studio h2{margin:20px 0 28px}
+  .studio .lede+.lede{margin-top:18px}
+  .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:36px 32px;margin-top:48px;padding-top:40px;border-top:1px solid var(--line)}
+  .stat b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(44px,5vw,64px);line-height:1;letter-spacing:-.03em}
+  .stat span{display:block;margin-top:8px;font-size:15px;color:var(--ink-2)}
+
+  /* 6 TESTIMONIALS */
+  .quotes{display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:auto auto;gap:24px}
+  .q{border-radius:24px;padding:clamp(28px,3.4vw,48px);border:1px solid var(--line);background:#fffaf2;display:flex;flex-direction:column;justify-content:space-between;gap:36px}
+  .q.big{grid-row:span 2;background:var(--ember);border-color:var(--ember);color:#fff6ec}
+  .q blockquote{font-family:var(--serif);font-size:clamp(21px,1.9vw,26px);line-height:1.35;letter-spacing:-.01em}
+  .q.big blockquote{font-size:clamp(28px,3.1vw,44px);line-height:1.18}
+  .q blockquote::before{content:"\201C";display:block;font-size:72px;line-height:.6;margin-bottom:18px;color:var(--ember)}
+  .q.big blockquote::before{color:#ffd9b0}
+  .who{display:flex;align-items:center;gap:14px;font-size:15px}
+  .who i{width:46px;height:46px;border-radius:50%;flex:none}
+  .who b{display:block;font-weight:600}
+  .who span{color:var(--ink-2)}
+  .q.big .who span{color:#ffe1c6}
+
+  /* 7 CONTACT */
+  .contact{padding-top:0}
+  .contact-box{border-radius:32px;padding:clamp(40px,7vw,96px);background:
+     radial-gradient(70% 120% at 100% 100%,rgba(242,160,61,.55),transparent 60%),
+     radial-gradient(60% 90% at 0% 0%,rgba(217,84,43,.25),transparent 60%),var(--night);color:var(--paper);display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(40px,6vw,80px)}
+  .contact .eyebrow{color:var(--glow)}
+  .contact h2{margin:20px 0 28px}
+  .contact .lede{color:#cfc5b6}
+  .mail{display:inline-block;margin-top:40px;font-family:var(--serif);font-size:clamp(28px,3.6vw,48px);border-bottom:2px solid var(--ember);padding-bottom:4px;transition:color .2s}
+  .mail:hover{color:var(--glow)}
+  .next{background:rgba(244,239,230,.06);border:1px solid rgba(244,239,230,.14);border-radius:22px;padding:32px}
+  .next h3{font-size:26px;margin-bottom:22px}
+  .next ol{list-style:none;counter-reset:n}
+  .next li{counter-increment:n;display:grid;grid-template-columns:36px 1fr;gap:8px;padding:14px 0;border-top:1px solid rgba(244,239,230,.12);color:#d8cfc1;font-size:16px}
+  .next li::before{content:"0" counter(n);font-family:var(--serif);color:var(--glow)}
+  .next .btn{margin-top:24px;width:100%;justify-content:center;background:var(--paper);color:var(--ink);border-color:var(--paper)}
+  .next .btn:hover{background:var(--ember);color:#fff;border-color:var(--ember)}
+  .next small{display:block;margin-top:14px;text-align:center;color:#a99f90;font-size:14px}
+
+  /* 8 FOOTER */
+  footer{border-top:1px solid var(--line);padding:80px 0 40px}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:40px}
+  .foot-grid p{color:var(--ink-2);font-size:15px;margin-top:18px;max-width:34ch}
+  .foot-grid h4{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin-bottom:18px}
+  .foot-grid ul{list-style:none;font-size:15px;color:var(--ink-2)}
+  .foot-grid li{padding:4px 0}
+  .foot-grid li a:hover{color:var(--ember)}
+  .letter{display:inline-block;margin-top:14px;font-weight:600;border-bottom:1.5px solid var(--ink);font-size:15px}
+  .letter:hover{color:var(--ember);border-color:var(--ember)}
+  .foot-big{font-family:var(--serif);font-size:clamp(90px,21vw,300px);line-height:.8;letter-spacing:-.06em;margin:72px 0 32px;background:linear-gradient(180deg,var(--ink) 40%,var(--ember));-webkit-background-clip:text;background-clip:text;color:transparent;user-select:none}
+  .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:14px;color:var(--ink-2);padding-top:24px;border-top:1px solid var(--line)}
+
+  /* RESPONSIVE */
+  @media (max-width:1020px){
+    .nav-links{display:none}
+    .hero-grid,.studio-grid,.contact-box{grid-template-columns:1fr}
+    .hero-art{aspect-ratio:16/11}
+    .svc{grid-template-columns:60px 1fr 1fr}
+    .svc ul{grid-column:2/-1}
+    .steps{grid-template-columns:repeat(2,1fr)}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:760px){
+    body{font-size:16px}
+    .sec-head{grid-template-columns:1fr;gap:20px}
+    .card,.card.wide,.card.narrow{grid-column:span 12}
+    .card-meta{flex-direction:column;gap:4px}
+    .card .kind{text-align:left}
+    .svc{grid-template-columns:1fr;gap:14px;padding:32px 0}
+    .svc ul{grid-column:auto}
+    .steps{grid-template-columns:1fr}
+    .quotes{grid-template-columns:1fr}
+    .q.big{grid-row:auto}
+    .stats{grid-template-columns:1fr 1fr}
+    .nav .btn{display:none}
+    .foot-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="Kiln Studio home"><span class="logo-mark" aria-hidden="true"></span>Kiln</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#studio">Studio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="btn btn-solid">Start a project</a>
+  </div>
+</header>
+
+<main>
+
+<!-- 1. HERO -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Brand &amp; identity studio · Rotterdam · Since 2014</span>
+      <h1>Brands, fired until they <em>hold</em> their shape.</h1>
+      <p class="lede">Kiln is a 22-person studio that builds identities, packaging and digital brand systems for companies about to get a lot bigger. We do the hard thinking first, then make it beautiful enough that nobody notices the thinking.</p>
+      <div class="hero-ctas">
+        <a href="#work" class="btn btn-solid">See the work <span class="arr">→</span></a>
+        <a href="#contact" class="btn btn-ghost">Start a project</a>
+      </div>
+      <p class="hero-note"><span class="dot" aria-hidden="true"></span>Now booking projects that start in February 2027.</p>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="tag"><span>Kiln / Studio</span><span>Est. 2014</span></div>
+      <div class="arch"></div><div class="arch two"></div><div class="arch three"></div>
+      <div class="temp">1,260°<small>Stoneware. And standards.</small></div>
+    </div>
+  </div>
+  <div class="clients" aria-label="Selected clients">
+    <div class="clients-track">
+      <span>Marlow &amp; Daughters</span><span>Ostra Cycles</span><span>Fieldnote Health</span><span>Halcyon Tea</span><span>Brickyard Bank</span><span>Noorder Ferries</span><span>Pell &amp; Ash Ceramics</span><span>Tidewater Museum</span>
+      <span>Marlow &amp; Daughters</span><span>Ostra Cycles</span><span>Fieldnote Health</span><span>Halcyon Tea</span><span>Brickyard Bank</span><span>Noorder Ferries</span><span>Pell &amp; Ash Ceramics</span><span>Tidewater Museum</span>
+    </div>
+  </div>
+</section>
+
+<!-- 2. WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Selected work</span>
+        <h2>Work that left the studio and <em>kept going.</em></h2>
+      </div>
+      <p class="lede">We judge a brand by what it does eighteen months after launch, not by how it looked in the presentation. Here are four from the last two years.</p>
+    </div>
+
+    <div class="work-grid">
+      <a href="#contact" class="card wide">
+        <div class="art a-marlow" aria-hidden="true"><div class="ring"></div><div class="tin"></div></div>
+        <div class="card-meta"><h3>Marlow &amp; Daughters</h3><span class="kind">Rebrand · Packaging</span></div>
+        <p>A 91-year-old cannery, a new generation at the helm, and a tin people now keep on the shelf long after the sardines are gone.</p>
+        <span class="result">Stockists grew from 40 to 310 in 14 months</span>
+      </a>
+      <a href="#contact" class="card narrow">
+        <div class="art a-ostra" aria-hidden="true"><span class="word">ostra</span><div class="frame"></div><div class="wheel l"></div><div class="wheel r"></div></div>
+        <div class="card-meta"><h3>Ostra Cycles</h3><span class="kind">Naming · Identity · Launch</span></div>
+        <p>A cargo e-bike for parents who refuse to buy a second car. We named it, built it a voice, and launched it with a single, very patient toddler.</p>
+        <span class="result">First production run sold out in 9 days</span>
+      </a>
+      <a href="#contact" class="card narrow">
+        <div class="art a-field" aria-hidden="true"><div class="grid"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        <div class="card-meta"><h3>Fieldnote Health</h3><span class="kind">Strategy · Identity · Wayfinding</span></div>
+        <p>Twelve neighbourhood clinics that felt like one hospital corridor. Now they feel like a GP who remembers your name.</p>
+        <span class="result">Patient NPS rose from 41 to 68</span>
+      </a>
+      <a href="#contact" class="card wide">
+        <div class="art a-halcyon" aria-hidden="true"><div class="can c1"></div><div class="can c2"></div></div>
+        <div class="card-meta"><h3>Halcyon Tea</h3><span class="kind">Naming · Identity · Packaging</span></div>
+        <p>Sparkling tea for people who stopped drinking but didn't stop going out. A can that looks right on a bar at midnight, not just in a gym bag.</p>
+        <span class="result">Listed in 1,200 bars across the Benelux</span>
+      </a>
+    </div>
+    <div class="work-foot"><a href="#contact" class="btn btn-ghost">Ask for the full case studies <span class="arr">→</span></a></div>
+  </div>
+</section>
+
+<!-- 3. SERVICES -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">What we do</span>
+        <h2>Four disciplines. <em>One</em> team in the room.</h2>
+      </div>
+      <p class="lede">Strategists, designers and writers work on every project from the first week to the last. Nothing gets handed down a corridor, so nothing gets lost on the way.</p>
+    </div>
+
+    <div class="svc-list">
+      <div class="svc">
+        <span class="n">01</span>
+        <h3>Brand strategy</h3>
+        <p>We find the one true thing your company can say that a competitor can't, and build everything else around it.</p>
+        <ul><li>Research &amp; customer interviews</li><li>Positioning &amp; narrative</li><li>Brand architecture</li><li>Naming</li></ul>
+      </div>
+      <div class="svc">
+        <span class="n">02</span>
+        <h3>Identity design</h3>
+        <p>Logos, type, colour and the rules that let a team of two hundred use them without calling us every Tuesday.</p>
+        <ul><li>Logo &amp; wordmark</li><li>Typography &amp; colour systems</li><li>Brand guidelines</li><li>Illustration &amp; photography direction</li></ul>
+      </div>
+      <div class="svc">
+        <span class="n">03</span>
+        <h3>Packaging</h3>
+        <p>Boxes, bottles, tins and labels designed to win three seconds on a crowded shelf and three years in a kitchen cupboard.</p>
+        <ul><li>Structural &amp; graphic design</li><li>Range architecture</li><li>Print production &amp; press checks</li><li>Retail display</li></ul>
+      </div>
+      <div class="svc">
+        <span class="n">04</span>
+        <h3>Digital &amp; motion</h3>
+        <p>Websites, product UI and motion languages that make the brand move the way it was always meant to.</p>
+        <ul><li>Websites &amp; design systems</li><li>Motion identity</li><li>Launch campaigns</li><li>Social &amp; content toolkits</li></ul>
+      </div>
+    </div>
+
+    <div class="svc-note">
+      <p>Most engagements run <strong>10 to 16 weeks</strong> and start at <strong>€60,000</strong>. We take on six new clients a year.</p>
+      <a href="#contact" class="btn">Check our availability <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 4. PROCESS -->
+<section id="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">How it works</span>
+        <h2>Slow at the start. <em>Fast</em> at the end.</h2>
+      </div>
+      <p class="lede">The expensive mistakes in branding happen in week one, when nobody has asked the awkward questions yet. So we ask them early, and loudly.</p>
+    </div>
+
+    <div class="steps">
+      <article class="step">
+        <div class="heat" aria-hidden="true"></div>
+        <span class="wk">Weeks 1–3</span>
+        <h3>Dig</h3>
+        <p>We interview your customers, your sales team and your harshest critics. You get a written findings report before we draw a single shape.</p>
+      </article>
+      <article class="step">
+        <div class="heat" aria-hidden="true"></div>
+        <span class="wk">Weeks 4–6</span>
+        <h3>Shape</h3>
+        <p>Two strategic routes, each with its own story, rough visuals and a sample headline. You pick one, and we argue for the one we'd choose.</p>
+      </article>
+      <article class="step">
+        <div class="heat" aria-hidden="true"></div>
+        <span class="wk">Weeks 7–12</span>
+        <h3>Fire</h3>
+        <p>The chosen route gets the full treatment: identity, packaging, website, voice. We test it on real shelves, real screens and real people.</p>
+      </article>
+      <article class="step">
+        <div class="heat" aria-hidden="true"></div>
+        <span class="wk">Weeks 13–16</span>
+        <h3>Hand over</h3>
+        <p>Guidelines, templates and a half-day workshop for your team. Then we check in at three, six and twelve months, at no extra cost.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 5. STUDIO -->
+<section class="studio" id="studio">
+  <div class="wrap studio-grid">
+    <div class="studio-art" aria-hidden="true">
+      <div class="win"></div><div class="win"></div><div class="win"></div>
+      <div class="table"></div>
+      <div class="p p1"></div><div class="p p2"></div><div class="p p3"></div><div class="p p4"></div>
+      <span class="cap">Monday crit, third floor, old tile factory on the Maas.</span>
+    </div>
+    <div>
+      <span class="eyebrow">The studio</span>
+      <h2>A former tile factory, <em>still</em> making things that last.</h2>
+      <p class="lede">We named the studio after the old kiln on our ground floor, which fired roof tiles for half of Rotterdam until 1971. It's a reminder that the good stuff takes heat, patience and a little nerve.</p>
+      <p class="lede">We stay deliberately small. Every project is led by a founder, and the people who pitch your work are the people who make it.</p>
+      <div class="stats">
+        <div class="stat"><b>112</b><span>brands launched since 2014</span></div>
+        <div class="stat"><b>22</b><span>people from 9 countries</span></div>
+        <div class="stat"><b>74%</b><span>of clients come back for more</span></div>
+        <div class="stat"><b>6</b><span>new clients taken on per year</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. TESTIMONIALS -->
+<section id="testimonials">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Kind words</span>
+        <h2>Don't take <em>our</em> word for it.</h2>
+      </div>
+      <p class="lede">We asked a few clients what working with us was actually like. We didn't edit the answers, though one of them asked us to.</p>
+    </div>
+
+    <div class="quotes">
+      <figure class="q big">
+        <blockquote>Kiln told us our old logo wasn't the problem, our story was. They were right, it stung, and it was the most valuable thing anyone said to us that year. Our tins now outsell our fish.</blockquote>
+        <figcaption class="who"><i style="background:linear-gradient(135deg,#ffd9b0,#f2a03d)"></i><div><b>Ines Marlow</b><span>Managing Director, Marlow &amp; Daughters</span></div></figcaption>
+      </figure>
+      <figure class="q">
+        <blockquote>They spent the first three weeks talking to our riders instead of showing us logos. The name came straight out of those conversations.</blockquote>
+        <figcaption class="who"><i style="background:linear-gradient(135deg,#cfe36a,#6e7f3f)"></i><div><b>Daan Veerman</b><span>Co-founder, Ostra Cycles</span></div></figcaption>
+      </figure>
+      <figure class="q">
+        <blockquote>Twelve clinics, four boards, one deadline. Kiln kept everyone calm and the work never got watered down.</blockquote>
+        <figcaption class="who"><i style="background:linear-gradient(135deg,#9cb7c8,#3b6e8f)"></i><div><b>Dr. Amara Okafor</b><span>Chief Executive, Fieldnote Health</span></div></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 7. CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-box">
+      <div>
+        <span class="eyebrow">Start a project</span>
+        <h2>Got something that needs to <em>hold its shape?</em></h2>
+        <p class="lede">Tell us what you're building, where it's stuck and when it needs to be ready. A founder reads every message and replies within two working days.</p>
+        <a href="mailto:hello@kiln.studio" class="mail">hello@kiln.studio</a>
+      </div>
+      <div class="next">
+        <h3>What happens next</h3>
+        <ol>
+          <li>A 30-minute call to hear about your company and what's changing.</li>
+          <li>A short written proposal with scope, timeline and a fixed fee.</li>
+          <li>A kick-off at the studio, with coffee and very good stroopwafels.</li>
+        </ol>
+        <a href="mailto:hello@kiln.studio?subject=Intro%20call" class="btn">Book an intro call <span class="arr">→</span></a>
+        <small>Or call us on +31 10 482 7710, weekdays 9:00–17:30.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- 8. FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="logo"><span class="logo-mark" aria-hidden="true"></span>Kiln</a>
+        <p>Brand strategy, identity, packaging and digital for companies about to get a lot bigger.</p>
+        <a href="mailto:letter@kiln.studio?subject=Subscribe" class="letter">Get the Kiln Letter, once a month →</a>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <ul><li><a href="#work">Work</a></li><li><a href="#services">Services</a></li><li><a href="#process">Process</a></li><li><a href="#studio">About</a></li></ul>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <ul><li><a href="#top">Instagram</a></li><li><a href="#top">LinkedIn</a></li><li><a href="#top">Behance</a></li><li><a href="#top">Are.na</a></li></ul>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul><li>Tegelfabriekkade 14</li><li>3029 BS Rotterdam</li><li>The Netherlands</li><li><a href="mailto:hello@kiln.studio">hello@kiln.studio</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-big" aria-hidden="true">Kiln.</div>
+    <div class="foot-bottom">
+      <span>© 2026 Kiln Studio B.V. · KvK 61804392</span>
+      <span>Made in Rotterdam, fired at 1,260°.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

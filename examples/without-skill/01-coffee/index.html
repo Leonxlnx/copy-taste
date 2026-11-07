@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crowfoot Coffee Roasters</title>
+<meta name="description" content="Crowfoot Coffee Roasters: a small-batch roastery and café on Wren Street. Roasted every Tuesday, brewed every morning from 6:30.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5eee2;
+    --paper: #fbf7f0;
+    --oat: #e8dcc7;
+    --espresso: #24170f;
+    --roast: #4a2f20;
+    --crema: #b9743f;
+    --rust: #b8512c;
+    --sage: #7d8b6a;
+    --ink-soft: #6b5a4c;
+    --line: rgba(36, 23, 15, 0.14);
+    --radius: 18px;
+    --wrap: 1180px;
+    --display: "Fraunces", Georgia, serif;
+    --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--body);
+    background: var(--cream);
+    color: var(--espresso);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; }
+  img { max-width: 100%; }
+  .wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.08; letter-spacing: -0.015em; }
+  h2 { font-size: clamp(2.1rem, 4.4vw, 3.4rem); }
+  h3 { font-size: 1.35rem; }
+  .eyebrow {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 18px;
+  }
+  .lede { font-size: 1.15rem; color: var(--ink-soft); max-width: 34em; }
+  section { padding: 120px 0; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 26px;
+    border-radius: 999px;
+    font-weight: 600; font-size: 0.98rem;
+    text-decoration: none;
+    border: 1.5px solid var(--espresso);
+    transition: transform .2s ease, background .2s ease, color .2s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-dark { background: var(--espresso); color: var(--cream); }
+  .btn-dark:hover { background: var(--roast); }
+  .btn-ghost { background: transparent; color: var(--espresso); }
+  .btn-ghost:hover { background: var(--espresso); color: var(--cream); }
+  .btn-light { background: var(--cream); color: var(--espresso); border-color: var(--cream); }
+  .btn-light:hover { background: var(--oat); }
+
+  /* NAV */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(245, 238, 226, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--display); font-weight: 700; font-size: 1.3rem; }
+  .logo-mark {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--espresso);
+    position: relative; flex-shrink: 0;
+  }
+  .logo-mark::before, .logo-mark::after {
+    content: ""; position: absolute; left: 50%; bottom: 9px;
+    width: 2px; height: 14px; background: var(--cream); border-radius: 2px;
+    transform-origin: bottom center;
+  }
+  .logo-mark::before { transform: translateX(-50%) rotate(-32deg); }
+  .logo-mark::after { transform: translateX(-50%) rotate(32deg); }
+  .logo-mark span {
+    position: absolute; left: 50%; bottom: 9px; width: 2px; height: 16px;
+    background: var(--cream); transform: translateX(-50%); border-radius: 2px;
+  }
+  .nav ul { display: flex; gap: 34px; list-style: none; }
+  .nav ul a { text-decoration: none; font-weight: 500; font-size: 0.95rem; color: var(--ink-soft); }
+  .nav ul a:hover { color: var(--espresso); }
+  .nav .btn { padding: 10px 20px; font-size: 0.9rem; }
+
+  /* 1. HERO */
+  .hero { padding: 90px 0 110px; }
+  .hero .wrap { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 64px; align-items: center; }
+  .hero h1 { font-size: clamp(2.8rem, 6.4vw, 5.4rem); margin-bottom: 26px; }
+  .hero h1 em { font-style: italic; font-weight: 400; color: var(--rust); }
+  .hero .lede { margin-bottom: 38px; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero-meta { display: flex; gap: 40px; margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--line); }
+  .hero-meta strong { display: block; font-family: var(--display); font-size: 1.9rem; font-weight: 600; }
+  .hero-meta span { font-size: 0.88rem; color: var(--ink-soft); }
+
+  .hero-art {
+    position: relative; aspect-ratio: 4 / 5; border-radius: 28px; overflow: hidden;
+    background:
+      radial-gradient(120% 70% at 80% 0%, rgba(185, 116, 63, 0.55), transparent 60%),
+      radial-gradient(90% 60% at 0% 100%, rgba(125, 139, 106, 0.45), transparent 60%),
+      linear-gradient(160deg, #3b261a 0%, #24170f 70%);
+  }
+  .hero-art::before {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 34%;
+    background: linear-gradient(180deg, #7a5236 0%, #5c3c27 100%);
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.08);
+  }
+  .hero-art::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 34%;
+    background: repeating-linear-gradient(90deg, transparent 0 70px, rgba(0,0,0,0.08) 70px 72px);
+  }
+  .window {
+    position: absolute; top: 9%; left: 12%; width: 42%; height: 40%;
+    border-radius: 999px 999px 8px 8px;
+    background: linear-gradient(180deg, #f2c48d 0%, #e7a564 55%, #c98552 100%);
+    box-shadow: 0 0 80px rgba(242, 196, 141, 0.45);
+    opacity: 0.9;
+  }
+  .window::before, .window::after { content: ""; position: absolute; background: #2c1c12; }
+  .window::before { left: 50%; top: 0; bottom: 0; width: 6px; transform: translateX(-50%); }
+  .window::after { top: 52%; left: 0; right: 0; height: 6px; }
+  .cup {
+    position: absolute; z-index: 2; left: 50%; bottom: 22%;
+    width: 46%; aspect-ratio: 1.35 / 1;
+    transform: translateX(-38%);
+  }
+  .saucer {
+    position: absolute; left: -14%; right: -14%; bottom: -6%; height: 22%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at 50% 40%, #fbf7f0 0%, #e4d6c0 70%, #c7b496 100%);
+    box-shadow: 0 18px 30px rgba(0,0,0,0.35);
+  }
+  .cup-body {
+    position: absolute; left: 0; right: 0; top: 18%; bottom: 4%;
+    background: linear-gradient(90deg, #e9dcc6 0%, #fbf7f0 40%, #efe4d2 75%, #d6c5aa 100%);
+    border-radius: 6px 6px 48% 48% / 6px 6px 60% 60%;
+  }
+  .cup-rim {
+    position: absolute; left: 0; right: 0; top: 10%; height: 18%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at 50% 50%, #c98a52 0%, #8a5631 45%, #5b3720 70%, #fbf7f0 72%, #e9dcc6 100%);
+  }
+  .cup-handle {
+    position: absolute; right: -17%; top: 30%; width: 26%; height: 40%;
+    border: 9px solid #ece0cc; border-left: none; border-radius: 0 50% 50% 0;
+  }
+  .steam { position: absolute; bottom: 92%; width: 10px; height: 70px; border-radius: 10px;
+    background: linear-gradient(180deg, rgba(251,247,240,0), rgba(251,247,240,0.5));
+    filter: blur(5px); animation: rise 4.5s ease-in-out infinite; }
+  .steam.s1 { left: 34%; }
+  .steam.s2 { left: 50%; height: 90px; animation-delay: 1.2s; }
+  .steam.s3 { left: 64%; animation-delay: 2.4s; }
+  @keyframes rise {
+    0% { transform: translateY(10px) scaleX(1); opacity: 0; }
+    40% { opacity: 1; }
+    100% { transform: translateY(-40px) scaleX(1.8); opacity: 0; }
+  }
+  .hero-tag {
+    position: absolute; z-index: 3; right: 20px; top: 20px;
+    background: var(--cream); color: var(--espresso);
+    padding: 10px 16px; border-radius: 999px; font-size: 0.82rem; font-weight: 600;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hero-tag i { width: 8px; height: 8px; border-radius: 50%; background: #5d9b5a; display: inline-block; }
+
+  /* 2. STORY */
+  .story { background: var(--paper); }
+  .story .wrap { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 80px; align-items: center; }
+  .story-art {
+    position: relative; aspect-ratio: 1 / 1; border-radius: 26px; overflow: hidden;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06), transparent 40%),
+      linear-gradient(140deg, #5a3a26, #2a1a10);
+  }
+  .roaster {
+    position: absolute; left: 50%; top: 50%; width: 64%; aspect-ratio: 1;
+    transform: translate(-50%, -46%);
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 50% 50%, #1b110b 0 22%, transparent 23%),
+      repeating-conic-gradient(from 0deg, #8c5a36 0 10deg, #7a4c2d 10deg 20deg);
+    box-shadow: 0 0 0 14px #c9a46e, 0 0 0 22px #3a261a, 0 30px 60px rgba(0,0,0,0.45);
+  }
+  .roaster::after {
+    content: ""; position: absolute; inset: 30%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, #f0c48a, #b9743f 60%, #6d4024);
+    opacity: 0.35;
+  }
+  .story-art .label {
+    position: absolute; left: 20px; bottom: 20px;
+    background: rgba(245, 238, 226, 0.95); color: var(--espresso);
+    padding: 12px 16px; border-radius: 12px; font-size: 0.85rem; line-height: 1.35;
+  }
+  .story-art .label b { display: block; font-family: var(--display); font-size: 1rem; }
+  .story h2 { margin-bottom: 26px; }
+  .story p + p { margin-top: 18px; }
+  .story p { color: var(--ink-soft); }
+  .story .sig { margin-top: 30px; font-family: var(--display); font-style: italic; font-size: 1.15rem; color: var(--espresso); }
+
+  /* 3. MENU */
+  .menu-head { display: flex; justify-content: space-between; align-items: end; gap: 40px; margin-bottom: 60px; flex-wrap: wrap; }
+  .menu-head .lede { max-width: 26em; }
+  .menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .menu-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 36px 36px 28px; }
+  .menu-card h3 { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+  .menu-card h3 small { font-family: var(--body); font-size: 0.8rem; font-weight: 500; color: var(--ink-soft); letter-spacing: 0.02em; }
+  .menu-card > p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 18px; }
+  .menu-card ul { list-style: none; }
+  .menu-card li { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 14px 0; border-top: 1px dashed var(--line); }
+  .menu-card li b { font-weight: 600; }
+  .menu-card li span.price { font-family: var(--display); font-weight: 600; }
+  .menu-card li em { grid-column: 1 / -1; font-style: normal; font-size: 0.9rem; color: var(--ink-soft); }
+  .menu-note { margin-top: 28px; font-size: 0.92rem; color: var(--ink-soft); text-align: center; }
+
+  /* 4. BEANS */
+  .beans { background: var(--espresso); color: var(--cream); }
+  .beans .eyebrow { color: #e3a46f; }
+  .beans .lede { color: rgba(245, 238, 226, 0.72); }
+  .beans-head { text-align: center; max-width: 720px; margin: 0 auto 64px; }
+  .beans-head .lede { margin: 20px auto 0; }
+  .bean-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .bean-card { background: #2f1f15; border: 1px solid rgba(245, 238, 226, 0.1); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+  .bag { height: 220px; position: relative; display: grid; place-items: center; }
+  .bag-shape {
+    width: 120px; height: 160px; border-radius: 10px 10px 16px 16px; position: relative;
+    box-shadow: 0 20px 30px rgba(0,0,0,0.3);
+  }
+  .bag-shape::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 22px;
+    background: repeating-linear-gradient(90deg, rgba(0,0,0,0.15) 0 3px, transparent 3px 7px);
+    border-radius: 10px 10px 0 0;
+  }
+  .bag-shape::after {
+    content: ""; position: absolute; left: 18px; right: 18px; top: 52px; height: 62px;
+    background: var(--cream); border-radius: 6px;
+  }
+  .bag-shape span {
+    position: absolute; z-index: 2; left: 0; right: 0; top: 64px; text-align: center;
+    font-family: var(--display); font-weight: 700; font-size: 0.82rem; color: var(--espresso); line-height: 1.2;
+  }
+  .bag-1 { background: linear-gradient(160deg, #e7a1a8, #c25b6b); }
+  .bag-1 .bag-shape { background: linear-gradient(180deg, #c8b18f, #a88d68); }
+  .bag-2 { background: linear-gradient(160deg, #8d9fd1, #4f5f98); }
+  .bag-2 .bag-shape { background: linear-gradient(180deg, #c8b18f, #a88d68); }
+  .bag-3 { background: linear-gradient(160deg, #d79a5f, #8e5129); }
+  .bag-3 .bag-shape { background: linear-gradient(180deg, #2e2019, #18100b); }
+  .bag-3 .bag-shape::after { background: #e3a46f; }
+  .bean-body { padding: 28px; display: flex; flex-direction: column; flex: 1; }
+  .bean-body .origin { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: #e3a46f; font-weight: 600; }
+  .bean-body h3 { margin: 8px 0 12px; }
+  .bean-body p { color: rgba(245, 238, 226, 0.72); font-size: 0.95rem; }
+  .notes { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 24px; list-style: none; }
+  .notes li { font-size: 0.8rem; padding: 5px 12px; border-radius: 999px; border: 1px solid rgba(245, 238, 226, 0.22); }
+  .bean-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid rgba(245, 238, 226, 0.12); }
+  .bean-foot strong { font-family: var(--display); font-size: 1.3rem; }
+  .bean-foot a { font-weight: 600; font-size: 0.92rem; text-decoration: none; color: #e3a46f; }
+  .bean-foot a:hover { text-decoration: underline; }
+  .beans-cta { text-align: center; margin-top: 56px; }
+
+  /* 5. PROCESS */
+  .process-head { max-width: 640px; margin-bottom: 64px; }
+  .process-head .lede { margin-top: 20px; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1.5px solid var(--espresso); counter-reset: step; }
+  .step { padding: 32px 28px 0 0; position: relative; }
+  .step + .step { padding-left: 28px; border-left: 1px solid var(--line); }
+  .step .day { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rust); }
+  .step h3 { margin: 12px 0 12px; }
+  .step p { color: var(--ink-soft); font-size: 0.95rem; }
+  .step .num { font-family: var(--display); font-size: 3.6rem; font-weight: 400; color: var(--oat); line-height: 1; margin-bottom: 16px; }
+
+  /* 6. TESTIMONIALS */
+  .reviews { background: var(--oat); }
+  .reviews-head { display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: 56px; flex-wrap: wrap; }
+  .rating { display: flex; align-items: center; gap: 14px; }
+  .rating strong { font-family: var(--display); font-size: 2.6rem; font-weight: 600; }
+  .rating span { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.35; }
+  .quote-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 24px; }
+  .quote { background: var(--paper); border-radius: var(--radius); padding: 34px; display: flex; flex-direction: column; justify-content: space-between; gap: 28px; }
+  .quote blockquote { font-family: var(--display); font-size: 1.2rem; line-height: 1.4; }
+  .quote.big { background: var(--espresso); color: var(--cream); }
+  .quote.big blockquote { font-size: 1.6rem; }
+  .who { display: flex; align-items: center; gap: 14px; font-size: 0.9rem; }
+  .who b { display: block; }
+  .who span { color: var(--ink-soft); }
+  .quote.big .who span { color: rgba(245, 238, 226, 0.65); }
+  .avatar { width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0; display: grid; place-items: center; font-weight: 600; font-size: 0.9rem; color: var(--cream); }
+  .av1 { background: linear-gradient(135deg, #b8512c, #e3a46f); }
+  .av2 { background: linear-gradient(135deg, #7d8b6a, #4b5a3d); }
+  .av3 { background: linear-gradient(135deg, #4a2f20, #8c5a36); }
+
+  /* 7. VISIT */
+  .visit .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: stretch; }
+  .visit h2 { margin-bottom: 20px; }
+  .visit .lede { margin-bottom: 36px; }
+  .hours { width: 100%; border-collapse: collapse; margin-bottom: 36px; }
+  .hours td { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .hours td:last-child { text-align: right; font-weight: 600; }
+  .addr { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 36px; font-size: 0.95rem; }
+  .addr b { display: block; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rust); margin-bottom: 6px; }
+  .addr a { text-decoration: none; border-bottom: 1px solid var(--line); }
+  .map {
+    position: relative; border-radius: 26px; overflow: hidden; min-height: 460px;
+    background-color: #e6dcc9;
+    background-image:
+      linear-gradient(90deg, transparent 0 calc(50% - 14px), #f7f1e6 calc(50% - 14px) calc(50% + 14px), transparent calc(50% + 14px)),
+      linear-gradient(0deg, transparent 0 calc(58% - 18px), #f7f1e6 calc(58% - 18px) calc(58% + 18px), transparent calc(58% + 18px)),
+      repeating-linear-gradient(90deg, transparent 0 90px, rgba(247, 241, 230, 0.9) 90px 98px),
+      repeating-linear-gradient(0deg, transparent 0 80px, rgba(247, 241, 230, 0.9) 80px 88px);
+  }
+  .map .park { position: absolute; right: 9%; top: 10%; width: 30%; height: 26%; border-radius: 16px; background: #b7c2a0; }
+  .map .river { position: absolute; left: -10%; bottom: -12%; width: 70%; height: 30%; border-radius: 50%; background: #a9c1c9; transform: rotate(-8deg); }
+  .map .street { position: absolute; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(36,23,15,0.45); }
+  .map .st1 { left: calc(50% + 22px); top: 18%; writing-mode: vertical-rl; }
+  .map .st2 { left: 8%; top: calc(58% - 9px); }
+  .map .park span { position: absolute; left: 14px; bottom: 10px; font-size: 0.72rem; font-weight: 600; color: #4b5a3d; letter-spacing: 0.08em; text-transform: uppercase; }
+  .pin { position: absolute; left: 50%; top: 58%; transform: translate(-50%, -100%); display: flex; flex-direction: column; align-items: center; }
+  .pin-card { background: var(--espresso); color: var(--cream); padding: 12px 16px; border-radius: 12px; font-size: 0.85rem; white-space: nowrap; line-height: 1.35; box-shadow: 0 14px 30px rgba(36,23,15,0.3); }
+  .pin-card b { font-family: var(--display); display: block; font-size: 1rem; }
+  .pin-dot { width: 18px; height: 18px; border-radius: 50%; background: var(--rust); border: 4px solid var(--cream); margin-top: 8px; box-shadow: 0 0 0 8px rgba(184, 81, 44, 0.22); }
+
+  /* 8. FOOTER */
+  footer { background: var(--espresso); color: var(--cream); padding: 96px 0 40px; }
+  .foot-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 64px; border-bottom: 1px solid rgba(245, 238, 226, 0.12); }
+  .foot-top h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 14px; }
+  .foot-top p { color: rgba(245, 238, 226, 0.68); font-size: 0.95rem; margin-bottom: 22px; }
+  .signup { display: flex; gap: 8px; max-width: 420px; }
+  .signup input {
+    flex: 1; min-width: 0; padding: 14px 18px; border-radius: 999px;
+    border: 1px solid rgba(245, 238, 226, 0.25); background: transparent; color: var(--cream);
+    font: inherit; font-size: 0.95rem;
+  }
+  .signup input::placeholder { color: rgba(245, 238, 226, 0.5); }
+  .signup button { cursor: pointer; font: inherit; }
+  .foot-col h4 { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: #e3a46f; margin-bottom: 18px; font-weight: 600; }
+  .foot-col ul { list-style: none; }
+  .foot-col li { margin-bottom: 10px; }
+  .foot-col a { text-decoration: none; color: rgba(245, 238, 226, 0.8); font-size: 0.95rem; }
+  .foot-col a:hover { color: var(--cream); }
+  .foot-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 32px; font-size: 0.85rem; color: rgba(245, 238, 226, 0.5); flex-wrap: wrap; }
+  .foot-word { font-family: var(--display); font-weight: 700; font-size: clamp(3.6rem, 15vw, 12rem); line-height: 0.9; letter-spacing: -0.04em; color: rgba(245, 238, 226, 0.06); margin-top: 48px; white-space: nowrap; overflow: hidden; }
+
+  /* RESPONSIVE */
+  @media (max-width: 980px) {
+    section { padding: 88px 0; }
+    .nav ul { display: none; }
+    .hero .wrap, .story .wrap, .visit .wrap { grid-template-columns: 1fr; gap: 48px; }
+    .hero-art { max-width: 520px; width: 100%; aspect-ratio: 1 / 1; }
+    .bean-grid, .quote-grid { grid-template-columns: 1fr; }
+    .menu-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .step:nth-child(3) { padding-left: 0; border-left: none; }
+    .step { padding-bottom: 32px; }
+    .foot-top { grid-template-columns: 1fr 1fr; }
+    .foot-top > div:first-child { grid-column: 1 / -1; }
+  }
+  @media (max-width: 600px) {
+    body { font-size: 16px; }
+    .wrap { padding: 0 16px; }
+    section { padding: 72px 0; }
+    .hero { padding: 56px 0 72px; }
+    .hero-meta { gap: 24px; flex-wrap: wrap; }
+    .menu-card { padding: 26px 22px 18px; }
+    .steps { grid-template-columns: 1fr; }
+    .step + .step { padding-left: 0; border-left: none; border-top: 1px solid var(--line); }
+    .addr { grid-template-columns: 1fr; }
+    .map { min-height: 340px; }
+    .quote.big blockquote { font-size: 1.35rem; }
+    .signup { flex-direction: column; }
+    .foot-top { grid-template-columns: 1fr; }
+    .nav .btn { padding: 9px 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .steam { animation: none; opacity: 0.6; }
+    .btn { transition: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="Crowfoot Coffee Roasters home">
+      <span class="logo-mark" aria-hidden="true"><span></span></span>
+      Crowfoot
+    </a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#story">Our story</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#beans">Beans</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+    </nav>
+    <a href="#beans" class="btn btn-dark">Shop beans</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 1. Hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Roastery &amp; café on Wren Street</span>
+        <h1 id="hero-title">Coffee roasted on Tuesday, <em>poured by Wednesday.</em></h1>
+        <p class="lede">We roast small batches in the back room and brew them at the front counter, usually within a week of the beans leaving the drum. Pull up a stool. The first refill is on us.</p>
+        <div class="hero-actions">
+          <a href="#menu" class="btn btn-dark">See the menu</a>
+          <a href="#visit" class="btn btn-ghost">Find us</a>
+        </div>
+        <div class="hero-meta">
+          <div><strong>6:30am</strong><span>Doors open daily</span></div>
+          <div><strong>12 kg</strong><span>Per batch, never more</span></div>
+          <div><strong>3</strong><span>Coffees on rotation</span></div>
+        </div>
+      </div>
+      <div class="hero-art" role="img" aria-label="Illustration of a steaming cup of coffee on a wooden counter beside an arched window">
+        <div class="hero-tag"><i></i> Open now on Wren St.</div>
+        <div class="window"></div>
+        <div class="cup">
+          <div class="steam s1"></div><div class="steam s2"></div><div class="steam s3"></div>
+          <div class="saucer"></div>
+          <div class="cup-handle"></div>
+          <div class="cup-body"></div>
+          <div class="cup-rim"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Story -->
+  <section class="story" id="story" aria-labelledby="story-title">
+    <div class="wrap">
+      <div class="story-art" role="img" aria-label="Illustration of a drum roaster seen from the front">
+        <div class="roaster"></div>
+        <div class="label"><b>Meet Gus.</b>Our 12-kilo drum roaster, rebuilt by hand in 2019.</div>
+      </div>
+      <div>
+        <span class="eyebrow">Our story</span>
+        <h2 id="story-title">A former hardware store, a secondhand roaster, and a lot of early mornings.</h2>
+        <p>Crowfoot started in 2019 when Mara and Theo Lindqvist signed a lease on the old Wren Street Hardware building with no furniture and one very heavy roaster they bought from a retiring roaster upstate. They spent six months rebuilding it, and named it Gus after the shop's original owner.</p>
+        <p>We still roast every batch on Gus, still pay our farmers well above the commodity price, and still keep the menu short enough to fit on one chalkboard. You'll find the original hardware drawers behind the counter. They hold spoons now.</p>
+        <p class="sig">Mara &amp; Theo, owners and roasters</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Menu -->
+  <section class="menu" id="menu" aria-labelledby="menu-title">
+    <div class="wrap">
+      <div class="menu-head">
+        <div>
+          <span class="eyebrow">The menu</span>
+          <h2 id="menu-title">Short menu. Long list of regulars.</h2>
+        </div>
+        <p class="lede">Every espresso drink is pulled from this week's roast. Oat, almond and whole milk at no extra charge, because nobody should pay more for a preference.</p>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <h3>Espresso bar <small>8 oz / 12 oz</small></h3>
+          <p>Double shots, always. Our house espresso is Night Shift unless the chalkboard says otherwise.</p>
+          <ul>
+            <li><b>Espresso</b><span class="price">$3.25</span><em>Two ounces, rich and syrupy, served with a sparkling water back.</em></li>
+            <li><b>Cortado</b><span class="price">$4.25</span><em>Equal parts espresso and steamed milk, in a little glass.</em></li>
+            <li><b>Flat white</b><span class="price">$4.75 / $5.25</span><em>Velvety microfoam over a ristretto double.</em></li>
+            <li><b>Wren Street latte</b><span class="price">$5.50 / $6.00</span><em>Our signature: brown butter, a pinch of sea salt, and house-made maple syrup.</em></li>
+          </ul>
+        </div>
+        <div class="menu-card">
+          <h3>Slow bar <small>Single origin</small></h3>
+          <p>Brewed to order, one cup at a time. Give us four minutes and we'll make it worth the wait.</p>
+          <ul>
+            <li><b>Pour-over</b><span class="price">$5.00</span><em>Choose any coffee on rotation. Ask us which one is drinking best today.</em></li>
+            <li><b>Batch brew</b><span class="price">$3.00</span><em>Brewed every 30 minutes. Free refills while you're here.</em></li>
+            <li><b>Cold brew</b><span class="price">$4.75</span><em>Steeped for 18 hours, smooth and low in acidity.</em></li>
+            <li><b>Tasting flight</b><span class="price">$9.00</span><em>All three current coffees, side by side, with a card of tasting notes.</em></li>
+          </ul>
+        </div>
+        <div class="menu-card">
+          <h3>Not coffee <small>All day</small></h3>
+          <p>For the friend who came along anyway.</p>
+          <ul>
+            <li><b>Ceremonial matcha</b><span class="price">$5.50</span><em>Whisked to order, hot or iced.</em></li>
+            <li><b>Spiced chai</b><span class="price">$5.00</span><em>Our own blend of black tea, cardamom, ginger and clove.</em></li>
+            <li><b>Hot chocolate</b><span class="price">$4.50</span><em>Made with 70% dark chocolate and whole milk.</em></li>
+          </ul>
+        </div>
+        <div class="menu-card">
+          <h3>From the oven <small>Baked here at 5am</small></h3>
+          <p>When it's gone, it's gone. Usually by eleven.</p>
+          <ul>
+            <li><b>Cardamom bun</b><span class="price">$4.75</span><em>Theo's grandmother's recipe, knotted by hand every morning.</em></li>
+            <li><b>Brown butter banana bread</b><span class="price">$4.00</span><em>Thick slice, toasted, with salted butter on the side.</em></li>
+            <li><b>Savory scone</b><span class="price">$4.50</span><em>Aged cheddar, chive and black pepper.</em></li>
+          </ul>
+        </div>
+      </div>
+      <p class="menu-note">Gluten-free and vegan options change daily. Just ask at the counter.</p>
+    </div>
+  </section>
+
+  <!-- 4. Beans -->
+  <section class="beans" id="beans" aria-labelledby="beans-title">
+    <div class="wrap">
+      <div class="beans-head">
+        <span class="eyebrow">On rotation this month</span>
+        <h2 id="beans-title">Take the good stuff home.</h2>
+        <p class="lede">Every bag is roasted the Tuesday before you buy it and stamped with the date. Grab one at the counter, or order online and we'll ship it the same week it's roasted.</p>
+      </div>
+      <div class="bean-grid">
+        <article class="bean-card">
+          <div class="bag bag-1" aria-hidden="true"><div class="bag-shape"><span>Huila<br>Colombia</span></div></div>
+          <div class="bean-body">
+            <span class="origin">Colombia · Washed · Light</span>
+            <h3>Finca El Mirador</h3>
+            <p>Pink Bourbon grown at 1,850 meters by the Ortiz family, our partners since our first year. Bright, juicy and very easy to like.</p>
+            <ul class="notes"><li>Red grape</li><li>Cane sugar</li><li>Rose</li></ul>
+            <div class="bean-foot"><strong>$21 <small style="font-size:0.8rem;font-weight:400;opacity:.7">/ 12 oz</small></strong><a href="mailto:orders@crowfootcoffee.com?subject=Order%3A%20Finca%20El%20Mirador">Order a bag &rarr;</a></div>
+          </div>
+        </article>
+        <article class="bean-card">
+          <div class="bag bag-2" aria-hidden="true"><div class="bag-shape"><span>Guji<br>Ethiopia</span></div></div>
+          <div class="bean-body">
+            <span class="origin">Ethiopia · Natural · Light-medium</span>
+            <h3>Hambela Wamena</h3>
+            <p>Dried on raised beds for three weeks, which gives this coffee its big fruit. Brew it as a pour-over and let it cool a little.</p>
+            <ul class="notes"><li>Blueberry</li><li>Cocoa nib</li><li>Jasmine</li></ul>
+            <div class="bean-foot"><strong>$22 <small style="font-size:0.8rem;font-weight:400;opacity:.7">/ 12 oz</small></strong><a href="mailto:orders@crowfootcoffee.com?subject=Order%3A%20Hambela%20Wamena">Order a bag &rarr;</a></div>
+          </div>
+        </article>
+        <article class="bean-card">
+          <div class="bag bag-3" aria-hidden="true"><div class="bag-shape"><span>Night<br>Shift</span></div></div>
+          <div class="bean-body">
+            <span class="origin">House blend · Medium</span>
+            <h3>Night Shift</h3>
+            <p>Brazilian and Guatemalan coffees roasted together for a sweet, steady cup. It's in our espresso every day and in plenty of home kitchens too.</p>
+            <ul class="notes"><li>Milk chocolate</li><li>Toasted almond</li><li>Brown sugar</li></ul>
+            <div class="bean-foot"><strong>$18 <small style="font-size:0.8rem;font-weight:400;opacity:.7">/ 12 oz</small></strong><a href="mailto:orders@crowfootcoffee.com?subject=Order%3A%20Night%20Shift">Order a bag &rarr;</a></div>
+          </div>
+        </article>
+      </div>
+      <div class="beans-cta">
+        <a href="mailto:orders@crowfootcoffee.com?subject=Crowfoot%20subscription" class="btn btn-light">Start a subscription: one bag every two weeks, 10% off</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Process -->
+  <section class="process" aria-labelledby="process-title">
+    <div class="wrap">
+      <div class="process-head">
+        <span class="eyebrow">How we work</span>
+        <h2 id="process-title">From green bean to your cup in about nine days.</h2>
+        <p class="lede">Freshness isn't a slogan here. It's the schedule we've kept every week since we opened.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num">01</div>
+          <span class="day">Every season</span>
+          <h3>We buy direct</h3>
+          <p>We work with five farms we've visited in person, and we pay at least double the commodity price for every bag we buy.</p>
+        </div>
+        <div class="step">
+          <div class="num">02</div>
+          <span class="day">Tuesday</span>
+          <h3>We roast</h3>
+          <p>Gus runs from 4am to noon. Each batch is logged, cupped and tasted before anything leaves the building.</p>
+        </div>
+        <div class="step">
+          <div class="num">03</div>
+          <span class="day">Wednesday to Friday</span>
+          <h3>We let it rest</h3>
+          <p>Freshly roasted coffee needs a few days to settle. We dial in every coffee only after it's ready, not before.</p>
+        </div>
+        <div class="step">
+          <div class="num">04</div>
+          <span class="day">The weekend after</span>
+          <h3>We pour</h3>
+          <p>It goes into the grinder, onto the shelf and out the door. Anything older than a month goes into cold brew.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Testimonials -->
+  <section class="reviews" aria-labelledby="reviews-title">
+    <div class="wrap">
+      <div class="reviews-head">
+        <div>
+          <span class="eyebrow">Kind words</span>
+          <h2 id="reviews-title">What the regulars say.</h2>
+        </div>
+        <div class="rating">
+          <strong>4.9</strong>
+          <span>Average rating from<br>1,200+ neighborhood reviews</span>
+        </div>
+      </div>
+      <div class="quote-grid">
+        <figure class="quote big">
+          <blockquote>"I've been coming in every morning for four years. They know my order, my dog's name and when I need a second cardamom bun before I do."</blockquote>
+          <figcaption class="who"><span class="avatar av1" aria-hidden="true">JR</span><div><b>Jess Romero</b><span>Lives two blocks away</span></div></figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote>"The Ethiopian pour-over changed what I thought coffee could taste like. It honestly tastes like blueberries."</blockquote>
+          <figcaption class="who"><span class="avatar av2" aria-hidden="true">DO</span><div><b>Daniel Okafor</b><span>Subscriber since 2022</span></div></figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote>"Quiet enough to work, warm enough to stay all afternoon. Bottomless batch brew is how I got through my thesis."</blockquote>
+          <figcaption class="who"><span class="avatar av3" aria-hidden="true">PS</span><div><b>Priya Shah</b><span>Graduate student</span></div></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Visit -->
+  <section class="visit" id="visit" aria-labelledby="visit-title">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Come by</span>
+        <h2 id="visit-title">The door with the brass crow on it.</h2>
+        <p class="lede">Forty seats, two big communal tables, plenty of outlets and a dog bowl that's always full. Free Wi-Fi, no time limits.</p>
+        <table class="hours">
+          <tbody>
+            <tr><td>Monday to Friday</td><td>6:30am to 6:00pm</td></tr>
+            <tr><td>Saturday</td><td>7:00am to 6:00pm</td></tr>
+            <tr><td>Sunday</td><td>8:00am to 4:00pm</td></tr>
+          </tbody>
+        </table>
+        <div class="addr">
+          <div><b>Address</b>418 Wren Street<br>Ashby Falls, OR 97031</div>
+          <div><b>Get in touch</b><a href="tel:+15415550148">(541) 555-0148</a><br><a href="mailto:hello@crowfootcoffee.com">hello@crowfootcoffee.com</a></div>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=418+Wren+Street+Ashby+Falls+OR" class="btn btn-dark">Get directions</a>
+      </div>
+      <div class="map" role="img" aria-label="Map showing Crowfoot Coffee at the corner of Wren Street and Alder Avenue, near Millrace Park">
+        <div class="river"></div>
+        <div class="park"><span>Millrace Park</span></div>
+        <span class="street st1">Wren Street</span>
+        <span class="street st2">Alder Avenue</span>
+        <div class="pin">
+          <div class="pin-card"><b>Crowfoot Coffee</b>Corner of Wren &amp; Alder</div>
+          <div class="pin-dot"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- 8. Footer -->
+<footer aria-labelledby="footer-title">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <h2 id="footer-title">The Tuesday Letter.</h2>
+        <p>One short email a week: what we roasted, what's coming next, and the occasional free-pastry code. No spam, ever.</p>
+        <form class="signup" action="/subscribe" method="post">
+          <label for="email" class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email address</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required>
+          <button type="submit" class="btn btn-light">Sign me up</button>
+        </form>
+      </div>
+      <div class="foot-col">
+        <h4>Visit</h4>
+        <ul>
+          <li><a href="#visit">418 Wren Street</a></li>
+          <li><a href="#visit">Hours</a></li>
+          <li><a href="#menu">Menu</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Coffee</h4>
+        <ul>
+          <li><a href="#beans">Current roasts</a></li>
+          <li><a href="mailto:orders@crowfootcoffee.com?subject=Crowfoot%20subscription">Subscriptions</a></li>
+          <li><a href="mailto:wholesale@crowfootcoffee.com">Wholesale</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Say hello</h4>
+        <ul>
+          <li><a href="https://instagram.com/crowfootcoffee">Instagram</a></li>
+          <li><a href="mailto:hello@crowfootcoffee.com">Email us</a></li>
+          <li><a href="mailto:jobs@crowfootcoffee.com">We're hiring baristas</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Crowfoot Coffee Roasters. Roasted with care in Ashby Falls, Oregon.</span>
+      <span>Every Tuesday since 2019.</span>
+    </div>
+    <div class="foot-word" aria-hidden="true">Crowfoot</div>
+  </div>
+</footer>
+
+</body>
+</html>

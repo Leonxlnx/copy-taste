@@ -1,0 +1,31 @@
+
+== examples/with-skill/01-coffee/index.html  (1234 words)  0 FAIL, 0 WARN
+  INFO lists of three (2, ~1 per 617 words)  -> fine when there really are three things; never back to back
+         · Bergamot and lemon, thin and tea-like
+         · We take cash, debit and credit
+  INFO rhythm: 67 sentences, mean 15.6 words, sd 10.9, 6% ≤4 words
+
+== examples/with-skill/04-devtool/index.html  (1703 words)  0 FAIL, 0 WARN
+  INFO two-fragment heading "X. Y." (1/1)
+         · 2,113 tests passed. The Android app still broke.
+  INFO lists of three (2, ~1 per 852 words)  -> fine when there really are three things; never back to back
+         · PUT, PATCH and DELETE
+         · Django, Node and Elixir
+  INFO response-time promises (1/1)
+         · Email support from an engineer, answered within one working day
+  INFO rhythm: 88 sentences, mean 16.6 words, sd 12.9, 9% ≤4 words
+
+== examples/with-skill/05-hotel/index.html  (1778 words)  0 FAIL, 1 WARN
+  WARN stat strip x1 x1  -> every number real and sourced? otherwise move numbers into sentences or [NEED]
+         · 05:50 / 06:30 / 11:00 / 14:00 / 00:30
+  INFO lists of three (4, ~1 per 445 words)  -> fine when there really are three things; never back to back
+         · platform, any change, and the
+         · cheese, an apple and a
+         · with cocoa, amaretti and raisins
+         · Italian, German and some
+  INFO rhythm: 108 sentences, mean 14.3 words, sd 10.8, 14% ≤4 words
+
+== cross-file: first headings side by side
+  01-coffee: We only make filter coffee.
+  04-devtool: Replay yesterday's production traffic against today's pull request.
+  05-hotel: Nine rooms opposite Domodossola station

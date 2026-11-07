@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Binocular Sky | An 8-week astronomy course with Imogen Varga</title>
+<meta name="description" content="Learn the night sky with ordinary binoculars. An 8-week online course for complete beginners, taught by former observatory educator Imogen Varga.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0b1020;
+    --ink-2: #10172d;
+    --ink-3: #18213d;
+    --line: rgba(236, 230, 216, 0.12);
+    --paper: #ece6d8;
+    --paper-2: #e2dac8;
+    --text: #ece6d8;
+    --muted: #a3a6b8;
+    --dark-text: #1a1d2b;
+    --dark-muted: #575a68;
+    --accent: #e5794f;
+    --accent-hover: #f08a61;
+    --star: #d6e4ff;
+    --radius: 14px;
+    --max: 1160px;
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.12; margin: 0; letter-spacing: -0.01em; }
+  p { margin: 0; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  section { padding: 112px 0; }
+  .section-head { max-width: 640px; margin-bottom: 56px; }
+  .section-head h2 { font-size: clamp(32px, 4.4vw, 48px); margin-top: 14px; }
+  .section-head p { color: var(--muted); margin-top: 18px; font-size: 18px; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 24px;
+    border-radius: 999px;
+    font-family: var(--sans); font-weight: 600; font-size: 16px;
+    text-decoration: none;
+    transition: background-color .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .btn-primary { background: var(--accent); color: #1a0f0a; }
+  .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+  .btn-ghost { border: 1px solid var(--line); color: var(--text); }
+  .btn-ghost:hover { border-color: rgba(236,230,216,.4); }
+  .btn:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  /* Nav */
+  .nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(11, 16, 32, 0.82);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--serif); font-size: 21px; }
+  .logo-mark { position: relative; width: 30px; height: 18px; }
+  .logo-mark::before, .logo-mark::after {
+    content: ""; position: absolute; top: 0; width: 18px; height: 18px; border-radius: 50%;
+    border: 2px solid var(--accent);
+  }
+  .logo-mark::before { left: 0; }
+  .logo-mark::after { right: 0; }
+  .nav-links { display: flex; align-items: center; gap: 32px; font-size: 15px; }
+  .nav-links a { text-decoration: none; color: var(--muted); transition: color .2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links .btn { padding: 10px 18px; font-size: 15px; color: #1a0f0a; }
+
+  /* Starfield used in several places */
+  .starfield {
+    background-color: #070b18;
+    background-image:
+      radial-gradient(1.6px 1.6px at 12% 18%, #fff 50%, transparent 52%),
+      radial-gradient(1px 1px at 22% 64%, var(--star) 50%, transparent 52%),
+      radial-gradient(1.2px 1.2px at 31% 37%, #fff 50%, transparent 52%),
+      radial-gradient(1px 1px at 8% 82%, var(--star) 50%, transparent 52%),
+      radial-gradient(2px 2px at 38% 78%, #ffe9c7 50%, transparent 52%),
+      radial-gradient(1px 1px at 44% 12%, #fff 50%, transparent 52%),
+      radial-gradient(1.4px 1.4px at 58% 86%, var(--star) 50%, transparent 52%),
+      radial-gradient(1px 1px at 66% 22%, #fff 50%, transparent 52%),
+      radial-gradient(1.8px 1.8px at 74% 70%, #fff 50%, transparent 52%),
+      radial-gradient(1px 1px at 81% 31%, var(--star) 50%, transparent 52%),
+      radial-gradient(1.2px 1.2px at 88% 58%, #fff 50%, transparent 52%),
+      radial-gradient(1px 1px at 93% 14%, #fff 50%, transparent 52%),
+      radial-gradient(1px 1px at 17% 46%, #fff 50%, transparent 52%),
+      radial-gradient(1px 1px at 52% 54%, var(--star) 50%, transparent 52%),
+      radial-gradient(1.3px 1.3px at 27% 9%, #fff 50%, transparent 52%),
+      radial-gradient(1px 1px at 63% 44%, #fff 50%, transparent 52%),
+      radial-gradient(1px 1px at 96% 88%, var(--star) 50%, transparent 52%),
+      radial-gradient(1px 1px at 4% 30%, #fff 50%, transparent 52%),
+      radial-gradient(ellipse 60% 40% at 70% 30%, rgba(96, 120, 200, 0.16), transparent 70%),
+      radial-gradient(ellipse 50% 50% at 20% 80%, rgba(150, 90, 160, 0.10), transparent 70%);
+  }
+
+  /* 1. Hero */
+  .hero { padding: 88px 0 104px; position: relative; overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; opacity: .55; pointer-events: none;
+    background-image:
+      radial-gradient(1px 1px at 6% 20%, #fff 50%, transparent 52%),
+      radial-gradient(1px 1px at 18% 72%, #fff 50%, transparent 52%),
+      radial-gradient(1.4px 1.4px at 34% 12%, #fff 50%, transparent 52%),
+      radial-gradient(1px 1px at 47% 90%, #fff 50%, transparent 52%),
+      radial-gradient(1px 1px at 52% 6%, #fff 50%, transparent 52%),
+      radial-gradient(1px 1px at 3% 92%, #fff 50%, transparent 52%),
+      radial-gradient(1.2px 1.2px at 42% 48%, #fff 50%, transparent 52%);
+  }
+  .hero-grid { position: relative; display: grid; grid-template-columns: 1.05fr 1fr; gap: 64px; align-items: center; }
+  .hero h1 { font-size: clamp(42px, 6vw, 72px); margin-top: 22px; }
+  .hero h1 em { font-style: italic; color: var(--paper-2); }
+  .hero-lede { font-size: 19px; color: var(--muted); margin-top: 24px; max-width: 520px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
+  .hero-note { margin-top: 22px; font-size: 14px; color: var(--muted); font-family: var(--mono); }
+
+  .scope { position: relative; }
+  .scope-view {
+    aspect-ratio: 1.55 / 1;
+    width: 100%;
+    -webkit-mask-image:
+      radial-gradient(circle at 32.5% 50%, #000 31.5%, transparent 32%),
+      radial-gradient(circle at 67.5% 50%, #000 31.5%, transparent 32%);
+    mask-image:
+      radial-gradient(circle at 32.5% 50%, #000 31.5%, transparent 32%),
+      radial-gradient(circle at 67.5% 50%, #000 31.5%, transparent 32%);
+    background-color: #070b18;
+    background-image:
+      /* The Pleiades, roughly */
+      radial-gradient(3px 3px at 46% 40%, #fff 45%, rgba(190,210,255,.5) 60%, transparent 75%),
+      radial-gradient(2.6px 2.6px at 52% 36%, #fff 45%, rgba(190,210,255,.5) 60%, transparent 75%),
+      radial-gradient(2.4px 2.4px at 55% 45%, #fff 45%, rgba(190,210,255,.5) 60%, transparent 75%),
+      radial-gradient(3.4px 3.4px at 50% 50%, #fff 45%, rgba(190,210,255,.55) 60%, transparent 75%),
+      radial-gradient(2.2px 2.2px at 43% 52%, #fff 45%, rgba(190,210,255,.5) 60%, transparent 75%),
+      radial-gradient(2px 2px at 58% 53%, #fff 45%, rgba(190,210,255,.5) 60%, transparent 75%),
+      radial-gradient(2.2px 2.2px at 61% 50%, #fff 45%, rgba(190,210,255,.5) 60%, transparent 75%),
+      radial-gradient(ellipse 18% 22% at 51% 46%, rgba(120,150,255,.22), transparent 70%),
+      /* background stars */
+      radial-gradient(1px 1px at 22% 30%, #fff 50%, transparent 52%),
+      radial-gradient(1.2px 1.2px at 28% 66%, var(--star) 50%, transparent 52%),
+      radial-gradient(1px 1px at 18% 52%, #fff 50%, transparent 52%),
+      radial-gradient(1.4px 1.4px at 36% 24%, #ffe9c7 50%, transparent 52%),
+      radial-gradient(1px 1px at 38% 76%, #fff 50%, transparent 52%),
+      radial-gradient(1px 1px at 64% 22%, #fff 50%, transparent 52%),
+      radial-gradient(1.2px 1.2px at 70% 70%, var(--star) 50%, transparent 52%),
+      radial-gradient(1px 1px at 78% 38%, #fff 50%, transparent 52%),
+      radial-gradient(1.6px 1.6px at 82% 58%, #fff 50%, transparent 52%),
+      radial-gradient(1px 1px at 74% 82%, #fff 50%, transparent 52%),
+      radial-gradient(1px 1px at 60% 80%, var(--star) 50%, transparent 52%),
+      radial-gradient(1px 1px at 33% 42%, #fff 50%, transparent 52%),
+      radial-gradient(1px 1px at 68% 34%, #fff 50%, transparent 52%),
+      radial-gradient(circle at 50% 50%, #0c1430 0%, #070b18 60%);
+  }
+  .scope-ring {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(circle at 32.5% 50%, transparent 30.5%, rgba(229,121,79,.0) 30.5%, rgba(236,230,216,.18) 31.5%, transparent 32.2%),
+      radial-gradient(circle at 67.5% 50%, transparent 30.5%, rgba(236,230,216,.18) 31.5%, transparent 32.2%);
+  }
+  .scope-caption {
+    display: flex; justify-content: space-between; gap: 16px;
+    margin-top: 8px; padding-top: 14px; border-top: 1px solid var(--line);
+    font-family: var(--mono); font-size: 12.5px; color: var(--muted);
+  }
+
+  /* 2. Outcomes */
+  .outcomes { background: var(--ink-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .outcome-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .outcome {
+    padding: 32px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--ink);
+  }
+  .outcome-num { font-family: var(--mono); font-size: 13px; color: var(--accent); }
+  .outcome h3 { font-size: 26px; margin-top: 18px; }
+  .outcome p { color: var(--muted); margin-top: 12px; }
+  .kit {
+    margin-top: 24px;
+    display: grid; grid-template-columns: 220px 1fr; gap: 32px; align-items: center;
+    padding: 28px 32px;
+    border-radius: var(--radius);
+    border: 1px dashed rgba(236,230,216,.22);
+  }
+  .kit h3 { font-size: 22px; }
+  .kit ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .kit li { font-size: 15px; color: var(--muted); }
+  .kit li strong { display: block; color: var(--text); font-weight: 500; font-size: 16px; margin-bottom: 4px; }
+
+  /* 3. Curriculum */
+  .week-rhythm {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px;
+  }
+  .week-rhythm span {
+    font-family: var(--mono); font-size: 13px; color: var(--text);
+    padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px;
+  }
+  .weeks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 56px; border-top: 1px solid var(--line); }
+  .week {
+    display: grid; grid-template-columns: 64px 1fr; gap: 16px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .week-no { font-family: var(--mono); font-size: 13px; color: var(--accent); padding-top: 6px; }
+  .week h3 { font-size: 23px; }
+  .week p { color: var(--muted); margin-top: 8px; font-size: 16px; }
+  .week .target { display: inline-block; margin-top: 12px; font-family: var(--mono); font-size: 12.5px; color: var(--star); }
+  .week .target::before { content: "Tonight's target: "; color: var(--muted); }
+
+  /* 4. Instructor */
+  .instructor { background: var(--ink-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .instructor-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 72px; align-items: center; }
+  .portrait {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 74% 20%, #f3e7cf 0 7%, rgba(243,231,207,.18) 8%, transparent 16%),
+      linear-gradient(180deg, #1c2650 0%, #2b2f5c 45%, #6b4a63 78%, #b8735a 100%);
+  }
+  .portrait::before {
+    /* head */
+    content: ""; position: absolute;
+    left: 50%; top: 30%;
+    width: 30%; aspect-ratio: 1 / 1.15;
+    transform: translateX(-50%);
+    border-radius: 50% 50% 46% 46%;
+    background: linear-gradient(160deg, #191c33, #0d1022);
+  }
+  .portrait::after {
+    /* shoulders */
+    content: ""; position: absolute;
+    left: 50%; bottom: -4%;
+    width: 78%; height: 40%;
+    transform: translateX(-50%);
+    border-radius: 48% 48% 0 0 / 60% 60% 0 0;
+    background: linear-gradient(170deg, #191c33, #0b0e1d);
+  }
+  .portrait-ridge {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 24%; z-index: 0;
+    background: #0b0e1d;
+    clip-path: polygon(0 40%, 14% 22%, 26% 38%, 40% 12%, 58% 34%, 72% 18%, 86% 36%, 100% 20%, 100% 100%, 0 100%);
+  }
+  .portrait-tag {
+    position: absolute; left: 16px; bottom: 16px; z-index: 2;
+    font-family: var(--mono); font-size: 12px; color: var(--paper);
+    background: rgba(11,16,32,.7); padding: 6px 10px; border-radius: 6px;
+  }
+  .instructor h2 { font-size: clamp(32px, 4.4vw, 48px); margin-top: 14px; }
+  .instructor-body p { color: var(--muted); margin-top: 18px; font-size: 18px; }
+  .instructor-body p.pull { color: var(--text); font-family: var(--serif); font-style: italic; font-size: 22px; line-height: 1.4; }
+  .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line); }
+  .fact strong { display: block; font-family: var(--serif); font-size: 34px; font-weight: 400; color: var(--text); }
+  .fact span { font-size: 14px; color: var(--muted); }
+
+  /* 5. Testimonials (light) */
+  .voices { background: var(--paper); color: var(--dark-text); }
+  .voices .section-head p { color: var(--dark-muted); }
+  .voices .eyebrow { color: #b4532f; }
+  .voice-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 24px; }
+  .voice {
+    display: flex; flex-direction: column; justify-content: space-between; gap: 28px;
+    padding: 32px;
+    border-radius: var(--radius);
+    background: #f6f1e6;
+    border: 1px solid rgba(26,29,43,.08);
+  }
+  .voice blockquote { margin: 0; font-size: 17px; color: var(--dark-text); }
+  .voice.lead { background: var(--dark-text); color: var(--paper); border: none; }
+  .voice.lead blockquote { font-family: var(--serif); font-size: 26px; line-height: 1.35; color: var(--paper); }
+  .who { display: flex; align-items: center; gap: 12px; font-size: 15px; }
+  .who b { display: block; font-weight: 600; }
+  .who span { color: var(--dark-muted); font-size: 14px; }
+  .voice.lead .who span { color: #a9a8b4; }
+  .avatar { width: 40px; height: 40px; border-radius: 50%; flex: none; }
+  .av1 { background: linear-gradient(135deg, #e5794f, #7a3b5c); }
+  .av2 { background: linear-gradient(135deg, #5a77c9, #1f2a55); }
+  .av3 { background: linear-gradient(135deg, #8fa86b, #3b4f39); }
+
+  /* 6. Pricing */
+  .plans { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 920px; }
+  .plan {
+    display: flex; flex-direction: column;
+    padding: 36px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: var(--ink-2);
+  }
+  .plan.featured { border-color: rgba(229,121,79,.55); background: linear-gradient(180deg, #1b1a33 0%, var(--ink-2) 60%); }
+  .plan-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .plan h3 { font-size: 26px; }
+  .badge { font-family: var(--mono); font-size: 12px; color: var(--accent); border: 1px solid rgba(229,121,79,.45); padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+  .price { margin-top: 22px; font-family: var(--serif); font-size: 56px; line-height: 1; }
+  .price small { font-family: var(--sans); font-size: 15px; color: var(--muted); margin-left: 6px; }
+  .plan-desc { color: var(--muted); margin-top: 14px; }
+  .plan ul { list-style: none; padding: 0; margin: 28px 0 32px; display: grid; gap: 12px; flex: 1; }
+  .plan li { position: relative; padding-left: 26px; font-size: 16px; }
+  .plan li::before {
+    content: ""; position: absolute; left: 0; top: 9px;
+    width: 9px; height: 9px; border-radius: 50%;
+    border: 2px solid var(--accent);
+  }
+  .plan .btn { width: 100%; }
+  .guarantee { margin-top: 28px; color: var(--muted); font-size: 15px; max-width: 920px; }
+  .guarantee strong { color: var(--text); font-weight: 500; }
+
+  /* 7. FAQ */
+  .faq { border-top: 1px solid var(--line); }
+  .faq-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 72px; }
+  .faq .section-head { margin-bottom: 0; }
+  .faq-list details { border-bottom: 1px solid var(--line); }
+  .faq-list details:first-child { border-top: 1px solid var(--line); }
+  .faq-list summary {
+    list-style: none; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; gap: 24px;
+    padding: 22px 0;
+    font-size: 18px; font-weight: 500;
+  }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary::after {
+    content: "+"; font-family: var(--mono); font-size: 22px; color: var(--accent);
+    transition: transform .2s ease;
+  }
+  .faq-list details[open] summary::after { transform: rotate(45deg); }
+  .faq-list details p { color: var(--muted); padding: 0 40px 24px 0; }
+
+  /* 8. Footer */
+  .footer { padding: 0 0 40px; }
+  .final {
+    position: relative; overflow: hidden;
+    border-radius: 20px;
+    padding: 88px 48px;
+    text-align: center;
+    border: 1px solid var(--line);
+  }
+  .final h2 { font-size: clamp(34px, 5vw, 58px); max-width: 760px; margin: 14px auto 0; }
+  .final p { color: var(--muted); margin: 20px auto 0; max-width: 540px; font-size: 18px; }
+  .final .hero-actions { justify-content: center; }
+  .footer-bottom {
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px;
+    margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--line);
+    font-size: 15px;
+  }
+  .footer-bottom h4 { margin: 0 0 14px; font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .footer-bottom ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .footer-bottom a { text-decoration: none; color: var(--text); opacity: .85; }
+  .footer-bottom a:hover { opacity: 1; color: var(--accent); }
+  .footer-about p { color: var(--muted); margin-top: 14px; max-width: 300px; }
+  .legal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 48px; font-size: 13px; color: var(--muted); font-family: var(--mono); }
+
+  /* Responsive */
+  @media (max-width: 960px) {
+    section { padding: 88px 0; }
+    .hero-grid, .instructor-grid, .faq-grid { grid-template-columns: 1fr; gap: 48px; }
+    .outcome-grid { grid-template-columns: 1fr; }
+    .kit { grid-template-columns: 1fr; gap: 18px; }
+    .weeks { grid-template-columns: 1fr; }
+    .voice-grid { grid-template-columns: 1fr; }
+    .footer-bottom { grid-template-columns: 1fr 1fr; }
+    .portrait { max-width: 420px; }
+    .nav-links a:not(.btn) { display: none; }
+  }
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .wrap { padding: 0 16px; }
+    section { padding: 72px 0; }
+    .hero { padding: 56px 0 72px; }
+    .kit ul { grid-template-columns: 1fr; }
+    .plans { grid-template-columns: 1fr; }
+    .plan { padding: 28px 24px; }
+    .facts { grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .fact strong { font-size: 26px; }
+    .final { padding: 64px 22px; }
+    .footer-bottom { grid-template-columns: 1fr; }
+    .scope-caption { flex-direction: column; gap: 4px; }
+    .hero-actions .btn { width: 100%; }
+    .faq-list details p { padding-right: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Binocular Sky home"><span class="logo-mark" aria-hidden="true"></span>Binocular Sky</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#syllabus">Syllabus</a>
+      <a href="#instructor">Instructor</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-primary" href="#pricing">Enroll</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 1. Hero -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">8-week online course &middot; Next cohort starts January 11, 2027</p>
+        <h1>Learn the night sky with the binoculars <em>already in your closet.</em></h1>
+        <p class="hero-lede">Binocular Sky teaches complete beginners to find, name and actually enjoy what's overhead. You don't need a telescope, any math, or a dark-sky retreat. You need a pair of binoculars, a chair and eight weeks of clear-ish evenings.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#pricing">Join the January cohort</a>
+          <a class="btn btn-ghost" href="#syllabus">See the eight weeks</a>
+        </div>
+        <p class="hero-note">About 2 hours a week &middot; Works from a city balcony</p>
+      </div>
+      <figure class="scope" style="margin:0">
+        <div class="scope-view" role="img" aria-label="Illustration of the Pleiades star cluster as seen through binoculars"></div>
+        <div class="scope-ring" aria-hidden="true"></div>
+        <figcaption class="scope-caption">
+          <span>The Pleiades through 10&times;50 binoculars</span>
+          <span>Week 5 target</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 2. Outcomes -->
+  <section class="outcomes">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">What changes</p>
+        <h2>By March, the sky stops being wallpaper.</h2>
+        <p>Most people quit astronomy in the first month because they buy too much gear and can't find anything. This course goes in the other order: skills first, gear later, if ever.</p>
+      </div>
+      <div class="outcome-grid">
+        <article class="outcome">
+          <span class="outcome-num">01</span>
+          <h3>Find things on purpose</h3>
+          <p>You'll star-hop from bright stars you already know to clusters, nebulae and a galaxy 2.5 million light-years away, without an app pointing for you.</p>
+        </article>
+        <article class="outcome">
+          <span class="outcome-num">02</span>
+          <h3>Know what you're seeing</h3>
+          <p>Why one star looks orange and its neighbor looks blue. What the Moon's ragged edge tells you about its mountains. Which "star" is really Jupiter, and the four moons it brought along.</p>
+        </article>
+        <article class="outcome">
+          <span class="outcome-num">03</span>
+          <h3>Keep going on your own</h3>
+          <p>You'll leave with an observing log, a list of 60 targets for every season and a simple routine for planning a night in under five minutes.</p>
+        </article>
+      </div>
+      <div class="kit">
+        <h3>What you'll need</h3>
+        <ul>
+          <li><strong>Binoculars</strong>Any pair works to start. In week two we'll check yours and tell you honestly if an upgrade is worth it.</li>
+          <li><strong>A free chart app</strong>We use Stellarium, which is free on every platform. Printable charts are included too.</li>
+          <li><strong>Somewhere to sit</strong>A folding chair or a reclining lawn chair. Your neck will thank you by week three.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Curriculum -->
+  <section id="syllabus">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The syllabus</p>
+        <h2>Eight weeks, one sky at a time.</h2>
+        <p>Every week has a short lesson to watch indoors and one specific thing to go and find outdoors. The order follows the winter sky, so what you learn is overhead when you learn it.</p>
+        <div class="week-rhythm" aria-label="Each week includes">
+          <span>25-min video lesson</span>
+          <span>Printable star chart</span>
+          <span>One night outside</span>
+          <span>Live Q&amp;A on Sundays</span>
+        </div>
+      </div>
+      <div class="weeks">
+        <article class="week">
+          <span class="week-no">WEEK 1</span>
+          <div>
+            <h3>Your eyes in the dark</h3>
+            <p>Dark adaptation, averted vision and why a red flashlight matters. You'll be surprised how much more you see after twenty patient minutes.</p>
+            <span class="target">Orion's Belt and Sword</span>
+          </div>
+        </article>
+        <article class="week">
+          <span class="week-no">WEEK 2</span>
+          <div>
+            <h3>Holding binoculars properly</h3>
+            <p>What 7&times;50 and 10&times;50 actually mean, how to brace for a steady view, and a two-minute test to see if your pair is in good shape.</p>
+            <span class="target">Capella and the Kids</span>
+          </div>
+        </article>
+        <article class="week">
+          <span class="week-no">WEEK 3</span>
+          <div>
+            <h3>The Moon, slowly</h3>
+            <p>Reading the terminator, naming the seas, and catching earthshine. The Moon is the best teacher you have, so we give it a full week.</p>
+            <span class="target">Craters Copernicus and Tycho</span>
+          </div>
+        </article>
+        <article class="week">
+          <span class="week-no">WEEK 4</span>
+          <div>
+            <h3>Star-hopping</h3>
+            <p>The one skill that separates people who look up from people who find things. You'll learn to read a chart, measure the sky with your fist and hop in short, sure steps.</p>
+            <span class="target">The Orion Nebula, M42</span>
+          </div>
+        </article>
+        <article class="week">
+          <span class="week-no">WEEK 5</span>
+          <div>
+            <h3>Clusters and star colors</h3>
+            <p>Why stars come in families, and what their colors say about their temperature and age. Binoculars show clusters better than most telescopes do.</p>
+            <span class="target">The Pleiades and the Hyades</span>
+          </div>
+        </article>
+        <article class="week">
+          <span class="week-no">WEEK 6</span>
+          <div>
+            <h3>Planets and their moons</h3>
+            <p>Telling planets from stars at a glance, and following Jupiter's moons as they change places from one night to the next.</p>
+            <span class="target">Jupiter's four Galilean moons</span>
+          </div>
+        </article>
+        <article class="week">
+          <span class="week-no">WEEK 7</span>
+          <div>
+            <h3>Faint fuzzies</h3>
+            <p>Galaxies and nebulae are dim, grey and astonishing once you know what you're looking at. We cover light pollution, sky quality and timing your night.</p>
+            <span class="target">The Andromeda Galaxy, M31</span>
+          </div>
+        </article>
+        <article class="week">
+          <span class="week-no">WEEK 8</span>
+          <div>
+            <h3>Your own observing plan</h3>
+            <p>Keeping a log, planning a session in five minutes, and a target list for spring, summer and autumn so the course doesn't end when the winter sky does.</p>
+            <span class="target">One you choose yourself</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Instructor -->
+  <section class="instructor" id="instructor">
+    <div class="wrap instructor-grid">
+      <div class="portrait" role="img" aria-label="Illustrated silhouette of Imogen Varga against a twilight sky">
+        <div class="portrait-ridge" aria-hidden="true"></div>
+        <span class="portrait-tag">Imogen Varga</span>
+      </div>
+      <div class="instructor-body">
+        <p class="eyebrow">Your instructor</p>
+        <h2>Imogen Varga has spent 16 years handing strangers a pair of binoculars.</h2>
+        <p>For most of that time she ran the public nights at Harlow Ridge Observatory, where her job was to take people who'd never looked up on purpose and send them home pointing at Saturn. Somewhere around her ten-thousandth visitor she noticed that the people who kept going weren't the ones who bought telescopes. They were the ones who learned to find their way.</p>
+        <p class="pull">"I don't want you to memorize the sky. I want you to be able to walk outside on any clear night and say hello to it."</p>
+        <p>Imogen holds a master's in science education and writes the monthly "What's Up This Month" column for the Northern Plains Astronomical Society. She observes from a suburban backyard with a pair of 10&times;50s she bought secondhand in 2009.</p>
+        <div class="facts">
+          <div class="fact"><strong>16</strong><span>years teaching the public</span></div>
+          <div class="fact"><strong>3,100+</strong><span>students since 2022</span></div>
+          <div class="fact"><strong>4.9/5</strong><span>average course rating</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Testimonials -->
+  <section class="voices">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">From past students</p>
+        <h2>"I found it myself" is the best sentence in astronomy.</h2>
+        <p>Here's what people from the last four cohorts told us after week eight.</p>
+      </div>
+      <div class="voice-grid">
+        <figure class="voice lead" style="margin:0">
+          <blockquote>I'd owned the same binoculars for eleven years and used them twice at a football game. In week four I found the Orion Nebula from my driveway and actually yelled.</blockquote>
+          <figcaption class="who"><span class="avatar av1" aria-hidden="true"></span><div><b>Daniel Okafor</b><span>Columbus, Ohio &middot; Autumn 2025 cohort</span></div></figcaption>
+        </figure>
+        <figure class="voice" style="margin:0">
+          <blockquote>Imogen explains things the way a good friend would. No jargon for its own sake, and she never made me feel silly for asking which way north was.</blockquote>
+          <figcaption class="who"><span class="avatar av2" aria-hidden="true"></span><div><b>Priya Raman</b><span>Leeds, UK &middot; Winter 2026 cohort</span></div></figcaption>
+        </figure>
+        <figure class="voice" style="margin:0">
+          <blockquote>I live under a city sky and assumed there was nothing to see. There's plenty. My daughter and I now keep a shared log on the fridge.</blockquote>
+          <figcaption class="who"><span class="avatar av3" aria-hidden="true"></span><div><b>Marco Bellini</b><span>Toronto, Canada &middot; Spring 2026 cohort</span></div></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Pricing -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Enroll</p>
+        <h2>Pick how you'd like to learn.</h2>
+        <p>Both options include every lesson and chart, and you keep them for good. The cohort adds live sessions with Imogen and a small group to observe alongside.</p>
+      </div>
+      <div class="plans">
+        <article class="plan">
+          <div class="plan-top"><h3>Self-paced</h3></div>
+          <p class="price">$129<small>one time</small></p>
+          <p class="plan-desc">Start tonight and go at your own speed.</p>
+          <ul>
+            <li>All 8 video lessons and transcripts</li>
+            <li>16 printable star charts, red-light friendly</li>
+            <li>The 60-target seasonal observing list</li>
+            <li>Observing log templates</li>
+            <li>Lifetime access, including future updates</li>
+          </ul>
+          <a class="btn btn-ghost" href="#pricing">Start self-paced</a>
+        </article>
+        <article class="plan featured">
+          <div class="plan-top"><h3>January cohort</h3><span class="badge">40 seats</span></div>
+          <p class="price">$219<small>one time</small></p>
+          <p class="plan-desc">Runs January 11 to March 7, 2027.</p>
+          <ul>
+            <li>Everything in Self-paced</li>
+            <li>8 live Sunday Q&amp;As with Imogen, recorded</li>
+            <li>A small observing group of 8 to 10 people</li>
+            <li>Feedback on your observing log in weeks 4 and 8</li>
+            <li>A personal binocular check in week 2</li>
+          </ul>
+          <a class="btn btn-primary" href="#pricing">Reserve a cohort seat</a>
+        </article>
+      </div>
+      <p class="guarantee"><strong>Cloudy-week guarantee.</strong> If the weather wipes out your first two weeks, or the course just isn't for you, email us within 30 days for a full refund. No forms, no questions.</p>
+    </div>
+  </section>
+
+  <!-- 7. FAQ -->
+  <section class="faq" id="faq">
+    <div class="wrap faq-grid">
+      <div class="section-head">
+        <p class="eyebrow">Questions</p>
+        <h2>Good questions we get a lot.</h2>
+        <p>Still unsure? Write to <a href="mailto:hello@binocularsky.com">hello@binocularsky.com</a> and Imogen will answer you herself, usually within a day.</p>
+      </div>
+      <div class="faq-list">
+        <details open>
+          <summary>I live in a city. Is this still worth it?</summary>
+          <p>Yes. About half of past students observe from cities or suburbs. Binoculars cut through light pollution better than you'd expect, and every week includes targets chosen to work under a bright sky. Week seven covers how to get the most from a short trip somewhere darker, if you ever want to.</p>
+        </details>
+        <details>
+          <summary>What if my binoculars aren't good enough?</summary>
+          <p>Almost any binoculars will show you the Moon's craters, Jupiter's moons and the Pleiades. In week two you'll run a simple test on your pair. If they really are holding you back, we'll suggest specific models in three price ranges, but we earn nothing from any of them.</p>
+        </details>
+        <details>
+          <summary>I'm in the Southern Hemisphere. Does it work for me?</summary>
+          <p>Mostly. The core skills are the same everywhere, and Orion, the Pleiades and the planets are visible from both hemispheres. Each week includes a southern alternative target, such as the Jewel Box cluster or the Magellanic Clouds, for students below the equator.</p>
+        </details>
+        <details>
+          <summary>What happens on cloudy weeks?</summary>
+          <p>They happen to everyone, so the course is built for them. Each lesson's outdoor target stays visible for several weeks, and the cohort's live sessions always include an "if you missed it" segment. You can catch up whenever the sky clears.</p>
+        </details>
+        <details>
+          <summary>Can I share it with my kids?</summary>
+          <p>Please do. One enrollment covers your household. The lessons are made for adults but work well for curious kids aged ten and up, and many families do the outdoor sessions together.</p>
+        </details>
+        <details>
+          <summary>What if I can't make the live Sunday sessions?</summary>
+          <p>Every session is recorded and posted within a few hours. You can send questions in beforehand, and Imogen will answer them on the recording.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- 8. Footer -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="final starfield">
+      <p class="eyebrow">Clear skies are coming</p>
+      <h2>The winter sky is the best one to start with. It's up right now.</h2>
+      <p>Join the January cohort and spend eight weeks learning to find your way around it with people who are learning too.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#pricing">Join the January cohort</a>
+        <a class="btn btn-ghost" href="#syllabus">Read the syllabus</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-about">
+        <a class="logo" href="#top"><span class="logo-mark" aria-hidden="true"></span>Binocular Sky</a>
+        <p>An online astronomy course for beginners, taught by Imogen Varga. Made in a backyard with a folding chair.</p>
+      </div>
+      <div>
+        <h4>Course</h4>
+        <ul>
+          <li><a href="#syllabus">Syllabus</a></li>
+          <li><a href="#instructor">Instructor</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Free resources</h4>
+        <ul>
+          <li><a href="#top">This month's sky chart</a></li>
+          <li><a href="#top">Binocular buying guide</a></li>
+          <li><a href="#top">The Moon in 10 minutes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@binocularsky.com">hello@binocularsky.com</a></li>
+          <li><a href="#top">Student login</a></li>
+          <li><a href="#top">Gift a seat</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>&copy; 2026 Binocular Sky. All rights reserved.</span>
+      <span><a href="#top" style="text-decoration:none">Privacy</a> &middot; <a href="#top" style="text-decoration:none">Terms</a> &middot; <a href="#top" style="text-decoration:none">Refund policy</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

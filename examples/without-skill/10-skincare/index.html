@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ebb &amp; Kelp | Cold-Water Skincare from the Maine Coast</title>
+<meta name="description" content="Four small-batch skincare essentials made with hand-harvested Maine seaweed. Gentle enough for every day, honest enough to list every ingredient.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --kelp: #1f3a33;
+    --kelp-deep: #142621;
+    --sea: #5f8a7e;
+    --glass: #c9ddd3;
+    --foam: #eef3ee;
+    --sand: #f4ede2;
+    --shell: #e8d9c4;
+    --coral: #c8775a;
+    --ink: #1c2421;
+    --muted: #5b6662;
+    --line: rgba(31, 58, 51, 0.14);
+    --radius: 18px;
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "Inter", system-ui, -apple-system, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--sand);
+    line-height: 1.6;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; }
+  .wrap { width: min(1180px, 100% - 48px); margin: 0 auto; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.1; letter-spacing: -0.01em; }
+  h2 { font-size: clamp(34px, 4.4vw, 54px); }
+  .eyebrow {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--sea); margin-bottom: 18px; display: block;
+  }
+  .lede { font-size: 19px; color: var(--muted); max-width: 560px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 28px; border-radius: 999px;
+    font-weight: 500; font-size: 16px;
+    transition: transform .2s ease, background .2s ease, color .2s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-dark { background: var(--kelp); color: var(--sand); }
+  .btn-dark:hover { background: var(--kelp-deep); }
+  .btn-ghost { border: 1px solid var(--kelp); color: var(--kelp); }
+  .btn-ghost:hover { background: var(--kelp); color: var(--sand); }
+  .btn-light { background: var(--sand); color: var(--kelp); }
+
+  /* NAV */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(244, 237, 226, 0.88);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  .logo { font-family: var(--serif); font-size: 26px; color: var(--kelp); letter-spacing: -0.02em; }
+  .logo span { color: var(--coral); }
+  .nav ul { display: flex; gap: 34px; list-style: none; font-size: 15px; color: var(--muted); }
+  .nav ul a:hover { color: var(--kelp); }
+  .nav .btn { padding: 10px 20px; font-size: 14px; }
+
+  /* 1. HERO */
+  .hero { padding: 72px 0 96px; overflow: hidden; }
+  .hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 64px; align-items: center; }
+  .hero h1 { font-size: clamp(46px, 6.4vw, 84px); color: var(--kelp); margin-bottom: 26px; }
+  .hero h1 em { font-style: italic; color: var(--sea); }
+  .hero .lede { margin-bottom: 38px; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 44px; }
+  .hero-proof { display: flex; gap: 36px; font-size: 14px; color: var(--muted); }
+  .hero-proof strong { display: block; font-family: var(--serif); font-size: 28px; font-weight: 400; color: var(--kelp); }
+  .hero-visual {
+    position: relative; aspect-ratio: 4 / 5; border-radius: 28px; overflow: hidden;
+    background:
+      radial-gradient(120% 70% at 50% 110%, #9fbfb2 0%, transparent 60%),
+      radial-gradient(80% 50% at 20% 10%, #f7efe3 0%, transparent 70%),
+      linear-gradient(180deg, #dfe9e2 0%, #b8d0c5 55%, #7fa597 100%);
+  }
+  .hero-visual::before {
+    content: ""; position: absolute; left: -10%; right: -10%; bottom: 18%; height: 34%;
+    background:
+      radial-gradient(60% 40% at 30% 0%, rgba(255,255,255,.55), transparent 70%),
+      linear-gradient(180deg, rgba(95,138,126,.0), rgba(31,58,51,.35));
+    border-radius: 50% 50% 0 0 / 30% 30% 0 0;
+  }
+  .hero-visual::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 26%;
+    background: linear-gradient(180deg, #e9dcc6, #d9c6a8);
+    border-radius: 60% 40% 0 0 / 40% 30% 0 0;
+  }
+  .sun { position: absolute; width: 120px; height: 120px; border-radius: 50%; top: 12%; right: 16%;
+    background: radial-gradient(circle, #fbf3e6 0%, #f3dfc4 60%, rgba(243,223,196,0) 72%); }
+  .bottle {
+    position: absolute; z-index: 3; border-radius: 14px 14px 18px 18px;
+    box-shadow: 0 24px 40px -18px rgba(20,38,33,.55), inset 6px 0 14px rgba(255,255,255,.25), inset -8px 0 16px rgba(0,0,0,.12);
+  }
+  .bottle::before { /* cap */
+    content: ""; position: absolute; left: 50%; transform: translateX(-50%);
+    bottom: 100%; border-radius: 6px 6px 2px 2px;
+  }
+  .bottle::after { /* label */
+    content: ""; position: absolute; left: 16%; right: 16%; top: 34%; height: 30%;
+    border-radius: 4px; background: rgba(244,237,226,.92);
+  }
+  .b-serum { width: 92px; height: 190px; left: 22%; bottom: 17%;
+    background: linear-gradient(90deg, #2c5148, #3f6d61 40%, #23443c); }
+  .b-serum::before { width: 30px; height: 46px; background: linear-gradient(90deg, #1a1a1a, #3b3b3b, #1a1a1a); border-radius: 15px 15px 3px 3px; }
+  .b-milk { width: 118px; height: 250px; left: 43%; bottom: 14%; border-radius: 20px;
+    background: linear-gradient(90deg, #ece2d2, #fbf6ee 45%, #e0d3bf); }
+  .b-milk::before { width: 46px; height: 30px; background: linear-gradient(90deg, #1f3a33, #335c51, #1f3a33); }
+  .b-milk::after { background: rgba(31,58,51,.88); }
+  .jar { position: absolute; z-index: 3; width: 120px; height: 74px; right: 9%; bottom: 13%;
+    border-radius: 10px 10px 16px 16px;
+    background: linear-gradient(90deg, #b8664b, #d58b6e 45%, #a75a41);
+    box-shadow: 0 20px 30px -14px rgba(20,38,33,.5); }
+  .jar::before { content: ""; position: absolute; left: -4px; right: -4px; top: -22px; height: 24px; border-radius: 8px 8px 2px 2px;
+    background: linear-gradient(90deg, #ddd0bb, #f4ece0, #d3c4ac); }
+  .hero-tag {
+    position: absolute; z-index: 4; left: 22px; top: 22px;
+    background: rgba(244,237,226,.9); color: var(--kelp); font-size: 13px; font-weight: 500;
+    padding: 9px 15px; border-radius: 999px;
+  }
+
+  /* 2. PHILOSOPHY */
+  .philosophy { background: var(--kelp); color: var(--sand); padding: 120px 0; }
+  .philosophy .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .philosophy .eyebrow { color: var(--glass); }
+  .philosophy h2 { color: var(--sand); }
+  .philosophy p { color: rgba(244,237,226,.78); font-size: 18px; margin-bottom: 22px; }
+  .pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(244,237,226,.15); border-radius: var(--radius); overflow: hidden; margin-top: 46px; }
+  .pillar { background: var(--kelp); padding: 30px 28px; }
+  .pillar strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 40px; color: var(--glass); line-height: 1; margin-bottom: 10px; }
+  .pillar span { font-size: 15px; color: rgba(244,237,226,.72); }
+
+  /* 3. PRODUCTS */
+  .products { padding: 120px 0; }
+  .section-head { display: flex; justify-content: space-between; align-items: end; gap: 40px; margin-bottom: 56px; }
+  .section-head h2 { color: var(--kelp); max-width: 620px; }
+  .section-head p { max-width: 380px; color: var(--muted); }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .card { background: #fbf8f2; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; transition: transform .25s ease, box-shadow .25s ease; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 24px 40px -28px rgba(20,38,33,.5); }
+  .card-visual { position: relative; aspect-ratio: 1 / 1.05; display: grid; place-items: end center; padding-bottom: 14%; }
+  .v1 { background: radial-gradient(70% 60% at 50% 30%, #fbf6ee, #e6dac6); }
+  .v2 { background: radial-gradient(70% 60% at 50% 30%, #e3eee8, #b9d1c6); }
+  .v3 { background: radial-gradient(70% 60% at 50% 30%, #f2e3d8, #dcb9a5); }
+  .v4 { background: radial-gradient(70% 60% at 50% 30%, #e7ece9, #c4cfca); }
+  .pb { position: relative; border-radius: 12px; box-shadow: 0 18px 28px -16px rgba(20,38,33,.55), inset 5px 0 10px rgba(255,255,255,.3), inset -6px 0 12px rgba(0,0,0,.1); }
+  .pb::before { content: ""; position: absolute; left: 50%; transform: translateX(-50%); bottom: 100%; }
+  .pb::after { content: ""; position: absolute; left: 18%; right: 18%; top: 36%; height: 28%; border-radius: 3px; }
+  .pb-milk { width: 74px; height: 156px; border-radius: 16px; background: linear-gradient(90deg, #ece2d2, #fbf6ee 45%, #e0d3bf); }
+  .pb-milk::before { width: 30px; height: 20px; background: #1f3a33; border-radius: 4px 4px 1px 1px; }
+  .pb-milk::after { background: #1f3a33; }
+  .pb-serum { width: 58px; height: 124px; background: linear-gradient(90deg, #2c5148, #3f6d61 40%, #23443c); }
+  .pb-serum::before { width: 20px; height: 34px; border-radius: 10px 10px 2px 2px; background: linear-gradient(90deg, #1a1a1a, #3b3b3b, #1a1a1a); }
+  .pb-serum::after { background: #f4ede2; }
+  .pb-jar { width: 98px; height: 60px; border-radius: 8px 8px 14px 14px; background: linear-gradient(90deg, #b8664b, #d58b6e 45%, #a75a41); }
+  .pb-jar::before { width: 106px; height: 20px; border-radius: 6px 6px 2px 2px; background: linear-gradient(90deg, #ddd0bb, #f4ece0, #d3c4ac); }
+  .pb-jar::after { top: 30%; height: 40%; background: #f4ede2; }
+  .pb-mist { width: 54px; height: 148px; border-radius: 10px 10px 14px 14px; background: linear-gradient(90deg, #8ea79e, #b7cbc3 45%, #7e978e); }
+  .pb-mist::before { width: 18px; height: 40px; border-radius: 4px 4px 1px 1px; background: linear-gradient(180deg, #e9e2d5 0 30%, #1f3a33 30%); }
+  .pb-mist::after { background: #f4ede2; }
+  .badge { position: absolute; top: 16px; left: 16px; background: var(--kelp); color: var(--sand); font-size: 12px; font-weight: 500; padding: 6px 12px; border-radius: 999px; }
+  .card-body { padding: 24px 24px 26px; display: flex; flex-direction: column; flex: 1; }
+  .card-body h3 { font-size: 24px; color: var(--kelp); margin-bottom: 6px; }
+  .card-body .type { font-size: 13px; color: var(--sea); font-weight: 500; letter-spacing: .04em; margin-bottom: 14px; }
+  .card-body p { font-size: 15px; color: var(--muted); margin-bottom: 22px; flex: 1; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; padding-top: 18px; border-top: 1px solid var(--line); }
+  .price { font-family: var(--serif); font-size: 22px; color: var(--kelp); }
+  .price small { font-family: var(--sans); font-size: 13px; color: var(--muted); margin-left: 4px; }
+  .add { font-size: 14px; font-weight: 500; color: var(--kelp); border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+  .add:hover { color: var(--coral); }
+
+  /* 4. RITUAL */
+  .ritual { background: var(--foam); padding: 120px 0; }
+  .ritual .section-head { margin-bottom: 64px; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; counter-reset: step; border-top: 1px solid var(--line); }
+  .step { padding: 36px 30px 0 0; position: relative; }
+  .step::before {
+    counter-increment: step; content: "0" counter(step);
+    font-family: var(--serif); font-size: 15px; color: var(--sea);
+    display: block; margin-bottom: 28px;
+  }
+  .step::after { content: ""; position: absolute; top: -5px; left: 0; width: 9px; height: 9px; border-radius: 50%; background: var(--kelp); }
+  .step h3 { font-size: 26px; color: var(--kelp); margin-bottom: 6px; }
+  .step .when { font-size: 13px; color: var(--coral); font-weight: 500; margin-bottom: 14px; display: block; }
+  .step p { font-size: 15px; color: var(--muted); }
+  .ritual-note { margin-top: 64px; display: flex; align-items: center; justify-content: space-between; gap: 32px; background: #fff; border-radius: var(--radius); padding: 30px 36px; border: 1px solid var(--line); }
+  .ritual-note p { font-size: 17px; color: var(--ink); max-width: 700px; }
+  .ritual-note strong { color: var(--kelp); }
+
+  /* 5. HARVEST / SOURCING */
+  .harvest { padding: 120px 0; }
+  .harvest .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .harvest-visual {
+    position: relative; aspect-ratio: 1 / 1; border-radius: 28px; overflow: hidden;
+    background:
+      radial-gradient(40% 30% at 70% 22%, rgba(251,243,230,.9), transparent 70%),
+      linear-gradient(180deg, #cfdcd6 0%, #9db8ad 38%, #4f7a6e 62%, #2a4a42 100%);
+  }
+  .frond {
+    position: absolute; bottom: -10%; width: 34px; border-radius: 50% 50% 40% 40% / 70% 70% 20% 20%;
+    background: linear-gradient(180deg, #8a7a3a, #5c5422 60%, #3b3a18);
+    transform-origin: bottom center; opacity: .92;
+  }
+  .f1 { left: 14%; height: 72%; transform: rotate(-8deg); }
+  .f2 { left: 26%; height: 58%; width: 26px; transform: rotate(6deg); background: linear-gradient(180deg, #7d8a3e, #4c5a24 60%, #2f3a18); }
+  .f3 { left: 62%; height: 66%; transform: rotate(-4deg); width: 40px; }
+  .f4 { left: 76%; height: 48%; width: 24px; transform: rotate(10deg); background: linear-gradient(180deg, #7d8a3e, #4c5a24 60%, #2f3a18); }
+  .f5 { left: 44%; height: 40%; width: 22px; transform: rotate(-12deg); }
+  .waterline { position: absolute; left: 0; right: 0; top: 38%; height: 2px; background: rgba(255,255,255,.45); }
+  .harvest-card { position: absolute; left: 22px; bottom: 22px; right: 22px; background: rgba(244,237,226,.94); border-radius: 14px; padding: 18px 20px; display: flex; justify-content: space-between; gap: 16px; font-size: 14px; color: var(--muted); }
+  .harvest-card strong { display: block; color: var(--kelp); font-weight: 600; font-size: 15px; }
+  .harvest h2 { color: var(--kelp); margin-bottom: 24px; }
+  .harvest p { color: var(--muted); margin-bottom: 20px; }
+  .facts { list-style: none; margin: 34px 0 38px; border-top: 1px solid var(--line); }
+  .facts li { display: flex; justify-content: space-between; gap: 24px; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+  .facts li span:first-child { color: var(--muted); }
+  .facts li span:last-child { color: var(--kelp); font-weight: 500; text-align: right; }
+
+  /* 6. TESTIMONIALS */
+  .reviews { background: var(--shell); padding: 120px 0; }
+  .reviews .section-head h2 { color: var(--kelp); }
+  .rating { text-align: right; }
+  .rating strong { font-family: var(--serif); font-weight: 400; font-size: 54px; color: var(--kelp); line-height: 1; display: block; }
+  .rating span { font-size: 14px; color: var(--muted); }
+  .stars { color: var(--coral); letter-spacing: 3px; font-size: 15px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .quote { background: var(--sand); border-radius: var(--radius); padding: 34px 32px; display: flex; flex-direction: column; }
+  .quote blockquote { font-family: var(--serif); font-size: 21px; line-height: 1.4; color: var(--kelp); margin: 18px 0 28px; flex: 1; }
+  .who { display: flex; align-items: center; gap: 14px; font-size: 14px; }
+  .avatar { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-weight: 600; color: var(--sand); font-size: 15px; }
+  .a1 { background: linear-gradient(135deg, #5f8a7e, #1f3a33); }
+  .a2 { background: linear-gradient(135deg, #d58b6e, #a75a41); }
+  .a3 { background: linear-gradient(135deg, #a89a6a, #5c5422); }
+  .who strong { display: block; color: var(--ink); font-weight: 600; }
+  .who span { color: var(--muted); }
+  .verified { margin-top: 40px; text-align: center; font-size: 14px; color: var(--muted); }
+
+  /* 7. OFFER / FAQ */
+  .offer { padding: 120px 0; }
+  .offer .wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: start; }
+  .offer-box {
+    background:
+      radial-gradient(80% 60% at 100% 0%, rgba(201,221,211,.25), transparent 60%),
+      var(--kelp);
+    color: var(--sand); border-radius: 28px; padding: 56px 52px;
+  }
+  .offer-box .eyebrow { color: var(--glass); }
+  .offer-box h2 { color: var(--sand); margin-bottom: 20px; }
+  .offer-box p { color: rgba(244,237,226,.8); margin-bottom: 30px; }
+  .kit { list-style: none; margin-bottom: 36px; }
+  .kit li { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(244,237,226,.16); font-size: 15px; }
+  .kit li span:last-child { color: rgba(244,237,226,.6); }
+  .kit li.total { border-bottom: none; padding-top: 18px; font-size: 17px; }
+  .kit li.total span:last-child { color: var(--sand); font-family: var(--serif); font-size: 26px; }
+  .kit s { color: rgba(244,237,226,.45); margin-right: 10px; font-size: 17px; font-family: var(--sans); }
+  .offer-small { font-size: 13px; color: rgba(244,237,226,.6); margin-top: 18px; margin-bottom: 0 !important; }
+  .faq h3 { font-size: 30px; color: var(--kelp); margin-bottom: 22px; }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq details:first-of-type { border-top: 1px solid var(--line); }
+  .faq summary { list-style: none; cursor: pointer; padding: 22px 36px 22px 0; font-weight: 500; color: var(--ink); position: relative; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; position: absolute; right: 4px; top: 18px; font-size: 24px; font-weight: 300; color: var(--sea); transition: transform .2s ease; }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq details p { padding: 0 0 22px; color: var(--muted); font-size: 15px; }
+
+  /* 8. FOOTER */
+  footer { background: var(--kelp-deep); color: rgba(244,237,226,.72); padding: 96px 0 40px; }
+  .foot-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 64px; border-bottom: 1px solid rgba(244,237,226,.12); }
+  footer .logo { color: var(--sand); display: inline-block; margin-bottom: 16px; }
+  footer h4 { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--glass); font-weight: 600; margin-bottom: 18px; }
+  footer ul { list-style: none; display: grid; gap: 10px; font-size: 15px; }
+  footer ul a:hover { color: var(--sand); }
+  .signup { margin-top: 26px; display: flex; gap: 8px; max-width: 380px; }
+  .signup input { flex: 1; min-width: 0; padding: 14px 18px; border-radius: 999px; border: 1px solid rgba(244,237,226,.25); background: transparent; color: var(--sand); font: inherit; font-size: 15px; }
+  .signup input::placeholder { color: rgba(244,237,226,.5); }
+  .signup button { padding: 14px 22px; border-radius: 999px; border: 0; background: var(--sand); color: var(--kelp); font: inherit; font-weight: 500; font-size: 15px; cursor: pointer; }
+  .foot-bottom { display: flex; justify-content: space-between; gap: 24px; padding-top: 30px; font-size: 13px; color: rgba(244,237,226,.5); flex-wrap: wrap; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .steps { grid-template-columns: repeat(2, 1fr); row-gap: 48px; }
+    .foot-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 860px) {
+    .nav ul { display: none; }
+    .hero .wrap, .philosophy .wrap, .harvest .wrap, .offer .wrap { grid-template-columns: 1fr; gap: 48px; }
+    .hero { padding-top: 44px; }
+    .grid-3 { grid-template-columns: 1fr; }
+    .section-head { flex-direction: column; align-items: start; }
+    .rating { text-align: left; }
+    .ritual-note { flex-direction: column; align-items: start; }
+    .philosophy, .products, .ritual, .harvest, .reviews, .offer { padding: 88px 0; }
+  }
+  @media (max-width: 560px) {
+    .wrap { width: calc(100% - 32px); }
+    body { font-size: 16px; }
+    .grid-4, .steps, .foot-top { grid-template-columns: 1fr; }
+    .pillars { grid-template-columns: 1fr; }
+    .hero-proof { gap: 22px; }
+    .offer-box { padding: 40px 26px; }
+    .b-serum { width: 70px; height: 150px; left: 14%; }
+    .b-milk { width: 92px; height: 200px; left: 38%; }
+    .jar { width: 92px; height: 58px; right: 7%; }
+    .harvest-card { flex-direction: column; }
+    .nav .btn { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a href="#top" class="logo">Ebb<span>&amp;</span>Kelp</a>
+    <ul>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#ritual">The Ritual</a></li>
+      <li><a href="#harvest">Our Harvest</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+    </ul>
+    <a href="#starter" class="btn btn-dark">Try the Starter Set</a>
+  </div>
+</nav>
+
+<!-- 1. Hero -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Small-batch skincare from Penobscot Bay, Maine</span>
+      <h1>Calm skin, <em>pulled from</em> cold water.</h1>
+      <p class="lede">Four honest essentials built around hand-harvested Maine seaweed. No fragrance, no fillers, no twelve-step routine. Just skin that feels like itself again.</p>
+      <div class="hero-actions">
+        <a href="#shop" class="btn btn-dark">Shop the collection &rarr;</a>
+        <a href="#harvest" class="btn btn-ghost">See where it comes from</a>
+      </div>
+      <div class="hero-proof">
+        <div><strong>4.9 / 5</strong>from 3,200+ reviews</div>
+        <div><strong>11</strong>ingredients, max</div>
+        <div><strong>60 days</strong>to love it or return it</div>
+      </div>
+    </div>
+    <div class="hero-visual" role="img" aria-label="Ebb and Kelp bottles on a sandy shoreline at low tide">
+      <span class="hero-tag">Batch No. 047 &middot; harvested October</span>
+      <div class="sun"></div>
+      <div class="bottle b-serum"></div>
+      <div class="bottle b-milk"></div>
+      <div class="jar"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Philosophy -->
+<section class="philosophy" id="about">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Why we started</span>
+      <h2>Your skin doesn&rsquo;t need more. It needs less, done well.</h2>
+    </div>
+    <div>
+      <p>Ebb &amp; Kelp began in 2021 at a kitchen table in Belfast, Maine, when our founder Nora Hale gave up on the forty-product shelf that was making her sensitive skin worse. She went back to what her grandmother used after long days on the water: seaweed, oats, and a little patience.</p>
+      <p>Cold-water kelp grows slowly in nutrient-rich water, and it is packed with minerals, polysaccharides, and natural antioxidants that help skin hold moisture and settle down. We build every formula around it, then stop adding things the moment the job is done.</p>
+      <div class="pillars">
+        <div class="pillar"><strong>0</strong><span>Synthetic fragrance, essential oils, or dyes</span></div>
+        <div class="pillar"><strong>100%</strong><span>Of our seaweed hand-cut in Maine waters</span></div>
+        <div class="pillar"><strong>92%</strong><span>Said redness looked reduced after 4 weeks*</span></div>
+        <div class="pillar"><strong>Refill</strong><span>Every bottle is glass, aluminum, or refillable</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Products -->
+<section class="products" id="shop">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">The collection</span>
+        <h2>Four products. That&rsquo;s the whole lineup.</h2>
+      </div>
+      <p>Each one does a single job, and they&rsquo;re designed to work together. Start with one or build the full routine.</p>
+    </div>
+    <div class="grid-4">
+      <article class="card">
+        <div class="card-visual v1"><span class="badge">Bestseller</span><div class="pb pb-milk"></div></div>
+        <div class="card-body">
+          <h3>Tidewash</h3>
+          <span class="type">Kelp &amp; Oat Cleansing Milk &middot; 150 ml</span>
+          <p>A creamy, low-foam cleanser that lifts sunscreen and the day without that tight, squeaky feeling.</p>
+          <div class="card-foot"><span class="price">$28</span><a href="#starter" class="add">Add to bag</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-visual v2"><div class="pb pb-serum"></div></div>
+        <div class="card-body">
+          <h3>Low Tide Serum</h3>
+          <span class="type">Bladderwrack &amp; Niacinamide &middot; 30 ml</span>
+          <p>A lightweight water serum that calms redness, evens tone, and sinks in before you&rsquo;ve finished brushing your teeth.</p>
+          <div class="card-foot"><span class="price">$46</span><a href="#starter" class="add">Add to bag</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-visual v3"><span class="badge">New</span><div class="pb pb-jar"></div></div>
+        <div class="card-body">
+          <h3>Driftwood Balm</h3>
+          <span class="type">Overnight Sea Moss Barrier Balm &middot; 50 ml</span>
+          <p>A rich, cushiony night balm for dry, wind-bitten, or over-exfoliated skin. Wake up to a face that feels padded.</p>
+          <div class="card-foot"><span class="price">$42</span><a href="#starter" class="add">Add to bag</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-visual v4"><div class="pb pb-mist"></div></div>
+        <div class="card-body">
+          <h3>Sea Fennel Mist</h3>
+          <span class="type">Hydrating Mineral Toner &middot; 100 ml</span>
+          <p>A fine, cool mist to prep skin after cleansing or revive it mid-afternoon. Fits in a coat pocket.</p>
+          <div class="card-foot"><span class="price">$24</span><a href="#starter" class="add">Add to bag</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Ritual -->
+<section class="ritual" id="ritual">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">The ritual</span>
+        <h2>Four steps. About three minutes.</h2>
+      </div>
+      <p>Morning and night, in this order. If you only have time for two, cleanse and serum.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h3>Wash</h3>
+        <span class="when">Morning &amp; night</span>
+        <p>Massage a coin-sized amount of Tidewash onto dry skin for 30 seconds, then rinse with lukewarm water.</p>
+      </div>
+      <div class="step">
+        <h3>Mist</h3>
+        <span class="when">Morning &amp; night</span>
+        <p>Two or three sprays of Sea Fennel Mist while skin is still damp. It helps everything after it absorb better.</p>
+      </div>
+      <div class="step">
+        <h3>Treat</h3>
+        <span class="when">Morning &amp; night</span>
+        <p>Press three drops of Low Tide Serum into your face and neck. Follow with sunscreen in the morning.</p>
+      </div>
+      <div class="step">
+        <h3>Seal</h3>
+        <span class="when">Night only</span>
+        <p>Warm a pea-sized scoop of Driftwood Balm between your fingertips and press it on as the last step before bed.</p>
+      </div>
+    </div>
+    <div class="ritual-note">
+      <p><strong>Not sure where to start?</strong> Take our two-minute skin quiz and we&rsquo;ll tell you which products you actually need. Sometimes the answer is one.</p>
+      <a href="#starter" class="btn btn-dark">Take the skin quiz</a>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Harvest -->
+<section class="harvest" id="harvest">
+  <div class="wrap">
+    <div class="harvest-visual" role="img" aria-label="Kelp fronds swaying beneath the water's surface">
+      <div class="waterline"></div>
+      <div class="frond f1"></div>
+      <div class="frond f2"></div>
+      <div class="frond f5"></div>
+      <div class="frond f3"></div>
+      <div class="frond f4"></div>
+      <div class="harvest-card">
+        <div><strong>Islesboro Ledge</strong>Primary harvest site</div>
+        <div><strong>April &ndash; October</strong>Harvest season</div>
+        <div><strong>38&ndash;54&deg;F</strong>Water temperature</div>
+      </div>
+    </div>
+    <div>
+      <span class="eyebrow">Our harvest</span>
+      <h2>We know the people who cut our seaweed by name.</h2>
+      <p>Our kelp, bladderwrack, and sea moss come from three family harvesters working the ledges of Penobscot Bay. They cut by hand at low tide, leaving the holdfast so every plant grows back by the next season.</p>
+      <p>The seaweed is rinsed in seawater, air-dried in the sun, and delivered to our workshop in Belfast within a week. We mix in batches of 400 units so nothing sits on a warehouse shelf for months.</p>
+      <ul class="facts">
+        <li><span>Harvest method</span><span>Hand-cut, regenerative</span></li>
+        <li><span>Certified by</span><span>Maine Organic Farmers &amp; Gardeners</span></li>
+        <li><span>Made in</span><span>Belfast, Maine, USA</span></li>
+        <li><span>Batch size</span><span>400 units, dated by hand</span></li>
+        <li><span>Animal testing</span><span>Never. Leaping Bunny certified</span></li>
+      </ul>
+      <a href="#about" class="btn btn-ghost">Read the full ingredient list</a>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Reviews -->
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Reviews</span>
+        <h2>From people who tried everything else first.</h2>
+      </div>
+      <div class="rating">
+        <strong>4.9</strong>
+        <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <span>Average across 3,214 verified reviews</span>
+      </div>
+    </div>
+    <div class="grid-3">
+      <figure class="quote">
+        <div class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>&ldquo;I have rosacea and react to almost everything. Three weeks on Low Tide Serum and my cheeks aren&rsquo;t hot by noon anymore. I&rsquo;ve reordered twice.&rdquo;</blockquote>
+        <figcaption class="who"><span class="avatar a1">MR</span><div><strong>Maya R.</strong><span>Portland, OR &middot; Sensitive skin</span></div></figcaption>
+      </figure>
+      <figure class="quote">
+        <div class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>&ldquo;I work outside on a dairy farm all winter. Driftwood Balm is the only thing that keeps my face from cracking. It smells like nothing, which is exactly what I want.&rdquo;</blockquote>
+        <figcaption class="who"><span class="avatar a2">TB</span><div><strong>Tom B.</strong><span>St. Albans, VT &middot; Dry skin</span></div></figcaption>
+      </figure>
+      <figure class="quote">
+        <div class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>&ldquo;I replaced seven products with these four. My bathroom shelf looks calmer, and honestly so does my skin. Tidewash is the best cleanser I&rsquo;ve ever used.&rdquo;</blockquote>
+        <figcaption class="who"><span class="avatar a3">AK</span><div><strong>Aisha K.</strong><span>Chicago, IL &middot; Combination skin</span></div></figcaption>
+      </figure>
+    </div>
+    <p class="verified">*Based on a 4-week consumer perception study of 112 participants using Low Tide Serum twice daily.</p>
+  </div>
+</section>
+
+<!-- 7. Starter offer + FAQ -->
+<section class="offer" id="starter">
+  <div class="wrap">
+    <div class="offer-box">
+      <span class="eyebrow">New here?</span>
+      <h2>The Starter Set: the full ritual in travel sizes.</h2>
+      <p>Two weeks of all four products, enough to know whether they work for your skin. If you go on to buy a full size, we&rsquo;ll credit the $32 back to your order.</p>
+      <ul class="kit">
+        <li><span>Tidewash Cleansing Milk</span><span>30 ml</span></li>
+        <li><span>Sea Fennel Mist</span><span>30 ml</span></li>
+        <li><span>Low Tide Serum</span><span>10 ml</span></li>
+        <li><span>Driftwood Balm</span><span>15 ml</span></li>
+        <li class="total"><span>Starter Set</span><span><s>$48</s>$32</span></li>
+      </ul>
+      <a href="#starter" class="btn btn-light">Get the Starter Set &rarr;</a>
+      <p class="offer-small">Free shipping on every order over $40. Ships in a recyclable paper tin.</p>
+    </div>
+    <div class="faq">
+      <h3>Good questions</h3>
+      <details open>
+        <summary>Will it work for sensitive or acne-prone skin?</summary>
+        <p>That&rsquo;s who we formulate for first. Every product is fragrance-free, dermatologist-tested, and non-comedogenic. If you have a known seaweed or iodine sensitivity, check with your doctor before trying.</p>
+      </details>
+      <details>
+        <summary>Does it smell like the ocean?</summary>
+        <p>Barely. You might catch a faint, clean mineral note when you open the bottle, but nothing lingers on your skin.</p>
+      </details>
+      <details>
+        <summary>How long does each product last?</summary>
+        <p>Used twice daily, Tidewash and the Mist last about 10 weeks, Low Tide Serum about 8 weeks, and Driftwood Balm about 12 weeks of nightly use.</p>
+      </details>
+      <details>
+        <summary>What if it doesn&rsquo;t work for me?</summary>
+        <p>Send it back within 60 days, even if the bottle is empty, and we&rsquo;ll refund you in full. No forms, no back-and-forth.</p>
+      </details>
+      <details>
+        <summary>Can I subscribe?</summary>
+        <p>Yes. Subscribers save 15% and choose their own delivery rhythm, from every 4 to every 16 weeks. Skip, pause, or cancel any time from your account.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Footer -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a href="#top" class="logo">Ebb<span>&amp;</span>Kelp</a>
+        <p>Cold-water skincare, made in small batches in Belfast, Maine.</p>
+        <form class="signup" action="#" onsubmit="return false;">
+          <label for="email" style="position:absolute;left:-9999px;">Email address</label>
+          <input id="email" type="email" placeholder="Your email for tide notes">
+          <button type="submit">Join</button>
+        </form>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#shop">Tidewash</a></li>
+          <li><a href="#shop">Low Tide Serum</a></li>
+          <li><a href="#shop">Driftwood Balm</a></li>
+          <li><a href="#shop">Sea Fennel Mist</a></li>
+          <li><a href="#starter">Starter Set</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="#about">Our story</a></li>
+          <li><a href="#harvest">Our harvesters</a></li>
+          <li><a href="#ritual">The ritual</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#starter">Shipping &amp; returns</a></li>
+          <li><a href="#starter">Subscriptions</a></li>
+          <li><a href="mailto:hello@ebbandkelp.com">hello@ebbandkelp.com</a></li>
+          <li><a href="#top">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Ebb &amp; Kelp Skincare Co. 14 Front Street, Belfast, ME 04915</span>
+      <span>Privacy &middot; Terms &middot; Accessibility</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

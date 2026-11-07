@@ -1,0 +1,11 @@
+{
+  "name": "copy-taste",
+  "owner": { "name": "Leonxlnx" },
+  "plugins": [
+    {
+      "name": "copy-taste",
+      "source": "./",
+      "description": "Write and review website copy that doesn't read like a model wrote it."
+    }
+  ]
+}

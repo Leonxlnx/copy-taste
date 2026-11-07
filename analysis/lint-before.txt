@@ -1,0 +1,329 @@
+
+== examples/without-skill/01-coffee/index.html  (1047 words)  0 FAIL, 6 WARN
+  WARN virtue words (honest/calm/quiet/actually…) (budget 2) x3  -> show it with an admission or a fact instead
+         · honestly
+         · quiet
+         · steady
+  WARN "since [year]" (budget 1) x2
+         · Subscriber since 2022
+         · Every Tuesday since 2019.
+  WARN stat strip x1 x1  -> every number real and sourced? otherwise move numbers into sentences or [NEED]
+         · 6:30am / 12 kg / 3
+  WARN eyebrow/kicker labels (8)  -> one or two per page
+  WARN default-cast names x4  -> real names only; in fiction pick locale-true, unused names
+         · Priya
+         · Okafor
+         · Mara 
+         · Jess 
+  WARN footer sign-off line x1  -> footer = facts; drop the pun unless comedy is the brand
+         · Every Tuesday since 2019.
+  INFO two-fragment heading "X. Y." (1/1)
+         · Short menu. Long list of regulars.
+  INFO contrast frames incl. rather than / instead of / without the (2/2)
+         · Freshness isn't a slogan here. It's the schedule we've kept every week since we opened.
+         · Freshly roasted coffee needs a few days to settle. We dial in every coffee only after it's ready, not before.
+  INFO lists of three (7, ~1 per 150 words)  -> fine when there really are three things; never back to back
+         · Oat, almond and whole
+         · Two ounces, rich and syrupy
+         · Whisked to order, hot or iced
+         · cardamom, ginger and clove
+  INFO quoted testimonials (3)  -> real? attributed with name + company? rough, not punchline-shaped?
+  INFO rhythm: 69 sentences, mean 11.1 words, sd 6.8, 9% ≤4 words
+
+== examples/without-skill/02-portfolio/index.html  (1040 words)  0 FAIL, 6 WARN
+  WARN virtue words (honest/calm/quiet/actually…) (budget 2) x3  -> show it with an admission or a fact instead
+         · calm
+         · actually
+  WARN stat strip x1 x1  -> every number real and sourced? otherwise move numbers into sentences or [NEED]
+         · 11 / 43 / 9 of 10
+  WARN eyebrow/kicker labels (7)  -> one or two per page
+  WARN default-cast names x2  -> real names only; in fiction pick locale-true, unused names
+         · Priya
+         · Raman
+  WARN default fictional companies x2
+         · Fieldnote
+         · Kestrel
+  WARN footer sign-off line x1  -> footer = facts; drop the pun unless comedy is the brand
+         · Designed and built by hand in Copenhagen.
+  INFO two-fragment heading "X. Y." (1/1)
+         · No black box. No big reveal.
+  INFO number-pair heading (1/1)
+         · Four projects, four very different problems.
+  INFO contrast frames incl. rather than / instead of / without the (1/2)
+         · A component library and documentation that designers and developers both trust, built from what you already…
+  INFO negation run "No X, no Y" / "No X. No Y." (1/1)
+         · No black box. No big reveal.
+  INFO lists of three (2, ~1 per 520 words)  -> fine when there really are three things; never back to back
+         · Fixed scope, fixed price, and a
+         · Remote across Europe, on-site in Copenhagen or Malm
+  INFO response-time promises (1/1)
+         · Tell me what you're building, where it hurts and when you'd like to start. I reply to every message within …
+  INFO rhythm: 53 sentences, mean 14.5 words, sd 8.7, 9% ≤4 words
+
+== examples/without-skill/03-agency/index.html  (1054 words)  0 FAIL, 8 WARN
+  WARN two-fragment heading "X. Y." (budget 1) x2
+         · Four disciplines. One team in the room.
+         · Slow at the start. Fast at the end.
+  WARN contrast frames incl. rather than / instead of / without the (budget 2) x3  -> state the positive fact on its own
+         · We judge a brand by what it does eighteen months after launch, not by how it looked in the presentation. He…
+         · Sparkling tea for people who stopped drinking but didn't stop going out. A can that looks right on a bar at…
+         · They spent the first three weeks talking to our riders instead of showing us logos. The name came straight …
+  WARN "since [year]" (budget 1) x2
+         · Brand & identity studio · Rotterdam · Since 2014
+         · brands launched since 2014
+  WARN stat strip x1 x1  -> every number real and sourced? otherwise move numbers into sentences or [NEED]
+         · 112 / 22 / 74% / 6
+  WARN eyebrow/kicker labels (7)  -> one or two per page
+  WARN default-cast names x2  -> real names only; in fiction pick locale-true, unused names
+         · Okafor
+         · Ines 
+  WARN default fictional companies x2
+         · Fieldnote
+         · Halcyon
+  WARN footer sign-off line x1  -> footer = facts; drop the pun unless comedy is the brand
+         · Made in Rotterdam, fired at 1,260°.
+  INFO number-pair heading (1/1)
+         · Four disciplines. One team in the room.
+  INFO virtue words (honest/calm/quiet/actually…) (2/2)
+         · calm
+         · actually
+  INFO lists of three (6, ~1 per 176 words)  -> fine when there really are three things; never back to back
+         · Strategists, designers and writers
+         · type, colour and the
+         · bottles, tins and labels
+         · Guidelines, templates and a
+  INFO response-time promises (1/1)
+         · Tell us what you're building, where it's stuck and when it needs to be ready. A founder reads every message…
+  INFO rhythm: 59 sentences, mean 13.9 words, sd 6.6, 5% ≤4 words
+
+== examples/without-skill/04-devtool/index.html  (1267 words)  0 FAIL, 5 WARN
+  WARN two-fragment heading "X. Y." (budget 1) x3
+         · Stop re-running CI. Fix the test that's lying to you.
+         · "It's flaky" isn't a diagnosis. This is.
+         · One step in your pipeline. That's the whole install.
+  WARN stat strip x1 x1  -> every number real and sourced? otherwise move numbers into sentences or [NEED]
+         · 7 days / 30 days / 90 days / 6.8% / 4.1% / 2.3% / 0.9% / 46 / 47 / 48 / 49
+  WARN eyebrow/kicker labels (6)  -> one or two per page
+  WARN default-cast names x4  -> real names only; in fiction pick locale-true, unused names
+         · Priya
+         · Okafor
+         · Natarajan
+         · Lena M
+  WARN default fictional companies x5
+         · Fieldnote
+         · Kestrel
+         · Halcyon
+         · Brightloop
+  INFO contrast frames incl. rather than / instead of / without the (2/2)
+         · "It's flaky" isn't a diagnosis. This is.
+         · Priced per committer, not per test.
+  INFO virtue words (honest/calm/quiet/actually…) (1/2)
+         · actually
+  INFO lists of three (8, ~1 per 158 words)  -> fine when there really are three things; never back to back
+         · RSpec, JUnit and Playwright
+         · run order, worker assignment and environment
+         · singletons, database rows and mocks
+         · locales, CPU count and image
+  INFO quoted testimonials (3)  -> real? attributed with name + company? rough, not punchline-shaped?
+  INFO rhythm: 71 sentences, mean 12.8 words, sd 10.2, 8% ≤4 words
+
+== examples/without-skill/05-hotel/index.html  (1131 words)  0 FAIL, 4 WARN
+  WARN two-fragment heading "X. Y." (budget 1) x4
+         · Built in 1884. Restored one beam at a time.
+         · Twelve rooms. Three ways to stay.
+         · Breakfast is included. Dinner is worth staying in for.
+         · People come back. Some book the same room.
+  WARN stat strip x1 x1  -> every number real and sourced? otherwise move numbers into sentences or [NEED]
+         · 1884 / 3 years / 11 of 12 / 2
+  WARN eyebrow/kicker labels (7)  -> one or two per page
+  WARN default-cast names x7  -> real names only; in fiction pick locale-true, unused names
+         · Priya
+         · Raman
+         · Marcus
+         · Dana 
+  INFO number-pair heading (1/1)
+         · Twelve rooms. Three ways to stay.
+  INFO contrast frames incl. rather than / instead of / without the (1/2)
+         · We keep things simple. If your question isn't answered here, call the front desk and Nora or Tomas will pic…
+  INFO virtue words (honest/calm/quiet/actually…) (1/2)
+         · quiet
+  INFO "since [year]" (1/1)
+         · Port Ellery, Maine · Since 2019
+  INFO response-time promises (1/1)
+         · Two-night minimum on summer weekends. We reply to every request within one business day, usually by lunchtime.
+  INFO rhythm: 68 sentences, mean 13.3 words, sd 7.7, 12% ≤4 words
+
+== examples/without-skill/06-finance-app/index.html  (1244 words)  0 FAIL, 8 WARN
+  WARN two-fragment heading "X. Y." (budget 1) x2
+         · Know what you can spend. Then go spend it.
+         · Your money stays where it is. Your data stays yours.
+  WARN contrast frames incl. rather than / instead of / without the (budget 2) x3  -> state the positive fact on its own
+         · It forgives bad days. Overspend on Tuesday and Keel spreads the difference across the rest of the week inst…
+         · It handles odd paychecks. Freelance, tips or shifts that change week to week. Keel plans around your low mo…
+         · Keel is a budgeting tool, not a bank. Account connections are provided through licensed data partners with …
+  WARN negation run "No X, no Y" / "No X. No Y." (budget 1) x2
+         · Keel connects your accounts, sets aside your bills and goals automatically, and gives you one honest number…
+         · No ads, no data sales
+  WARN virtue words (honest/calm/quiet/actually…) (budget 2) x6  -> show it with an admission or a fact instead
+         · honest
+         · calm
+         · quietly
+         · actually
+  WARN "since [year]" (budget 1) x2
+         · Product designer, Austin · member since 2024
+         · Keel is a calm, honest budgeting app made by a small team in Denver. We've been helping people stay level s…
+  WARN stat strip x2 x2  -> every number real and sourced? otherwise move numbers into sentences or [NEED]
+         · 86 / $1,450 / 410,000+ / 4.8 ★ / 12,000+
+         · $2,914 / − $1,682 / − $260 / − $100
+  WARN eyebrow/kicker labels (8)  -> one or two per page
+  WARN default-cast names x4  -> real names only; in fiction pick locale-true, unused names
+         · Priya
+         · Raman
+         · Marcus
+         · Dana 
+  INFO lists of three (5, ~1 per 249 words)  -> fine when there really are three things; never back to back
+         · Rent, bills and savings
+         · Link checking, savings and cards
+         · like a trip, a cushion or paying
+         · Freelance, tips or shifts
+  INFO response-time promises (1/1)
+         · Export everything to a spreadsheet anytime. Delete your account and your data is gone within 30 days.
+  INFO quoted testimonials (4)  -> real? attributed with name + company? rough, not punchline-shaped?
+  INFO rhythm: 81 sentences, mean 12.0 words, sd 10.4, 12% ≤4 words
+
+== examples/without-skill/07-fitness/index.html  (1027 words)  0 FAIL, 6 WARN
+  WARN virtue words (honest/calm/quiet/actually…) (budget 2) x6  -> show it with an admission or a fact instead
+         · honest
+         · quiet
+         · simply
+         · steady
+  WARN "since [year]" (budget 1) x2
+         · Tomas W. Member since 2022
+         · Grown on Alder Street since 2019.
+  WARN stat strip x2 x2  -> every number real and sourced? otherwise move numbers into sentences or [NEED]
+         · 42 / 14 / 6:15
+         · 6:15 am / 12:10 pm / 5:45 pm / 7:30 pm / 6:15 am / 9:30 am / 12:10 pm / 6:00 pm / 6:15 am / 12:10 pm / 5:45…
+  WARN eyebrow/kicker labels (7)  -> one or two per page
+  WARN default-cast names x6  -> real names only; in fiction pick locale-true, unused names
+         · Priya
+         · Okafor
+         · Aisha
+         · Lena M
+  WARN footer sign-off line x1  -> footer = facts; drop the pun unless comedy is the brand
+         · Grown on Alder Street since 2019.
+  INFO two-fragment heading "X. Y." (1/1)
+         · Simple memberships. Cancel any month.
+  INFO number-pair heading (1/1)
+         · Six ways to practice, one honest goal.
+  INFO contrast frames incl. rather than / instead of / without the (2/2)
+         · We teach you to feel a pose, not to watch yourself in it.
+         · In their words, not ours.
+  INFO lists of three (7, ~1 per 147 words)  -> fine when there really are three things; never back to back
+         · We teach yoga, Pilates and strength
+         · Mats, towels and tea
+         · new parents, retirees and a
+         · Kettlebells, dumbbells and bodyweight
+  INFO quoted testimonials (3)  -> real? attributed with name + company? rough, not punchline-shaped?
+  INFO rhythm: 65 sentences, mean 11.4 words, sd 6.8, 11% ≤4 words
+
+== examples/without-skill/08-architecture/index.html  (969 words)  0 FAIL, 4 WARN
+  WARN number-pair heading (budget 1) x2
+         · Four recent buildings, four very different sites.
+         · Four kinds of work, one way of working.
+  WARN stat strip x1 x1  -> every number real and sourced? otherwise move numbers into sentences or [NEED]
+         · 68 / 11 / 40% / 1
+  WARN eyebrow/kicker labels (7)  -> one or two per page
+  WARN default-cast names x2  -> real names only; in fiction pick locale-true, unused names
+         · Tomas
+         · Isla 
+  INFO contrast frames incl. rather than / instead of / without the (2/2)
+         · Aldgrave Studio designs homes, libraries, workshops and restorations across Scotland and the north of Engla…
+         · We favour materials that weather well and can be repaired by local trades. We design for low running energy…
+  INFO lists of three (7, ~1 per 138 words)  -> fine when there really are three things; never back to back
+         · libraries, workshops and restorations
+         · Architects, a landscape designer and a
+         · Full case studies, drawings and cost
+         · New houses, extensions and whole-house
+  INFO "since [year]" (1/1)
+         · Architects · Edinburgh · Since 2011
+  INFO response-time promises (1/1)
+         · Send us a few lines about your site, your plans and your rough budget. A partner will reply within two work…
+  INFO rhythm: 48 sentences, mean 15.9 words, sd 7.3, 2% ≤4 words
+
+== examples/without-skill/09-course/index.html  (1495 words)  0 FAIL, 4 WARN
+  WARN virtue words (honest/calm/quiet/actually…) (budget 2) x5  -> show it with an admission or a fact instead
+         · honestly
+         · actually
+         · steady
+  WARN stat strip x1 x1  -> every number real and sourced? otherwise move numbers into sentences or [NEED]
+         · 16 / 3,100+ / 4.9/5
+  WARN eyebrow/kicker labels (8)  -> one or two per page
+  WARN default-cast names x3  -> real names only; in fiction pick locale-true, unused names
+         · Priya
+         · Okafor
+         · Raman
+  INFO two-fragment heading "X. Y." (1/1)
+         · The winter sky is the best one to start with. It's up right now.
+  INFO number-pair heading (1/1)
+         · Eight weeks, one sky at a time.
+  INFO contrast frames incl. rather than / instead of / without the (1/2)
+         · If the weather wipes out your first two weeks, or the course just isn't for you, email us within 30 days fo…
+  INFO negation run "No X, no Y" / "No X. No Y." (1/1)
+         · If the weather wipes out your first two weeks, or the course just isn't for you, email us within 30 days fo…
+  INFO lists of three (2, ~1 per 748 words)  -> fine when there really are three things; never back to back
+         · Reading the terminator, naming the seas, and catching
+         · and Orion, the Pleiades and the
+  INFO "since [year]" (1/1)
+         · students since 2022
+  INFO response-time promises (1/1)
+         · If the weather wipes out your first two weeks, or the course just isn't for you, email us within 30 days fo…
+  INFO rhythm: 90 sentences, mean 14.2 words, sd 10.8, 8% ≤4 words
+
+== examples/without-skill/10-skincare/index.html  (1086 words)  0 FAIL, 6 WARN
+  WARN two-fragment heading "X. Y." (budget 1) x3
+         · Your skin doesn't need more. It needs less, done well.
+         · Four products. That's the whole lineup.
+         · Four steps. About three minutes.
+  WARN negation run "No X, no Y" / "No X. No Y." (budget 1) x2
+         · Four honest essentials built around hand-harvested Maine seaweed. No fragrance, no fillers, no twelve-step …
+         · Send it back within 60 days, even if the bottle is empty, and we'll refund you in full. No forms, no back-a…
+  WARN virtue words (honest/calm/quiet/actually…) (budget 2) x4  -> show it with an admission or a fact instead
+         · honest
+         · honestly
+         · calm
+         · actually
+  WARN stat strip x2 x2  -> every number real and sourced? otherwise move numbers into sentences or [NEED]
+         · 4.9 / 5 / 11 / 60 days
+         · 0 / 100% / 92%
+  WARN eyebrow/kicker labels (7)  -> one or two per page
+  WARN default-cast names x3  -> real names only; in fiction pick locale-true, unused names
+         · Aisha
+         · Nora 
+         · Maya 
+  INFO lists of three (5, ~1 per 217 words)  -> fine when there really are three things; never back to back
+         · seaweed, oats, and a
+         · Synthetic fragrance, essential oils, or dyes
+         · Our kelp, bladderwrack, and sea
+         · Used twice daily, Tidewash and the
+  INFO response-time promises (1/1)
+         · Send it back within 60 days, even if the bottle is empty, and we'll refund you in full. No forms, no back-a…
+  INFO quoted testimonials (3)  -> real? attributed with name + company? rough, not punchline-shaped?
+  INFO rhythm: 68 sentences, mean 13.0 words, sd 7.5, 9% ≤4 words
+
+== cross-file: first headings side by side
+  01-coffee: Coffee roasted on Tuesday, poured by Wednesday.
+  02-portfolio: Product design for teams who would rather ship than argue about it.
+  03-agency: Brands, fired until they hold their shape.
+  04-devtool: Stop re-running CI. Fix the test that's lying to you.
+  05-hotel: Sleep where the sails were made.
+  06-finance-app: Know what you can spend. Then go spend it.
+  07-fitness: Move well. Breathe deep. Come back stronger.
+  08-architecture: Buildings that settle into their ground.
+  09-course: Learn the night sky with the binoculars already in your closet.
+  10-skincare: Calm skin, pulled from cold water.
+== cross-file: heading phrases shared across files
+  heading phrase "# very different" in 2 files: 02-portfolio/index.html, 08-architecture/index.html
+  heading phrase "the people who" in 2 files: 02-portfolio/index.html, 10-skincare/index.html
+  heading phrase "thats the whole" in 2 files: 04-devtool/index.html, 10-skincare/index.html
+  heading phrase "at a time" in 2 files: 05-hotel/index.html, 09-course/index.html
+  heading phrase "# ways to" in 2 files: 05-hotel/index.html, 07-fitness/index.html

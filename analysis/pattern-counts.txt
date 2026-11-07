@@ -1,0 +1,165 @@
+--- word tics: total / sites ---
+honest: 8 / 6 sites
+calm: 6 / 4 sites
+quiet: 5 / 4 sites
+actually: 10 / 6 sites
+simply: 1 / 1 sites
+real : 8 / 5 sites
+properly: 1 / 1 sites
+Kind words: 4 / 3 sites
+two working days: 3 / 3 sites
+No card: 4 / 3 sites
+Most popular: 3 / 3 sites
+on us: 2 / 2 sites
+by hand: 5 / 3 sites
+since 20: 11 / 7 sites
+Priya: 8 / 7 sites
+Okafor: 5 / 5 sites
+Raman: 4 / 4 sites
+Tomas: 5 / 3 sites
+Nora: 3 / 2 sites
+Daniel: 4 / 4 sites
+Fieldnote: 8 / 3 sites
+Kestrel: 5 / 2 sites
+Halcyon: 5 / 2 sites
+Marcus: 2 / 2 sites
+Dana: 2 / 2 sites
+Aisha: 2 / 2 sites
+Lena: 2 / 2 sites
+Maine: 14 / 2 sites
+restor: 6 / 3 sites
+former : 4 / 4 sites
+original: 5 / 3 sites
+
+--- two-fragment headings "X. Y.": 18 hits in 9 sites ---
+  [01-coffee] [H2] Short menu. Long list of regulars.
+  [02-portfolio] [H2] No black box. No big reveal.
+  [03-agency] [H2] Four disciplines. One team in the room.
+  [03-agency] [H2] Slow at the start. Fast at the end.
+  [04-devtool] [H1] Stop re-running CI. Fix the test that's lying to you.
+  [04-devtool] [H2] "It's flaky" isn't a diagnosis. This is.
+  [04-devtool] [H2] One step in your pipeline. That's the whole install.
+  [05-hotel] [H2] Built in 1884. Restored one beam at a time.
+  [05-hotel] [H2] Twelve rooms. Three ways to stay.
+  [05-hotel] [H2] Breakfast is included. Dinner is worth staying in for.
+  [05-hotel] [H2] People come back. Some book the same room.
+  [06-finance-app] [H1] Know what you can spend. Then go spend it.
+  [06-finance-app] [H2] Your money stays where it is. Your data stays yours.
+  [07-fitness] [H2] Simple memberships. Cancel any month.
+  [09-course] [H2] The winter sky is the best one to start with. It's up right now.
+  [10-skincare] [H2] Your skin doesn't need more. It needs less, done well.
+  [10-skincare] [H2] Four products. That's the whole lineup.
+  [10-skincare] [H2] Four steps. About three minutes.
+
+--- number-pair headings: 8 hits in 7 sites ---
+  [02-portfolio] [H2] Four projects, four very different problems.
+  [03-agency] [H2] Four disciplines. One team in the room.
+  [05-hotel] [H2] Twelve rooms. Three ways to stay.
+  [07-fitness] [H2] Six ways to practice, one honest goal.
+  [08-architecture] [H2] Four recent buildings, four very different sites.
+  [08-architecture] [H2] Four kinds of work, one way of working.
+  [09-course] [H2] Eight weeks, one sky at a time.
+  [10-skincare] [H2] Four steps. About three minutes.
+
+--- contrast "not X" / "isn't": 14 hits in 8 sites ---
+  [01-coffee] Freshness isn't a slogan here.
+  [01-coffee] We dial in every coffee only after it's ready, not before.
+  [03-agency] We judge a brand by what it does eighteen months after launch, not by how it looked in the presentation.
+  [03-agency] A can that looks right on a bar at midnight, not just in a gym bag.
+  [04-devtool] [H2] "It's flaky" isn't a diagnosis.
+  [04-devtool] [H2] Priced per committer, not per test.
+  [05-hotel] If your question isn't answered here, call the front desk and Nora or Tomas will pick up.
+  [06-finance-app] Keel plans around your low months, not your best ones.
+  [06-finance-app] Keel is a budgeting tool, not a bank.
+  [07-fitness] We teach you to feel a pose, not to watch yourself in it.
+  [07-fitness] [H2] In their words, not ours.
+  [08-architecture] We build with timber, stone and lime, and we start every project on the site, not at the desk.
+  [08-architecture] We design for low running energy, model daylight before we fix a window, and treat a tight budget as a brief, not an obstacle.
+  [09-course] If the weather wipes out your first two weeks, or the course just isn't for you, email us within 30 days for a full refund.
+
+--- "No X, no Y" negation runs: 5 hits in 4 sites ---
+  [02-portfolio] No black box. No big reveal.
+  [06-finance-app] No spreadsheets. No guilt.
+  [09-course] No forms, no questions.
+  [10-skincare] No fragrance, no fillers, no twelve-step routine.
+  [10-skincare] No forms, no back-and-forth.
+
+--- stat-like tokens in first 25 lines of each site: 78 hits in 10 sites ---
+  [01-coffee] 12 kg
+  [01-coffee] 3
+  [01-coffee] 01
+  [01-coffee] 02
+  [01-coffee] 03
+  [01-coffee] 04
+  [01-coffee] 4.9
+  [02-portfolio] 11
+  [02-portfolio] 43
+  [02-portfolio] 9 of 10
+  [02-portfolio] 2026
+  [02-portfolio] 2025
+  [02-portfolio] 2024
+  [02-portfolio] 2015
+  [03-agency] 01
+  [03-agency] 02
+  [03-agency] 03
+  [03-agency] 04
+  [03-agency] 112
+  [03-agency] 22
+  [03-agency] 74%
+  [03-agency] 6
+  [04-devtool] 97
+  [04-devtool] 38 %
+  [04-devtool] 11 min
+  [04-devtool] 4.2 days
+  [04-devtool] 01
+  [04-devtool] 02
+  [04-devtool] 03
+  [04-devtool] 7 days
+  [04-devtool] 30 days
+  [04-devtool] 90 days
+  [04-devtool] 6.8%
+  [04-devtool] 4.1%
+  [04-devtool] 2.3%
+  [04-devtool] 0.9%
+  [05-hotel] 1884
+  [05-hotel] 11 of 12
+  [05-hotel] 2
+  [05-hotel] 01
+  [05-hotel] 02
+  [05-hotel] 03
+  [05-hotel] 04
+  [06-finance-app] 83%
+  [07-fitness] 42
+  [07-fitness] 14
+  [07-fitness] 60 min
+  [07-fitness] 60 min
+  [07-fitness] 50 min
+  [07-fitness] 45 min
+  [07-fitness] 75 min
+  [07-fitness] 60 min
+  [08-architecture] 68
+  [08-architecture] 11
+  [08-architecture] 40%
+  [08-architecture] 1
+  [08-architecture] 2024
+  [08-architecture] 2023
+  [08-architecture] 2025
+  [08-architecture] 2024
+  [08-architecture] 01
+  [08-architecture] 02
+  [08-architecture] 03
+  [08-architecture] 04
+  [08-architecture] 1
+  [08-architecture] 2
+  [08-architecture] 3
+  [08-architecture] 4
+  [09-course] 01
+  [09-course] 02
+  [09-course] 03
+  [09-course] 16
+  [09-course] 3,100+
+  [09-course] 4.9/5
+  [10-skincare] 0
+  [10-skincare] 100%
+  [10-skincare] 92%
+  [10-skincare] 4.9

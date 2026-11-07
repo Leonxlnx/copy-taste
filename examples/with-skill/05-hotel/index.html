@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Albergo Coincidenza, Domodossola</title>
+<meta name="description" content="Nine rooms opposite Domodossola station, where the Simplon line meets the Vigezzina to Locarno. Breakfast from 5:50. From €88 a night for two.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f3efe4;
+    --paper-2:#e8e1cf;
+    --ink:#1c1d1f;
+    --ink-2:#4d4b45;
+    --rule:rgba(28,29,31,.2);
+    --yellow:#f2c524;
+    --blue:#1d3d6e;
+    --blue-2:#163055;
+    --rust:#a3452b;
+    --sans:"Archivo",system-ui,sans-serif;
+    --serif:"Source Serif 4",Georgia,serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+    --wrap:1180px;
+    --gutter:clamp(16px,4vw,40px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:72px}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  img,svg{display:block;max-width:100%}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter)}
+  h1,h2,h3{font-family:var(--sans);font-stretch:72%;font-weight:760;line-height:1.02;letter-spacing:-.01em}
+  h1{font-size:clamp(46px,7.4vw,96px)}
+  h2{font-size:clamp(36px,4.8vw,62px)}
+  h3{font-size:clamp(26px,2.6vw,34px)}
+  p{max-width:62ch}
+  .mono{font-family:var(--mono)}
+  section{padding:clamp(72px,10vw,128px) 0}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;gap:.6em;font-family:var(--sans);font-weight:650;font-size:16px;text-decoration:none;padding:15px 22px;border:2px solid var(--ink);border-radius:2px;transition:background .15s,color .15s,transform .15s}
+  .btn-solid{background:var(--ink);color:var(--paper)}
+  .btn-solid:hover{background:var(--blue);border-color:var(--blue)}
+  .btn-line:hover{background:var(--ink);color:var(--paper)}
+  .btn:active{transform:translateY(1px)}
+  .btn:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+
+  /* nav */
+  .nav{position:sticky;top:0;z-index:20;background:rgba(243,239,228,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--rule)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:24px}
+  .mark{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:760;font-stretch:80%;font-size:20px;letter-spacing:.01em}
+  .mark i{width:26px;height:26px;border-radius:50%;border:2.5px solid var(--ink);position:relative;flex:none;background:#fff}
+  .mark i::before,.mark i::after{content:"";position:absolute;left:50%;bottom:50%;width:2.5px;background:var(--ink);transform-origin:bottom center;border-radius:2px}
+  .mark i::before{height:8px;transform:translateX(-50%) rotate(-30deg)}
+  .mark i::after{height:10px;transform:translateX(-50%) rotate(95deg);background:var(--rust)}
+  .nav ul{display:flex;list-style:none;gap:26px;font-size:15px;font-weight:550}
+  .nav ul a{text-decoration:none;padding:6px 0;border-bottom:2px solid transparent}
+  .nav ul a:hover{border-color:var(--ink)}
+  .nav .btn{padding:9px 16px;font-size:15px}
+
+  /* hero */
+  .hero{padding:clamp(48px,7vw,96px) 0 clamp(72px,9vw,120px)}
+  .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(36px,6vw,88px);align-items:center}
+  .hero h1{max-width:11ch}
+  .hero .sub{font-family:var(--serif);font-size:clamp(19px,1.7vw,22px);line-height:1.5;margin-top:28px;color:var(--ink-2);max-width:40ch}
+  .hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+  .hero .from{margin-top:20px;font-size:15px;color:var(--ink-2)}
+  .hero .from b{color:var(--ink)}
+
+  .poster{background:#3a3b3d;padding:12px;border-radius:3px;box-shadow:0 30px 60px -30px rgba(0,0,0,.45)}
+  .poster-in{background:
+      repeating-linear-gradient(0deg,rgba(0,0,0,.025) 0 1px,transparent 1px 3px),
+      linear-gradient(170deg,#f6cf3a,var(--yellow) 60%,#e4b81c);
+    color:var(--ink);padding:22px 22px 18px}
+  .poster-top{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid var(--ink);padding-bottom:10px}
+  .poster-top strong{font-stretch:62%;font-weight:800;font-size:clamp(30px,3.4vw,44px);line-height:.9;letter-spacing:.01em;text-transform:uppercase}
+  .poster-top span{font-size:12px;font-weight:600;text-align:right;line-height:1.3}
+  .poster ol{list-style:none}
+  .poster li{display:grid;grid-template-columns:72px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid rgba(28,29,31,.35);font-size:15px;line-height:1.35}
+  .poster time{font-family:var(--mono);font-weight:600;font-size:19px}
+  .poster li em{display:block;font-style:normal;font-size:13px;color:#4a3f10}
+  .poster-foot{font-size:12px;font-weight:600;margin-top:12px;display:flex;justify-content:space-between}
+
+  /* rooms */
+  .rooms{background:var(--paper)}
+  .section-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:56px}
+  .section-head p{font-family:var(--serif);font-size:19px;color:var(--ink-2)}
+  .sides{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .side{background:#fbf9f3;border:1px solid var(--rule);display:flex;flex-direction:column}
+  .view{aspect-ratio:16/10;position:relative;overflow:hidden}
+  .view-track{background:
+      linear-gradient(to bottom,transparent 61%,#55524c 61%,#55524c 63%,#7c776d 63%,#6c675e 100%),
+      repeating-linear-gradient(to bottom,transparent 0 30px,rgba(25,22,30,.55) 30px 31px),
+      linear-gradient(to bottom,#26324c 0%,#5c4a5a 38%,#c27755 70%,#e7a86b 100%)}
+  .view-track::before{content:"";position:absolute;left:-5%;right:-5%;bottom:0;height:39%;
+      background:
+        linear-gradient(100deg,transparent 0 30%,#2b2a28 30% 31%,transparent 31% 52%,#2b2a28 52% 53%,transparent 53%),
+        repeating-linear-gradient(90deg,transparent 0 22px,rgba(30,28,25,.35) 22px 26px);
+      clip-path:polygon(32% 0,68% 0,100% 100%,0 100%)}
+  .view-track::after{content:"";position:absolute;top:13%;right:14%;width:58px;height:58px;border-radius:50%;
+      background:
+        linear-gradient(90deg,transparent 48%,#1c1d1f 48% 52%,transparent 52%) center/100% 100% no-repeat,
+        radial-gradient(circle,#1c1d1f 0 3px,#fbf8ef 4px 100%);
+      border:5px solid #1c1d1f;box-shadow:0 0 0 3px rgba(255,255,255,.12)}
+  .canopy{position:absolute;left:0;right:0;top:44%;height:16px;background:linear-gradient(#1f1e1c,#3a3733);clip-path:polygon(0 0,100% 0,96% 100%,4% 100%)}
+  .view-garden{background:
+      repeating-linear-gradient(to bottom,#4e6b36 0 10px,#6b8a45 10px 20px) bottom/100% 26% no-repeat,
+      radial-gradient(120% 60% at 30% 100%,#476236 0 55%,transparent 56%),
+      radial-gradient(90% 70% at 85% 92%,#5f7c44 0 50%,transparent 51%),
+      radial-gradient(140% 90% at 60% 115%,#7f9a62 0 52%,transparent 53%),
+      linear-gradient(to bottom,#c8d9de 0%,#e8ecdf 70%)}
+  .view-garden::before{content:"";position:absolute;left:57%;top:21%;width:34px;height:30px;background:#f4f0e6;
+      clip-path:polygon(50% 0,100% 38%,100% 100%,0 100%,0 38%)}
+  .view-garden::after{content:"";position:absolute;left:calc(57% + 44px);top:27%;width:20px;height:18px;background:#ece6d8;
+      clip-path:polygon(50% 0,100% 40%,100% 100%,0 100%,0 40%)}
+  .side-body{padding:30px 30px 34px;display:flex;flex-direction:column;gap:16px;flex:1}
+  .side-meta{font-family:var(--mono);font-size:14px;display:flex;flex-wrap:wrap;gap:6px 18px;color:var(--ink-2)}
+  .side-meta b{color:var(--ink);font-weight:600}
+  .side p{font-family:var(--serif);font-size:18px}
+  .side .note{font-family:var(--sans);font-size:15px;color:var(--ink-2);border-top:1px solid var(--rule);padding-top:14px;margin-top:auto}
+  .every{margin-top:36px;font-family:var(--serif);font-size:18px;max-width:none;border-left:4px solid var(--yellow);padding-left:18px}
+
+  /* slip */
+  .slip-sec{background:var(--blue);color:#f1efe8}
+  .slip-sec .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(40px,6vw,96px);align-items:center}
+  .slip-sec h2{max-width:13ch}
+  .slip-sec .lede{font-family:var(--serif);font-size:19px;margin-top:22px;color:#cfd6e3}
+  .steps{list-style:none;margin-top:40px;counter-reset:s}
+  .steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:14px;padding:18px 0;border-top:1px solid rgba(255,255,255,.2);font-size:17px}
+  .steps li::before{content:counter(s);font-family:var(--mono);font-weight:600;width:32px;height:32px;border-radius:50%;background:#f1efe8;color:var(--blue);display:grid;place-items:center;font-size:15px}
+  .slip{background:#fdfcf7;color:var(--ink);font-family:var(--mono);font-size:14.5px;line-height:1.6;padding:30px 28px 26px;transform:rotate(-1.6deg);box-shadow:0 26px 50px -18px rgba(0,0,0,.55);position:relative;
+      -webkit-mask:radial-gradient(circle 5px at 50% 0,transparent 98%,#000) 0 0/14px 100% repeat-x;mask:radial-gradient(circle 5px at 50% 0,transparent 98%,#000) 0 0/14px 100% repeat-x}
+  .slip h4{font-family:var(--mono);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px dashed #999;padding-bottom:10px;margin-bottom:12px;display:flex;justify-content:space-between;gap:12px}
+  .slip dl{display:grid;grid-template-columns:auto 1fr;gap:4px 16px}
+  .slip dt{color:#6d6a62}
+  .slip .hand{font-family:var(--serif);font-style:italic;font-size:17px;margin-top:16px;border-top:1px dashed #999;padding-top:12px}
+  .slip-cap{font-size:13px;color:#b9c3d6;margin-top:22px;text-align:right}
+
+  /* story */
+  .story .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(40px,6vw,96px)}
+  .story h2{max-width:14ch;margin-bottom:36px}
+  .story-text p{font-family:var(--serif);font-size:clamp(18px,1.5vw,20px);line-height:1.65;margin-bottom:1.1em}
+  .story-text p:first-of-type::first-letter{font-family:var(--sans);font-stretch:70%;font-weight:800;float:left;font-size:4.1em;line-height:.8;padding:6px 10px 0 0}
+  .story aside{display:flex;flex-direction:column;gap:22px;padding-top:8px}
+  .window{aspect-ratio:4/5;background:
+      linear-gradient(to bottom,transparent 82%,#2a2724 82%),
+      linear-gradient(to bottom,#0f1828,#1d2a40 70%,#28344a);position:relative;overflow:hidden}
+  .window::before{content:"";position:absolute;left:22%;top:34%;width:56%;height:34%;
+      background:
+        linear-gradient(90deg,transparent 48%,#3b2a14 48% 52%,transparent 52%),
+        linear-gradient(transparent 48%,#3b2a14 48% 52%,transparent 52%),
+        radial-gradient(ellipse at 50% 60%,#ffe39a,#f2b544 60%,#c98522);
+      box-shadow:0 0 70px 18px rgba(242,181,68,.35);border:6px solid #2f2a24}
+  .window::after{content:"";position:absolute;left:0;right:0;bottom:18%;height:2px;background:repeating-linear-gradient(90deg,#f5d58a 0 18px,transparent 18px 36px);opacity:.4}
+  .gb{background:#fbf9f3;border:1px solid var(--rule);padding:20px 22px}
+  .gb-head{font-size:13px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);margin-bottom:-6px}
+  .gb blockquote{font-family:var(--serif);font-style:italic;font-size:18px;line-height:1.45}
+  .gb cite{display:block;font-style:normal;font-size:14px;color:var(--ink-2);margin-top:10px}
+
+  /* breakfast */
+  .breakfast{background:var(--paper-2)}
+  .breakfast .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(40px,6vw,96px)}
+  .breakfast .intro p{font-family:var(--serif);font-size:19px;margin-top:24px}
+  .breakfast .intro .tray{font-family:var(--sans);font-size:16px;margin-top:28px;padding:18px 20px;background:var(--ink);color:var(--paper);max-width:44ch}
+  .menu{border-top:3px solid var(--ink)}
+  .menu div{padding:18px 0;border-bottom:1px solid var(--rule)}
+  .menu dt{display:flex;align-items:baseline;gap:10px;font-weight:700;font-size:19px;font-stretch:88%}
+  .menu dt::after{content:"";flex:1;border-bottom:2px dotted rgba(28,29,31,.35);transform:translateY(-4px)}
+  .menu dt small{order:2;font-family:var(--mono);font-weight:500;font-size:13px;color:var(--ink-2);font-stretch:100%}
+  .menu dd{font-family:var(--serif);font-size:17px;color:var(--ink-2);margin-top:4px;max-width:56ch}
+
+  /* trains */
+  .trains h2{max-width:16ch}
+  .trains .lede{font-family:var(--serif);font-size:19px;color:var(--ink-2);margin-top:20px}
+  .board{width:100%;border-collapse:collapse;margin-top:48px;font-size:16px}
+  .board thead th{background:var(--ink);color:var(--paper);text-align:left;font-weight:600;font-size:13px;letter-spacing:.07em;text-transform:uppercase;padding:12px 16px}
+  .board td{padding:20px 16px;border-bottom:1px solid var(--rule);vertical-align:top}
+  .board tbody tr:hover{background:rgba(242,197,36,.18)}
+  .board .dest{font-weight:740;font-stretch:80%;font-size:23px;line-height:1.1;white-space:nowrap}
+  .board .dest span{display:block;font-family:var(--mono);font-weight:500;font-size:12px;color:var(--ink-2);margin-top:4px;font-stretch:100%}
+  .board .dur{font-family:var(--mono);white-space:nowrap}
+  .board .why{font-family:var(--serif);font-size:17px}
+  .board-note{font-size:14px;color:var(--ink-2);margin-top:18px}
+
+  /* book */
+  .book{background:#fbf9f3;border-top:1px solid var(--rule)}
+  .book .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,96px)}
+  .prices{margin-top:32px;border-top:3px solid var(--ink)}
+  .prices div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+  .prices span{font-size:17px}
+  .prices span small{display:block;font-size:14px;color:var(--ink-2)}
+  .prices b{font-family:var(--mono);font-size:20px;font-weight:600;white-space:nowrap}
+  .terms{margin-top:22px;font-size:15.5px;color:var(--ink-2);display:grid;gap:8px}
+  .contact{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px}
+  .contact-note{margin-top:14px;font-size:15px;color:var(--ink-2)}
+  .faq h3{font-size:clamp(26px,2.6vw,34px);margin-bottom:18px}
+  .faq details{border-top:1px solid var(--rule)}
+  .faq details:last-of-type{border-bottom:1px solid var(--rule)}
+  .faq summary{cursor:pointer;list-style:none;padding:18px 36px 18px 0;font-weight:650;font-size:18px;position:relative}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";position:absolute;right:4px;top:12px;font-family:var(--mono);font-size:24px;font-weight:400;transition:transform .2s}
+  .faq details[open] summary::after{transform:rotate(45deg)}
+  .faq details p{font-family:var(--serif);font-size:17.5px;padding:0 0 20px;color:var(--ink-2)}
+
+  /* footer */
+  footer{background:var(--ink);color:#d9d5ca;padding:72px 0 40px;font-size:15px}
+  footer .grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px}
+  footer h2{font-size:30px;color:#f3efe4;margin-bottom:14px}
+  footer h3{font-family:var(--sans);font-stretch:100%;font-size:13px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;color:#8f8b80;margin-bottom:12px}
+  footer ul{list-style:none;display:grid;gap:6px}
+  footer a{text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25)}
+  footer a:hover{border-color:#f3efe4}
+  footer address{font-style:normal;line-height:1.7}
+  .legal{margin-top:56px;padding-top:22px;border-top:1px solid rgba(255,255,255,.15);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;color:#8f8b80}
+
+  /* responsive */
+  @media (max-width:900px){
+    .nav ul{display:none}
+    .hero .wrap,.section-head,.sides,.slip-sec .wrap,.story .wrap,.breakfast .wrap,.book .wrap{grid-template-columns:1fr}
+    .section-head{gap:18px;margin-bottom:40px}
+    .slip{max-width:440px;margin:0 auto}
+    .story aside{display:grid;grid-template-columns:1fr 1fr}
+    .window{grid-row:span 2;aspect-ratio:auto;min-height:260px}
+    footer .grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:640px){
+    body{font-size:16px}
+    .nav .wrap{height:58px}
+    .mark{font-size:17px}
+    .story aside{grid-template-columns:1fr}
+    .window{min-height:220px;grid-row:auto}
+    .side-body{padding:24px 20px 26px}
+    .poster li{grid-template-columns:62px 1fr}
+    .board thead{display:none}
+    .board,.board tbody,.board tr,.board td{display:block;width:100%}
+    .board tr{padding:18px 0;border-bottom:1px solid var(--rule)}
+    .board td{padding:3px 0;border:0}
+    .board .dest{white-space:normal}
+    .board .dur::before{content:"On the train: ";font-family:var(--sans);color:var(--ink-2)}
+    footer .grid{grid-template-columns:1fr}
+    .hero .ctas .btn{flex:1 1 100%;justify-content:center}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="mark" href="#top"><i aria-hidden="true"></i>Albergo Coincidenza</a>
+    <ul>
+      <li><a href="#rooms">Rooms</a></li>
+      <li><a href="#slip">Your train</a></li>
+      <li><a href="#story">1996</a></li>
+      <li><a href="#breakfast">Breakfast</a></li>
+      <li><a href="#trains">Day trips</a></li>
+    </ul>
+    <a class="btn btn-solid" href="#book">Book</a>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- 1. Hero -->
+  <header class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Nine rooms opposite Domodossola station</h1>
+        <p class="sub">Albergo Coincidenza is on the square where the Simplon line from Switzerland meets the Vigezzina to Locarno. We keep both timetables at the desk and put the coffee on at 5:50 for the early trains.</p>
+        <div class="ctas">
+          <a class="btn btn-solid" href="#book">Book a room for tonight</a>
+          <a class="btn btn-line" href="#rooms">Compare the two sides</a>
+        </div>
+        <p class="from">From <b>€88 a night for two</b>, breakfast included. Piazza Matteotti 7, a two-minute walk from platform 1.</p>
+      </div>
+
+      <div class="poster" role="img" aria-label="The hotel's own timetable, printed like an Italian station departures poster">
+        <div class="poster-in">
+          <div class="poster-top">
+            <strong>Orario<br>dell'albergo</strong>
+            <span>House timetable<br>Albergo Coincidenza</span>
+          </div>
+          <ol>
+            <li><time>05:50</time><div>Breakfast tray<em>Coffee in a flask, bread, cheese, fruit</em></div></li>
+            <li><time>06:30</time><div>Full breakfast table<em>In the old bar, until 10:30</em></div></li>
+            <li><time>11:00</time><div>Check-out<em>Bags stay with us until your train</em></div></li>
+            <li><time>14:00</time><div>Check-in<em>Earlier if the room is ready; ask</em></div></li>
+            <li><time>00:30</time><div>Desk closes<em>Side-door code sent the afternoon you arrive</em></div></li>
+          </ol>
+          <div class="poster-foot"><span>Valid from 1 November 2026</span><span>Rooms 1–4, 6–10</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. Rooms -->
+  <section class="rooms" id="rooms">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Track side or garden side</h2>
+        <p>The building has two faces, and the price follows the noise. Pick the side that suits how you sleep.</p>
+      </div>
+
+      <div class="sides">
+        <article class="side">
+          <div class="view view-track" aria-hidden="true"><div class="canopy"></div></div>
+          <div class="side-body">
+            <h3>Track side</h3>
+            <div class="side-meta"><span><b>Rooms 1 to 4</b></span><span><b>€88</b> a night for two</span><span>Dogs allowed</span></div>
+            <p>Windows on the square, the station and platforms 1 to 3. From the bed you can read the station clock. Freight trains pass through the night; the windows are double-glazed, and there are earplugs in the bedside drawer.</p>
+            <p class="note">Room 1 is one flight up, for anyone who'd rather skip stairs. Room 4 looks straight down the platforms and is the one regulars ask for.</p>
+          </div>
+        </article>
+
+        <article class="side">
+          <div class="view view-garden" aria-hidden="true"></div>
+          <div class="side-body">
+            <h3>Garden side</h3>
+            <div class="side-meta"><span><b>Rooms 6 to 10</b></span><span><b>€112</b> a night for two</span><span><b>€124</b> with a bath</span></div>
+            <p>Windows on the courtyard, where Rosalba grows the summer tomatoes for breakfast, and on the hill of the Sacro Monte Calvario behind it. You'll hear the chapel bell at seven and a neighbour's radio on Sunday mornings.</p>
+            <p class="note">Rooms 9 and 10 have a bath. Room 6 is the smallest in the building, so it's €98.</p>
+          </div>
+        </article>
+      </div>
+
+      <p class="every">Every room has a shower, a desk lamp bright enough to read a map by, Wi-Fi that reaches the top floor, and this month's printed timetable on the back of the door. There's no room 5. The story is further down.</p>
+    </div>
+  </section>
+
+  <!-- 3. The connection slip -->
+  <section class="slip-sec" id="slip">
+    <div class="wrap">
+      <div>
+        <h2>Tell us which train you're catching</h2>
+        <p class="lede">Most people who stay here arrive on one train and leave on another, so the desk keeps the station's hours and watches its boards.</p>
+        <ol class="steps">
+          <li><span>When you book, give us the train you plan to leave on. If you don't know it yet, tell us where you're going.</span></li>
+          <li><span>The evening before you leave, whoever is on the desk checks it against the Trenitalia and SBB boards and slides a printed slip under your door: train, platform, any change, and the next train if yours runs late.</span></li>
+          <li><span>Check out by 11:00. Your bags wait in the old room 5 until your train goes, even if that's the last one of the day.</span></li>
+          <li><span>If your train is cancelled and nothing else leaves that day, your next night here costs half.</span></li>
+        </ol>
+      </div>
+
+      <div>
+        <div class="slip" role="img" aria-label="A sample connection slip from the desk">
+          <h4><span>Albergo Coincidenza</span><span>Room 4</span></h4>
+          <dl>
+            <dt>Date</dt><dd>Friday 14 November</dd>
+            <dt>Train</dt><dd>EuroCity to Genève</dd>
+            <dt>Leaves</dt><dd>08:14, platform 1</dd>
+            <dt>Change</dt><dd>None</dd>
+            <dt>If late</dt><dd>Regionale to Brig at 09:05, change there for the 09:49 to Genève</dd>
+            <dt>Tray</dt><dd>Outside your door at 07:30</dd>
+          </dl>
+          <p class="hand">Platform 1 is the one you can see from your window. Buon viaggio. E.</p>
+        </div>
+        <p class="slip-cap">A sample slip. Train numbers and times change with every timetable.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Story -->
+  <section class="story" id="story">
+    <div class="wrap">
+      <div class="story-text">
+        <h2>The night the last train to Brig didn't run</h2>
+        <p>Rosalba Ferraris ran Bar Sempione, on the corner of the station square, for twenty-two years before there was a hotel above it. One Thursday in February 1996 the last train to Brig was cancelled a few minutes before it was due. The waiting room was locked at midnight, and the eleven people left on platform 1 crossed the square to the only lit window, which was hers.</p>
+        <p>She took them upstairs to her flat. Four slept in the two beds, three on the sofa and the floor, three at the kitchen table with their heads on their arms, and one, a cheese buyer from Bern called Herr Zbinden, in the bath, with a pillow (he asked for the bath). In the morning she made eleven coffees on the bar machine and walked them across to the 6:12. Herr Zbinden left 50,000 lire under his saucer with a note: <i>Für das Zimmer.</i> For the room.</p>
+        <p>She opened four rooms the next spring. That first year, room 5 sat directly above the freight sidings, and nobody who was given it got any sleep. It holds luggage now. The bar closed in 2011 after losing money for longer than the family likes to admit; breakfast is served where the counter used to be.</p>
+        <p>Rosalba is 84. Her son Ettore runs the desk and writes most of the slips. She still does breakfast on Saturdays, which is market day in Domodossola, and the torta di pane is hers.</p>
+        <p>In Italian station announcements, a <i>coincidenza</i> is a connecting train. Rosalba liked the other meaning as well.</p>
+      </div>
+
+      <aside aria-label="From the guest book">
+        <div class="window" aria-hidden="true"></div>
+        <p class="gb-head">From the guest book</p>
+        <div class="gb">
+          <blockquote>third time stuck in domodossola, third time in room 4. the slip said take the 7:02 via Brig, the SBB app said wait. the slip was right</blockquote>
+          <cite>Ueli Bärtschi, Thun, March 2025</cite>
+        </div>
+        <div class="gb">
+          <blockquote>Colazione alle sei meno dieci. Grazie a Dio.</blockquote>
+          <cite>Franca Vanoni, Milano, on her way to Zermatt (“Breakfast at ten to six. Thank God.”)</cite>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 5. Breakfast -->
+  <section class="breakfast" id="breakfast">
+    <div class="wrap">
+      <div class="intro">
+        <h2>Breakfast starts at ten to six</h2>
+        <p>The first trains to Switzerland leave before seven, so the coffee goes on at 5:50. Until 6:30 it's a tray you can take back to your room. After that the full table is laid out in the old bar until 10:30, and most of it comes from the Ossola valleys within forty minutes of here.</p>
+        <p class="tray">Leaving before 5:50? Ask the night before and we'll leave a paper bag at the desk with bread, cheese, an apple and a flask of coffee.</p>
+      </div>
+
+      <dl class="menu">
+        <div>
+          <dt>Pane nero di Coimo <small>every day</small></dt>
+          <dd>Dark rye bread from a bakery in Coimo, up the Valle Vigezzo. It keeps for a week, which is why the walkers take it.</dd>
+        </div>
+        <div>
+          <dt>Prosciutto crudo della Vigezzo <small>every day</small></dt>
+          <dd>Sliced to order at the counter.</dd>
+        </div>
+        <div>
+          <dt>Bettelmatt <small>July to October</small></dt>
+          <dd>Cheese from the high summer pastures above Formazza. When there's none left, we put out Ossolano from the dairy cooperative.</dd>
+        </div>
+        <div>
+          <dt>Torta di pane <small>Saturdays</small></dt>
+          <dd>Rosalba's bread cake: yesterday's bread soaked in milk, with cocoa, amaretti and raisins.</dd>
+        </div>
+        <div>
+          <dt>Chestnut honey, butter, yoghurt <small>every day</small></dt>
+          <dd>Fruit from the Saturday market. Tomatoes from the courtyard in August.</dd>
+        </div>
+        <div>
+          <dt>Espresso, cappuccino, tea <small>every day</small></dt>
+          <dd>Made on the two-group machine that came with the bar.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 6. Day trips -->
+  <section class="trains" id="trains">
+    <div class="wrap">
+      <h2>Where the trains go from here</h2>
+      <p class="lede">You can leave the car at home. These are the day trips guests ask about most, and the desk has today's times for each one.</p>
+
+      <table class="board">
+        <thead>
+          <tr><th scope="col">Destination</th><th scope="col">Line</th><th scope="col">On the train</th><th scope="col">Go for</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="dest">Locarno<span>Switzerland</span></td>
+            <td>Vigezzina-Centovalli, narrow gauge</td>
+            <td class="dur">about 2 hours</td>
+            <td class="why">The ride itself: up the Valle Vigezzo, through the gorges of the Centovalli, and down to Lake Maggiore at the Swiss end.</td>
+          </tr>
+          <tr>
+            <td class="dest">Santa Maria Maggiore<span>Valle Vigezzo</span></td>
+            <td>Vigezzina</td>
+            <td class="dur">about 45 min</td>
+            <td class="why">The chimney sweeps' museum. For two centuries the valley sent its boys to sweep chimneys in Milan, Turin and Paris.</td>
+          </tr>
+          <tr>
+            <td class="dest">Brig<span>Switzerland</span></td>
+            <td>Simplon line, through the 19.8 km tunnel</td>
+            <td class="dur">about 40 min</td>
+            <td class="why">Connections to Zermatt, Bern and the rest of the Swiss network.</td>
+          </tr>
+          <tr>
+            <td class="dest">Stresa<span>Lake Maggiore</span></td>
+            <td>Towards Milan</td>
+            <td class="dur">about 30 min</td>
+            <td class="why">Boats from the jetty to Isola Bella and the other Borromean Islands.</td>
+          </tr>
+          <tr>
+            <td class="dest">Milano Centrale<span>Milan</span></td>
+            <td>Towards Milan</td>
+            <td class="dur">1½ to 2 hours</td>
+            <td class="why">A long day. Ask the desk for the last train back before you go.</td>
+          </tr>
+          <tr>
+            <td class="dest">Sacro Monte Calvario<span>Domodossola</span></td>
+            <td>On foot, from our door</td>
+            <td class="dur">30 min uphill</td>
+            <td class="why">The chapels of the Stations of the Cross on the Mattarella hill, part of a UNESCO site, and a view over the whole Ossola plain.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="board-note">Journey times are typical for the regular services. Strikes are announced in advance on the Trenitalia site, and we'll tell you about any that touch your dates when you book.</p>
+    </div>
+  </section>
+
+  <!-- 7. Prices, booking and questions -->
+  <section class="book" id="book">
+    <div class="wrap">
+      <div>
+        <h2>Prices and booking</h2>
+        <div class="prices">
+          <div><span>Track side<small>Rooms 1 to 4</small></span><b>€88</b></div>
+          <div><span>Garden side<small>Room 6</small></span><b>€98</b></div>
+          <div><span>Garden side<small>Rooms 7 and 8</small></span><b>€112</b></div>
+          <div><span>Garden side, with a bath<small>Rooms 9 and 10</small></span><b>€124</b></div>
+        </div>
+        <div class="terms">
+          <p>Prices are per night for two people, breakfast included. One person pays €15 less.</p>
+          <p>City tax is €1.50 per person per night, paid at the desk. We take cards and cash.</p>
+          <p>Cancel for free until 18:00 the day before you arrive. After that we charge the first night.</p>
+          <p>We're on Booking.com too, at €6 more a night. That's their commission.</p>
+        </div>
+        <div class="contact">
+          <a class="btn btn-solid" href="tel:+390324248117">Call the desk: +39 0324 248 117</a>
+          <a class="btn btn-line" href="mailto:desk@albergocoincidenza.it?subject=Room%20request&amp;body=Dates%3A%0AGuests%3A%0ATrack%20side%20or%20garden%20side%3A%0AThe%20train%20you%27re%20leaving%20on%20(if%20you%20know)%3A">Email for a room</a>
+        </div>
+        <p class="contact-note">The desk is staffed from 6:00 to 00:30 and answers email the same day. English, Italian, German and some French.</p>
+      </div>
+
+      <div class="faq">
+        <h3>Before you book</h3>
+        <details>
+          <summary>Is there a lift?</summary>
+          <p>No. The rooms are on the first and second floors, and it's 46 steps to the top. Whoever is on the desk will carry your bags. If stairs are hard for you, ask for room 1, which is one flight up.</p>
+        </details>
+        <details>
+          <summary>How loud is the track side?</summary>
+          <p>Loud enough to matter if you're a light sleeper. Freight runs through the night and the first passenger train leaves just after five. The windows are double-glazed and the earplugs are free. If you'd prefer not to hear trains at all, book the garden side.</p>
+        </details>
+        <details>
+          <summary>I'm arriving after the desk closes.</summary>
+          <p>We'll text you a code for the side door on the afternoon you arrive. Your key will be in an envelope with your name on it, on the bar.</p>
+        </details>
+        <details>
+          <summary>Is there parking?</summary>
+          <p>We have none of our own. The station car park is on the square, paid by the hour or by the day, and it's a two-minute walk.</p>
+        </details>
+        <details>
+          <summary>Can I bring my dog?</summary>
+          <p>Yes, in the track-side rooms, for €10 a night. Bring their bed; we have bowls.</p>
+        </details>
+        <details>
+          <summary>Do you serve dinner?</summary>
+          <p>Breakfast only. For dinner we send guests to Trattoria Bruna, two streets behind the square. It's closed on Mondays, so on Mondays we send them to the pizzeria next door to it.</p>
+        </details>
+        <details>
+          <summary>What if my train is cancelled?</summary>
+          <p>If nothing else leaves that day, your next night is half price. If you're stuck in Domodossola and weren't staying with us, ring the desk anyway. We usually have a room, and we've had a bath before.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 8. Footer -->
+<footer>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <h2>Albergo Coincidenza</h2>
+        <address>Piazza Matteotti 7<br>28845 Domodossola (VB)<br>Piemonte, Italy</address>
+      </div>
+      <div>
+        <h3>Desk</h3>
+        <ul>
+          <li><a href="tel:+390324248117">+39 0324 248 117</a></li>
+          <li><a href="mailto:desk@albergocoincidenza.it">desk@albergocoincidenza.it</a></li>
+          <li>Open 6:00 to 00:30</li>
+        </ul>
+      </div>
+      <div>
+        <h3>This page</h3>
+        <ul>
+          <li><a href="#rooms">Rooms and prices</a></li>
+          <li><a href="#slip">The train slip</a></li>
+          <li><a href="#breakfast">Breakfast</a></li>
+          <li><a href="#trains">Day trips by train</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Getting here</h3>
+        <ul>
+          <li>Leave Domodossola station by the main exit</li>
+          <li>Cross the square to the yellow door</li>
+          <li>The desk is in the old bar, on the ground floor</li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Ferraris Ettore &amp; C. s.n.c. · P.IVA 01876540037 · CIN IT103028A1C9TQ4ZXL</span>
+      <span>This site sets no cookies and tracks nobody.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

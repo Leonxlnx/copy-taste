@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Echolot: replay production traffic against your pull request</title>
+<meta name="description" content="Echolot records a scrubbed sample of production requests, replays them against your PR build and two copies of main, and comments on the pull request with every response that changed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f3f1ea;
+    --paper-2: #e9e6dc;
+    --ink: #0f1a22;
+    --ink-2: #3c4852;
+    --muted: #66717a;
+    --line: #d6d1c4;
+    --night: #0b1821;
+    --night-2: #11232f;
+    --night-line: #22394a;
+    --sonar: #5fd4bf;
+    --sonar-deep: #0d7a69;
+    --add: #2f7d4f;
+    --add-bg: #e3f1e6;
+    --del: #b23a2e;
+    --del-bg: #f7e3df;
+    --amber: #e3a72f;
+    --radius: 10px;
+    --sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+    --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+    --serif: "Newsreader", Georgia, serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 17px/1.6 var(--sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; }
+  code, pre, .mono { font-family: var(--mono); }
+  code { font-size: .88em; background: var(--paper-2); padding: .08em .35em; border-radius: 4px; }
+  .wrap { width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+  section { padding: 112px 0; border-top: 1px solid var(--line); }
+  h1, h2, h3 { margin: 0; font-weight: 600; letter-spacing: -0.02em; line-height: 1.12; }
+  h2 { font-size: clamp(30px, 4vw, 46px); max-width: 20ch; }
+  h3 { font-size: 19px; letter-spacing: -0.01em; }
+  p { margin: 0 0 1em; }
+  .lede { font-size: 19px; color: var(--ink-2); max-width: 58ch; margin-top: 20px; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font: 500 16px/1 var(--sans); text-decoration: none;
+    padding: 15px 22px; border-radius: 8px; border: 1px solid transparent;
+    transition: background .15s, border-color .15s, transform .15s;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--sonar); color: var(--night); }
+  .btn-primary:hover { background: #79e0cd; }
+  .btn-ghost { border-color: #35505f; color: #dbe6ea; }
+  .btn-ghost:hover { border-color: #6c8a99; }
+  .btn-dark { background: var(--ink); color: var(--paper); }
+  .btn-dark:hover { background: #22323d; }
+  .btn-line { border-color: var(--ink); color: var(--ink); }
+  .btn-line:hover { background: var(--paper-2); }
+
+  /* ---------- nav ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(11, 24, 33, .92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--night-line);
+    color: #dbe6ea;
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 18px; text-decoration: none; color: #fff; letter-spacing: -0.01em; }
+  .mark {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: radial-gradient(circle, var(--sonar) 0 3px, transparent 3.5px 6px, var(--sonar) 6.5px 7.5px, transparent 8px 10px, rgba(95,212,191,.55) 10.5px 11px, transparent 11.5px);
+  }
+  .nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  .nav ul a { text-decoration: none; color: #a9bcc5; }
+  .nav ul a:hover { color: #fff; }
+  .nav .btn { padding: 10px 16px; font-size: 14px; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative; overflow: hidden;
+    background: var(--night); color: #e6eef1;
+    padding: 104px 0 120px; border-top: 0;
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      repeating-radial-gradient(circle at 78% 46%, transparent 0 46px, rgba(95,212,191,.10) 47px 48px),
+      radial-gradient(circle at 78% 46%, rgba(95,212,191,.16), transparent 42%);
+    -webkit-mask-image: radial-gradient(circle at 78% 46%, #000 0 30%, transparent 70%);
+            mask-image: radial-gradient(circle at 78% 46%, #000 0 30%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero .wrap { position: relative; display: grid; grid-template-columns: 1fr 1.05fr; gap: 64px; align-items: center; }
+  .hero h1 { font-size: clamp(38px, 5.2vw, 64px); letter-spacing: -0.035em; line-height: 1.04; max-width: 13ch; color: #fff; }
+  .hero .sub { font-size: 19px; color: #a9bcc5; max-width: 46ch; margin: 26px 0 36px; }
+  .hero .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero .fine { margin-top: 18px; font-size: 14px; color: #7f97a3; }
+
+  .pr {
+    background: #0f212c; border: 1px solid var(--night-line); border-radius: 12px;
+    font-family: var(--mono); font-size: 13px; line-height: 1.55; color: #c8d6dc;
+    box-shadow: 0 30px 80px -30px rgba(0,0,0,.7);
+  }
+  .pr-head { display: flex; gap: 12px; align-items: center; padding: 14px 18px; border-bottom: 1px solid var(--night-line); font-family: var(--sans); font-size: 14px; }
+  .avatar { flex: none; width: 26px; height: 26px; border-radius: 6px; background: radial-gradient(circle at 50% 50%, var(--sonar) 0 3px, #12313a 3.5px 7px, var(--sonar) 7.5px 8.5px, #12313a 9px); }
+  .pr-head b { color: #fff; font-weight: 600; }
+  .pr-head span { color: #7f97a3; }
+  .pr-body { padding: 16px 18px 18px; }
+  .pr-sum { color: #fff; margin-bottom: 4px; }
+  .pr-meta { color: #7f97a3; margin-bottom: 14px; }
+  .hit { border: 1px solid var(--night-line); border-radius: 8px; margin-bottom: 10px; overflow: hidden; }
+  .hit-top { display: flex; justify-content: space-between; gap: 12px; padding: 8px 12px; background: #132a37; color: #e6eef1; }
+  .hit-top em { font-style: normal; color: var(--amber); }
+  .hit pre { margin: 0; padding: 8px 12px; white-space: pre-wrap; word-break: break-all; }
+  .d { color: #f0a097; background: rgba(178,58,46,.18); display: block; margin: 0 -12px; padding: 0 12px; }
+  .a { color: #8fe3b0; background: rgba(47,125,79,.22); display: block; margin: 0 -12px; padding: 0 12px; }
+  .skip { color: #7f97a3; padding: 6px 2px 0; }
+  .pr-empty { margin-top: 14px; border-top: 1px dashed var(--night-line); padding-top: 12px; color: #7f97a3; font-family: var(--sans); font-size: 13px; }
+  .pr-empty b { color: #c8d6dc; font-weight: 500; }
+
+  /* ---------- letter ---------- */
+  .letter { background: var(--paper); }
+  .letter .wrap { max-width: 760px; }
+  .letter h2 { max-width: 18ch; }
+  .letter .body { font-family: var(--serif); font-size: 21px; line-height: 1.62; color: #23303a; margin-top: 40px; }
+  .letter .body code { font-size: .78em; }
+  .sig { margin-top: 36px; font-family: var(--sans); font-size: 15px; color: var(--muted); display: flex; align-items: center; gap: 14px; }
+  .sig-face { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(160deg, #c9b79a 0 35%, #8a6d4e 35% 60%, #3e4e57 60%); }
+  .sig b { color: var(--ink); font-weight: 600; display: block; }
+
+  /* ---------- setup ---------- */
+  .setup .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; margin-top: 56px; align-items: start; }
+  .steps { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+  .steps li { counter-increment: s; position: relative; padding: 0 0 30px 56px; }
+  .steps li::before {
+    content: counter(s); position: absolute; left: 0; top: -2px;
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid var(--ink); display: grid; place-items: center;
+    font: 500 14px/1 var(--mono);
+  }
+  .steps li:not(:last-child)::after { content: ""; position: absolute; left: 17px; top: 38px; bottom: 6px; width: 1px; background: var(--line); }
+  .steps h3 { margin-bottom: 6px; }
+  .steps p { color: var(--ink-2); margin: 0; }
+  .code {
+    background: var(--night); color: #c8d6dc; border-radius: var(--radius);
+    font: 13.5px/1.7 var(--mono); overflow: hidden; position: sticky; top: 96px;
+  }
+  .code-tab { display: flex; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid var(--night-line); color: #7f97a3; font-size: 12.5px; }
+  .code pre { margin: 0; padding: 18px 20px; overflow-x: auto; }
+  .k { color: #8fd0ff; } .s { color: #d8c48a; } .c { color: #5f7884; } .v { color: var(--sonar); }
+
+  /* ---------- noise ---------- */
+  .noise { background: var(--paper-2); }
+  .noise .intro { display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: end; }
+  .noise .intro p { color: var(--ink-2); }
+  .difftable-wrap { margin-top: 56px; background: #fbfaf6; border: 1px solid var(--line); border-radius: var(--radius); overflow-x: auto; }
+  .difftable-cap { padding: 14px 20px; border-bottom: 1px solid var(--line); font: 500 13.5px/1.4 var(--mono); }
+  .difftable { width: 100%; min-width: 760px; border-collapse: collapse; font: 13px/1.5 var(--mono); }
+  .difftable th { text-align: left; font: 500 12px/1 var(--sans); color: var(--muted); text-transform: uppercase; letter-spacing: .06em; padding: 14px 20px 10px; border-bottom: 1px solid var(--line); }
+  .difftable td { padding: 11px 20px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .difftable tr:last-child td { border-bottom: 0; }
+  .difftable .key { color: var(--ink); font-weight: 500; }
+  .difftable .gone { color: var(--muted); }
+  .difftable tr.isnoise td { color: #9aa2a8; }
+  .difftable tr.ischanged td.branch { background: var(--del-bg); color: var(--del); }
+  .tag { display: inline-block; font: 500 11.5px/1 var(--sans); padding: 5px 8px; border-radius: 99px; letter-spacing: .02em; }
+  .tag-noise { background: #e4e2da; color: #6d746f; }
+  .tag-changed { background: #f8e6bf; color: #7a5208; }
+  .tag-same { background: transparent; color: var(--muted); padding-left: 0; }
+  .noise .after { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; margin-top: 56px; }
+  .noise .after p { color: var(--ink-2); }
+  blockquote { margin: 0; }
+  .quote p { font-family: var(--serif); font-size: 23px; line-height: 1.45; color: var(--ink); margin-bottom: 14px; }
+  .quote footer, .quote cite { font: 400 15px/1.4 var(--sans); color: var(--muted); font-style: normal; }
+  .quote cite b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- compare ---------- */
+  .compare-wrap { margin-top: 48px; overflow-x: auto; border-top: 2px solid var(--ink); }
+  .compare { width: 100%; min-width: 760px; border-collapse: collapse; }
+  .compare th, .compare td { text-align: left; padding: 18px 20px 18px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .compare thead th { font: 500 13px/1.3 var(--sans); color: var(--muted); padding-top: 16px; }
+  .compare tbody th { font-weight: 600; width: 22%; }
+  .compare tbody td { color: var(--ink-2); width: 26%; }
+  .compare tr.us th, .compare tr.us td { color: var(--ink); background: linear-gradient(90deg, rgba(95,212,191,.18), rgba(95,212,191,0)); }
+  .compare tr.us th { padding-left: 14px; border-left: 3px solid var(--sonar-deep); }
+  .credit { margin-top: 36px; max-width: 64ch; color: var(--ink-2); font-size: 16px; }
+
+  /* ---------- limits ---------- */
+  .limits .grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 72px; margin-top: 56px; }
+  .limits dl { margin: 0; }
+  .limits dt { font-weight: 600; font-size: 18px; padding-top: 22px; border-top: 1px solid var(--line); }
+  .limits dt:first-child { border-top: 0; padding-top: 0; }
+  .limits dd { margin: 6px 0 22px; color: var(--ink-2); }
+  .limits aside { align-self: start; position: sticky; top: 96px; }
+  .rough p { font-family: var(--mono); font-size: 16px; line-height: 1.65; color: var(--ink); background: #fbfaf6; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; margin-bottom: 14px; }
+
+  /* ---------- pricing ---------- */
+  .pricing .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 56px; border: 1px solid var(--ink); border-radius: var(--radius); overflow: hidden; background: #fbfaf6; }
+  .tier { padding: 32px 28px 30px; display: flex; flex-direction: column; }
+  .tier + .tier { border-left: 1px solid var(--ink); }
+  .tier.team { background: var(--night); color: #e6eef1; }
+  .tier .price { font-size: 40px; font-weight: 600; letter-spacing: -0.03em; margin: 18px 0 2px; }
+  .tier .per { font-size: 14px; color: var(--muted); margin-bottom: 22px; }
+  .tier.team .per { color: #8ea4ae; }
+  .tier ul { list-style: none; padding: 0; margin: 0 0 28px; font-size: 15.5px; flex: 1; }
+  .tier li { padding: 9px 0 9px 22px; position: relative; border-top: 1px solid var(--line); }
+  .tier.team li { border-top-color: var(--night-line); }
+  .tier li::before { content: ""; position: absolute; left: 2px; top: 17px; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--sonar-deep); }
+  .tier.team li::before { border-color: var(--sonar); }
+  .tier .note { font-size: 13.5px; color: var(--muted); margin: 12px 0 0; }
+  .tier.team .note { color: #8ea4ae; }
+  .tier .btn { justify-content: center; }
+
+  .faq { display: grid; grid-template-columns: 1fr 2fr; gap: 64px; margin-top: 96px; }
+  .faq h3 { font-size: 26px; letter-spacing: -0.02em; }
+  details { border-top: 1px solid var(--line); }
+  details:last-child { border-bottom: 1px solid var(--line); }
+  summary { cursor: pointer; list-style: none; padding: 20px 40px 20px 0; font-weight: 500; font-size: 18px; position: relative; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; position: absolute; right: 4px; top: 16px; font: 400 24px/1 var(--mono); color: var(--muted); }
+  details[open] summary::after { content: "\2212"; }
+  details p { color: var(--ink-2); margin: -4px 0 22px; max-width: 62ch; }
+
+  /* ---------- footer ---------- */
+  .foot { background: var(--night); color: #a9bcc5; padding: 96px 0 40px; font-size: 15px; }
+  .foot .cta { display: flex; justify-content: space-between; align-items: end; gap: 40px; padding-bottom: 64px; border-bottom: 1px solid var(--night-line); }
+  .foot .cta h2 { color: #fff; font-size: clamp(28px, 3.4vw, 40px); max-width: 22ch; }
+  .foot .cta p { margin: 14px 0 0; max-width: 52ch; }
+  .foot .cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; padding: 48px 0; }
+  .foot h4 { margin: 0 0 14px; color: #fff; font-size: 14px; font-weight: 600; letter-spacing: 0; }
+  .foot ul { list-style: none; margin: 0; padding: 0; }
+  .foot li { padding: 4px 0; }
+  .foot a { text-decoration: none; }
+  .foot a:hover { color: #fff; }
+  .foot .legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 24px; border-top: 1px solid var(--night-line); font-size: 13.5px; color: #7f97a3; }
+
+  :focus-visible { outline: 2px solid var(--sonar); outline-offset: 3px; border-radius: 4px; }
+
+  @media (max-width: 920px) {
+    .nav ul { display: none; }
+    .hero .wrap, .setup .grid, .noise .intro, .noise .after, .limits .grid, .faq { grid-template-columns: 1fr; gap: 40px; }
+    .code, .limits aside { position: static; }
+    .pricing .tiers { grid-template-columns: 1fr; }
+    .tier + .tier { border-left: 0; border-top: 1px solid var(--ink); }
+    .foot .cta { flex-direction: column; align-items: start; }
+    .foot .cols { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .wrap { padding: 0 16px; }
+    section { padding: 80px 0; }
+    .hero { padding: 64px 0 80px; }
+    .hero .sub, .lede { font-size: 17px; }
+    .letter .body { font-size: 19px; }
+    .quote p { font-size: 20px; }
+    .steps li { padding-left: 50px; }
+    .pr { font-size: 12px; }
+    .nav .btn { display: none; }
+    .foot .cols { grid-template-columns: 1fr; }
+    .hero::before { background:
+      repeating-radial-gradient(circle at 90% 20%, transparent 0 36px, rgba(95,212,191,.10) 37px 38px);
+      -webkit-mask-image: radial-gradient(circle at 90% 20%, #000 0 20%, transparent 60%);
+              mask-image: radial-gradient(circle at 90% 20%, #000 0 20%, transparent 60%); }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="mark" aria-hidden="true"></span>Echolot</a>
+    <ul>
+      <li><a href="#setup">How it works</a></li>
+      <li><a href="#noise">Noise</a></li>
+      <li><a href="#limits">Limits</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="https://docs.echolot.dev">Docs</a></li>
+    </ul>
+    <a class="btn btn-primary" href="https://github.com/apps/echolot">Install on GitHub</a>
+  </div>
+</nav>
+
+<!-- 1. Hero -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1>Replay yesterday's production traffic against today's pull request.</h1>
+      <p class="sub">Echolot records a scrubbed sample of requests from your live service, sends each one to your PR build and to two copies of main, and comments on the pull request with every response that changed.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://github.com/apps/echolot">Install the GitHub app</a>
+        <a class="btn btn-ghost" href="https://docs.echolot.dev/setup">Read the setup guide</a>
+      </div>
+      <p class="fine">Free for one service. Works with anything that serves HTTP or gRPC.</p>
+    </div>
+
+    <div class="pr" role="img" aria-label="Example Echolot comment on a pull request, showing two changed responses and one skipped write request">
+      <div class="pr-head">
+        <span class="avatar" aria-hidden="true"></span>
+        <div><b>echolot</b> <span>commented on #1482 &middot; refactor: store departure times in UTC</span></div>
+      </div>
+      <div class="pr-body">
+        <div class="pr-sum">2 endpoints changed in 4,812 replayed requests</div>
+        <div class="pr-meta">fares-api &middot; sampled Tue 06:00 to Wed 06:00 &middot; 211 noise fields ignored</div>
+
+        <div class="hit">
+          <div class="hit-top"><span>GET /v2/departures</span><em>1,904 of 1,904 differ</em></div>
+<pre><span class="d">- "departs_at": "2026-11-06T07:15:00+01:00"</span><span class="a">+ "departs_at": "2026-11-06T06:15:00Z"</span></pre>
+        </div>
+        <div class="hit">
+          <div class="hit-top"><span>GET /v2/fares/BGO-SVG</span><em>37 of 612 differ</em></div>
+<pre><span class="d">- "seat_class": "standard",</span><span class="a">+ (field missing)</span></pre>
+        </div>
+        <div class="skip">POST /v2/bookings &middot; 288 requests skipped by write guard</div>
+
+        <div class="pr-empty"><b>#1479</b> &middot; 4,790 requests replayed. No changed responses. Merge when you like.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Origin letter -->
+<section class="letter" id="story">
+  <div class="wrap">
+    <h2>2,113 tests passed. The Android app still broke.</h2>
+    <div class="body">
+      <p>In February 2024 I was a backend engineer at a ferry-ticketing company on the west coast of Norway. I changed one field in our fares API, <code>price</code>, from an integer in øre to a decimal string in kroner. The change was correct. All 2,113 tests agreed with me, and code review took four minutes.</p>
+      <p>Our Android app parsed that field as an integer. For 31 hours it showed every crossing as costing <em>NaN kr</em>, and the ticket office in Stavanger taped a handwritten price list to its window until we shipped a fix.</p>
+      <p>No test caught it because no test sent the request the app sent. Production sent it about 40,000 times a day. The first Echolot was a script on my laptop that replayed one hour of those requests from a packet capture against my branch and printed what came back different. The script is long gone. The rule it enforced is the whole product: before you merge, find out what your change does to the requests people send today.</p>
+    </div>
+    <div class="sig">
+      <span class="sig-face" aria-hidden="true"></span>
+      <span><b>Gunnhild Aas</b>Founder, Bergen, November 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Setup -->
+<section class="setup" id="setup">
+  <div class="wrap">
+    <h2>Add the recorder, then open pull requests as usual</h2>
+    <p class="lede">Echolot needs two things from you: a place to copy traffic from, and a build of your branch it can send requests to. If you already run preview environments, you have the second one.</p>
+
+    <div class="grid">
+      <ol class="steps">
+        <li>
+          <h3>Record</h3>
+          <p>Run <code>echolot-recorder</code> as a sidecar, or as an Envoy tap next to your service. It copies each request and response after the response is written, so it never sits in the request path. The default sample is 1 request in 100.</p>
+        </li>
+        <li>
+          <h3>Scrub</h3>
+          <p>Scrubbing runs inside your cluster, before anything is uploaded. Cookies and <code>Authorization</code> headers are dropped. Fields listed under <code>redact</code> become typed placeholders, so an email address still looks like an email address to your validation code.</p>
+        </li>
+        <li>
+          <h3>Replay</h3>
+          <p>When a pull request opens, Echolot sends the last 24 hours of samples to three targets: your PR build and two separate instances of main.</p>
+        </li>
+        <li>
+          <h3>Compare</h3>
+          <p>Echolot diffs every response, removes the fields that differed between the two main instances, and posts what is left as one comment on the pull request. Push again and the comment updates in place.</p>
+        </li>
+      </ol>
+
+      <div class="code" aria-label="Example echolot.yml configuration">
+        <div class="code-tab"><span>echolot.yml</span><span>fares-api</span></div>
+<pre><span class="k">service</span>: <span class="s">fares-api</span>
+
+<span class="k">record</span>:
+  <span class="k">from</span>: <span class="s">envoy-tap</span>
+  <span class="k">sample</span>: <span class="v">0.01</span>
+  <span class="k">keep</span>: <span class="s">24h</span>
+
+<span class="k">redact</span>:
+  - <span class="s">body.passenger.email</span>
+  - <span class="s">body.passenger.phone</span>
+  - <span class="s">query.card_last4</span>
+
+<span class="k">replay</span>:
+  <span class="k">target</span>: <span class="s">${{ preview_url }}</span>
+  <span class="k">methods</span>: [<span class="s">GET</span>, <span class="s">HEAD</span>]
+  <span class="k">concurrency</span>: <span class="v">20</span>
+
+<span class="k">report</span>:
+  <span class="k">mode</span>: <span class="s">summary</span>   <span class="c"># or: full</span></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Noise -->
+<section class="noise" id="noise">
+  <div class="wrap">
+    <div class="intro">
+      <h2>Echolot works out which fields are supposed to change</h2>
+      <div>
+        <p>Send the same request twice and you rarely get the same bytes back. Timestamps move, request IDs are random, and lists come back in whatever order the query planner chose that millisecond.</p>
+        <p>Most response-diffing tools ask you to write ignore rules for all of it, and the rules go stale by the next sprint. Echolot sends every recorded request to main twice. Any field that differs between those two responses is noise for that endpoint and drops out of the comparison.</p>
+      </div>
+    </div>
+
+    <div class="difftable-wrap">
+      <div class="difftable-cap">GET /v2/departures?from=BGO&amp;date=2026-11-06 &middot; one recorded request, three responses</div>
+      <table class="difftable">
+        <thead>
+          <tr><th>Field</th><th>main, instance A</th><th>main, instance B</th><th>Your branch</th><th>Result</th></tr>
+        </thead>
+        <tbody>
+          <tr class="isnoise">
+            <td class="key">request_id</td><td>"9f2c41e0"</td><td>"41ab07d3"</td><td class="branch">"c07e9b12"</td><td><span class="tag tag-noise">noise, ignored</span></td>
+          </tr>
+          <tr class="isnoise">
+            <td class="key">generated_at</td><td>"07:14:02.118Z"</td><td>"07:14:02.391Z"</td><td class="branch">"07:14:05.007Z"</td><td><span class="tag tag-noise">noise, ignored</span></td>
+          </tr>
+          <tr class="ischanged">
+            <td class="key">departs_at</td><td>"07:15:00+01:00"</td><td>"07:15:00+01:00"</td><td class="branch">"06:15:00Z"</td><td><span class="tag tag-changed">changed, reported</span></td>
+          </tr>
+          <tr class="ischanged">
+            <td class="key">seat_class</td><td>"standard"</td><td>"standard"</td><td class="branch gone">(missing)</td><td><span class="tag tag-changed">changed, reported</span></td>
+          </tr>
+          <tr>
+            <td class="key">vessel</td><td>"MS Fjordglimt"</td><td>"MS Fjordglimt"</td><td class="branch">"MS Fjordglimt"</td><td><span class="tag tag-same">same</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="after">
+      <div>
+        <p>Arrays are compared as sets when the two main instances return the same items in a different order. If order is part of your contract, set <code>ordered: true</code> on that endpoint.</p>
+        <p>Summary mode groups changes by endpoint and field, so 1,904 identical timezone diffs become one line with a count. Full mode lists every request, which is useful for about a day while you tune <code>redact</code>.</p>
+      </div>
+      <blockquote class="quote">
+        <p>&ldquo;We turned it off for a month because the comments were too long to read on a phone. Summary mode fixed that. It's been on for every repo since.&rdquo;</p>
+        <cite><b>Hamid Rezaei</b>, engineering manager, Tarnfield Payroll</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Compare -->
+<section class="compare-sec" id="compare">
+  <div class="wrap">
+    <h2>Where Echolot fits next to the tests you already have</h2>
+    <p class="lede">Keep your unit tests. Echolot catches a different mistake: a change that is correct by your own definition and wrong for someone who calls your API.</p>
+
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr><th></th><th>Which requests it checks</th><th>When you find out</th><th>What it costs you</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>Unit and integration tests</th><td>The cases someone wrote down</td><td>Before merge</td><td>Writing them, and updating them when behaviour changes on purpose</td></tr>
+          <tr><th>Contract tests (Pact)</th><td>The fields each consumer declared it uses</td><td>Before merge</td><td>Every consumer team keeps its contract current, including the mobile team</td></tr>
+          <tr><th>Canary deploy at 5%</th><td>Production traffic</td><td>After deploy, from error rates and dashboards</td><td>One user in twenty meets the bug first</td></tr>
+          <tr class="us"><th>Echolot</th><td>A sample of production traffic</td><td>Before merge, in the pull request</td><td>A preview build and a sidecar</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="credit">The two-copies-of-main trick comes from Diffy, which Twitter open-sourced in 2015. Diffy left recording traffic and reporting results to you. Echolot does both, and runs on every pull request.</p>
+  </div>
+</section>
+
+<!-- 6. Limits -->
+<section class="limits" id="limits">
+  <div class="wrap">
+    <h2>What Echolot won't replay</h2>
+    <p class="lede">Some traffic can't be sent twice safely, and some can't be compared in any useful way. This is the current list, and it changes with each release.</p>
+
+    <div class="grid">
+      <dl>
+        <dt>POST, PUT, PATCH and DELETE, by default</dt>
+        <dd>A replayed write is a second booking. Once your PR build points at a sandbox database, you can turn writes on per route with <code>methods</code> and <code>write_guard: sandbox</code>.</dd>
+
+        <dt>WebSockets and server-sent events</dt>
+        <dd>Echolot compares complete responses, and a stream has no end to compare against. Support is planned, with no date yet.</dd>
+
+        <dt>Requests that mean something different tomorrow</dt>
+        <dd>A query for &ldquo;departures in the next hour&rdquo; recorded yesterday asks about yesterday. If your service accepts a fixed clock in tests, pass it through the <code>X-Echolot-Recorded-At</code> header. If it doesn't, Echolot marks those endpoints as unreliable and leaves them out of the comment.</dd>
+
+        <dt>Services with very little traffic</dt>
+        <dd>Below about 2,000 requests a day, a 1% sample misses rare endpoints. Raise <code>sample</code>, or check in a fixture file of requests and replay that.</dd>
+
+        <dt>GitLab and Bitbucket</dt>
+        <dd>GitHub only for now. GitLab support is in beta with four teams. Bitbucket is not on the roadmap.</dd>
+      </dl>
+
+      <aside>
+        <blockquote class="rough">
+          <p>first week it flagged 40-odd diffs and nearly all of them were us forgetting to seed the sandbox db. two were real. one of those would have shipped on a friday</p>
+          <cite class="quote"><b>Szymon Wróbel</b>, backend lead, Parcelbay</cite>
+        </blockquote>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Pricing and FAQ -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <h2>Pricing</h2>
+    <p class="lede">Priced per service, meaning each thing you deploy on its own. Pull requests and team members are not counted.</p>
+
+    <div class="tiers">
+      <div class="tier">
+        <h3>Free</h3>
+        <div class="price">$0</div>
+        <div class="per">for one service</div>
+        <ul>
+          <li>Up to 5,000 replayed requests per pull request</li>
+          <li>Hosted replay workers</li>
+          <li>Summary and full report modes</li>
+          <li>Help on GitHub Discussions</li>
+        </ul>
+        <a class="btn btn-line" href="https://github.com/apps/echolot">Install the GitHub app</a>
+      </div>
+
+      <div class="tier team">
+        <h3>Team</h3>
+        <div class="price">$40</div>
+        <div class="per">per service, per month</div>
+        <ul>
+          <li>Up to 50,000 replayed requests per pull request</li>
+          <li>Write replay against a sandbox database</li>
+          <li>Per-endpoint rules for ordering and noise</li>
+          <li>Email support from an engineer, answered within one working day</li>
+        </ul>
+        <a class="btn btn-primary" href="https://app.echolot.dev/trial">Start a 30-day Team trial</a>
+        <p class="note">No card needed for the trial. It drops back to Free when it ends.</p>
+      </div>
+
+      <div class="tier">
+        <h3>Self-hosted</h3>
+        <div class="price">$9,600</div>
+        <div class="per">per year, up to 40 services</div>
+        <ul>
+          <li>Recorder, scrubber and replay workers run in your cluster</li>
+          <li>No traffic leaves your network</li>
+          <li>Helm chart and Terraform module</li>
+          <li>Annual invoice, paid by bank transfer</li>
+        </ul>
+        <a class="btn btn-line" href="mailto:gunnhild@echolot.dev?subject=Self-hosted%20Echolot">Email Gunnhild about self-hosting</a>
+      </div>
+    </div>
+
+    <div class="faq" id="faq">
+      <h3>Questions teams ask before they install</h3>
+      <div>
+        <details>
+          <summary>Does production data leave our network?</summary>
+          <p>On Free and Team, scrubbed samples go to our replay workers in AWS eu-north-1 (Stockholm) and are deleted after 7 days. Scrubbing happens in your cluster first: cookies and <code>Authorization</code> headers stay behind, and fields under <code>redact</code> leave as placeholders. On Self-hosted, nothing leaves.</p>
+        </details>
+        <details>
+          <summary>How do replayed requests authenticate?</summary>
+          <p>Captured credentials are dropped at record time, so Echolot replays with a service token you give it. If your API returns different data per tenant, map a test user to each tenant with <code>auth.per_tenant</code>.</p>
+        </details>
+        <details>
+          <summary>Which languages and frameworks does it support?</summary>
+          <p>Echolot works at the HTTP and gRPC layer, so your language doesn't come into it. Current customers run it in front of Go, Kotlin, Rails, Django, Node and Elixir services.</p>
+        </details>
+        <details>
+          <summary>We don't have preview environments. Can we still use it?</summary>
+          <p>Yes. Echolot can build one from your Dockerfile, with a <code>docker-compose.yml</code> for databases and queues. Expect about six extra minutes per pull request. This won't work if your service needs managed cloud resources to boot.</p>
+        </details>
+        <details>
+          <summary>Will the recorder slow down production?</summary>
+          <p>The recorder copies traffic after each response is written, on its own thread, into a bounded buffer. When the buffer fills, it drops samples. It never blocks a request.</p>
+        </details>
+        <details>
+          <summary>How do we cancel?</summary>
+          <p>Team is billed monthly. Cancel on the billing page and the recorder stops uploading at the end of the period. Your <code>echolot.yml</code> stays in your repo in case you come back.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Footer -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="cta">
+      <div>
+        <h2>Put Echolot on one service and open a pull request</h2>
+        <p>Installation takes the GitHub app, the recorder and one YAML file. The first comment arrives once the recorder has a few hours of traffic.</p>
+      </div>
+      <a class="btn btn-primary" href="https://github.com/apps/echolot">Install the GitHub app</a>
+    </div>
+
+    <div class="cols">
+      <div>
+        <a class="brand" href="#top"><span class="mark" aria-hidden="true"></span>Echolot</a>
+        <p style="margin-top:14px; max-width:30ch;">Response diffs from production traffic, posted on your pull requests.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#setup">How it works</a></li>
+          <li><a href="#limits">Limits</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="https://echolot.dev/changelog">Changelog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Docs</h4>
+        <ul>
+          <li><a href="https://docs.echolot.dev/setup">Setup guide</a></li>
+          <li><a href="https://docs.echolot.dev/config">echolot.yml reference</a></li>
+          <li><a href="https://docs.echolot.dev/envoy">Recording with Envoy</a></li>
+          <li><a href="https://docs.echolot.dev/security">Security and data handling</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#story">Why we built it</a></li>
+          <li><a href="https://status.echolot.dev">Status</a></li>
+          <li><a href="mailto:hello@echolot.dev">hello@echolot.dev</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="legal">
+      <span>&copy; 2026 Echolot AS &middot; Org. nr. 931 402 557 &middot; Strandgaten 18, 5013 Bergen, Norway</span>
+      <span>This site sets no cookies. GitHub sets its own when you install the app.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

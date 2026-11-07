@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saskia Wren, Product Designer</title>
+<meta name="description" content="Saskia Wren is an independent product designer in Copenhagen who helps startups and scale-ups turn tangled workflows into calm, clear software.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F1EA;
+    --paper-2:#ECE7DC;
+    --ink:#1A1916;
+    --ink-2:#4A4740;
+    --ink-3:#7C776C;
+    --line:#D8D2C4;
+    --accent:#D2471F;
+    --accent-ink:#FFF6F0;
+    --radius:14px;
+    --max:1200px;
+    --gutter:clamp(16px,4vw,40px);
+    --serif:"Instrument Serif", Georgia, serif;
+    --sans:"Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono:"Geist Mono", ui-monospace, Menlo, monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit}
+  ::selection{background:var(--accent);color:var(--accent-ink)}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+  .eyebrow b{color:var(--accent);font-weight:500}
+  h1,h2,h3{font-weight:400;letter-spacing:-.01em}
+  h2{font-family:var(--serif);font-size:clamp(40px,5.6vw,72px);line-height:1;margin-top:14px}
+  h2 em,h1 em{font-style:italic;color:var(--accent)}
+  section{padding:clamp(80px,11vw,140px) 0;border-top:1px solid var(--line)}
+  .sec-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:clamp(40px,6vw,72px)}
+  .sec-head p{color:var(--ink-2);max-width:460px;justify-self:end}
+
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;font-weight:500;font-size:15px;text-decoration:none;transition:transform .2s ease, background .2s ease, color .2s ease;border:1px solid var(--ink)}
+  .btn-primary{background:var(--ink);color:var(--paper)}
+  .btn-primary:hover{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+  .btn-ghost{background:transparent;color:var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper)}
+  .btn .arr{transition:transform .2s ease}
+  .btn:hover .arr{transform:translateX(3px)}
+  .btn:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  /* NAV */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(244,241,234,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{font-family:var(--serif);font-size:26px;text-decoration:none;display:flex;align-items:center;gap:10px}
+  .logo i{width:10px;height:10px;border-radius:50%;background:var(--accent);display:inline-block}
+  .nav ul{display:flex;gap:30px;list-style:none;font-size:15px}
+  .nav ul a{text-decoration:none;color:var(--ink-2);transition:color .2s}
+  .nav ul a:hover{color:var(--ink)}
+  .nav .btn{padding:10px 18px;font-size:14px}
+
+  /* HERO */
+  .hero{border-top:0;padding-top:clamp(64px,9vw,120px);padding-bottom:clamp(56px,7vw,90px)}
+  .status{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;font-size:14px;color:var(--ink-2);background:var(--paper-2)}
+  .status i{width:8px;height:8px;border-radius:50%;background:#2E9E5B;box-shadow:0 0 0 4px rgba(46,158,91,.18)}
+  .hero h1{font-family:var(--serif);font-size:clamp(52px,9vw,128px);line-height:.95;margin:28px 0 36px;max-width:1050px}
+  .hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:end}
+  .hero-lede{font-size:clamp(18px,1.6vw,21px);color:var(--ink-2);max-width:560px}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);padding-top:22px;gap:20px}
+  .stats strong{display:block;font-family:var(--serif);font-size:clamp(40px,4.4vw,56px);font-weight:400;line-height:1}
+  .stats span{font-size:14px;color:var(--ink-3)}
+  .clients{margin-top:clamp(64px,8vw,100px);display:flex;align-items:center;gap:clamp(20px,4vw,56px);flex-wrap:wrap;color:var(--ink-3)}
+  .clients .eyebrow{flex-basis:100%;margin-bottom:-6px}
+  .wm{font-size:22px;color:var(--ink-2);opacity:.75;white-space:nowrap}
+  .wm.a{font-family:var(--serif);font-style:italic;font-size:26px}
+  .wm.b{font-family:var(--mono);font-size:17px;letter-spacing:.12em;text-transform:uppercase}
+  .wm.c{font-weight:600;letter-spacing:-.04em}
+  .wm.d{font-family:var(--serif);font-size:26px}
+  .wm.e{font-weight:500;letter-spacing:.2em;text-transform:uppercase;font-size:15px}
+
+  /* WORK */
+  .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,3vw,36px)}
+  .case{text-decoration:none;display:block}
+  .case-vis{position:relative;aspect-ratio:4/3;border-radius:var(--radius);overflow:hidden;display:grid;place-items:center;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+  .case:hover .case-vis{transform:translateY(-4px)}
+  .case-vis > *{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .case:hover .case-vis > *{transform:scale(1.03)}
+  .case-meta{display:flex;justify-content:space-between;gap:16px;margin-top:20px;align-items:flex-start}
+  .case h3{font-family:var(--serif);font-size:34px;line-height:1.05}
+  .case p{color:var(--ink-2);font-size:16px;margin-top:6px;max-width:440px}
+  .case .tags{font-family:var(--mono);font-size:12px;color:var(--ink-3);text-align:right;white-space:nowrap;line-height:1.8}
+  .result{display:inline-flex;margin-top:14px;font-size:14px;padding:6px 12px;border-radius:999px;background:var(--paper-2);border:1px solid var(--line)}
+  .result b{color:var(--accent);font-weight:600;margin-right:6px}
+
+  /* case 1: Fieldnote phone */
+  .v1{background:radial-gradient(120% 90% at 20% 10%,#C9D7A8 0%,#7E9A5A 45%,#3E5530 100%)}
+  .phone{width:38%;aspect-ratio:9/18.5;background:#121410;border-radius:30px;padding:8px;box-shadow:0 30px 60px rgba(20,30,10,.35)}
+  .screen{width:100%;height:100%;border-radius:23px;background:#F6F4EC;padding:14% 10%;display:flex;flex-direction:column;gap:9%;overflow:hidden}
+  .ring{width:72%;aspect-ratio:1;margin:0 auto;border-radius:50%;background:conic-gradient(#5E8A3A 0 68%,#E3E0D3 68% 100%);display:grid;place-items:center}
+  .ring::after{content:"68%";width:74%;aspect-ratio:1;border-radius:50%;background:#F6F4EC;display:grid;place-items:center;font-family:var(--serif);font-size:clamp(16px,2.2vw,26px);color:#2C3A20}
+  .bars{display:flex;align-items:flex-end;gap:7%;height:22%}
+  .bars i{flex:1;background:#B7C99A;border-radius:4px 4px 2px 2px}
+  .bars i:nth-child(4){background:#5E8A3A}
+  .pill-row{display:flex;flex-direction:column;gap:6px}
+  .pill-row i{height:8px;border-radius:4px;background:#E3E0D3}
+  .pill-row i:first-child{width:80%;background:#CFCBBB}
+
+  /* case 2: Harbor dashboard */
+  .v2{background:linear-gradient(150deg,#BFD3E6 0%,#6E94BC 55%,#2F4E73 100%)}
+  .window{width:80%;aspect-ratio:16/10.5;background:#FBFAF7;border-radius:10px;box-shadow:0 30px 60px rgba(15,30,55,.35);display:grid;grid-template-columns:22% 1fr;overflow:hidden}
+  .win-side{background:#EEF2F6;padding:12% 12%;display:flex;flex-direction:column;gap:9px}
+  .win-side i{height:7px;border-radius:4px;background:#CBD5E0}
+  .win-side i:nth-child(2){background:#2F4E73;width:80%}
+  .win-main{padding:5%;display:flex;flex-direction:column;gap:6%}
+  .win-top{display:flex;justify-content:space-between}
+  .win-top i{height:9px;width:34%;border-radius:4px;background:#D5DBE2}
+  .win-top i:last-child{width:16%;background:#D2471F}
+  .cal{flex:1;display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(5,1fr);gap:4px}
+  .cal i{border-radius:3px;background:#EEF1F4}
+  .cal i.f1{background:#9FB9D3}
+  .cal i.f2{background:#2F4E73}
+  .cal i.f3{background:#F2C4B2}
+
+  /* case 3: Tandem chat */
+  .v3{background:radial-gradient(110% 100% at 80% 0%,#FFD7B8 0%,#F08A62 50%,#B44A2C 100%)}
+  .v3 .phone{background:#2A1610}
+  .chat{width:100%;height:100%;border-radius:23px;background:#FFF8F2;padding:16% 9% 10%;display:flex;flex-direction:column;justify-content:flex-end;gap:7px}
+  .bub{max-width:78%;padding:8px 10px;border-radius:12px;font-size:clamp(9px,1vw,12px);line-height:1.3}
+  .bub.l{background:#F1E3D8;color:#4A2E22;border-bottom-left-radius:4px}
+  .bub.r{background:#D2471F;color:#FFF6F0;align-self:flex-end;border-bottom-right-radius:4px}
+  .bub.hint{background:transparent;border:1px dashed #E2B9A3;color:#A0614A;font-family:var(--mono);font-size:clamp(8px,.85vw,10px)}
+  .compose{height:22px;border-radius:11px;background:#F1E3D8;margin-top:6px}
+
+  /* case 4: Kestrel design system */
+  .v4{background:radial-gradient(100% 100% at 50% 0%,#3A3833 0%,#1C1B18 70%)}
+  .ds{width:82%;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .tile{background:#2A2925;border:1px solid #3A3833;border-radius:10px;aspect-ratio:1.25;display:grid;place-items:center;padding:12%}
+  .t-btn{width:100%;height:28%;border-radius:999px;background:#E9B44C}
+  .t-btn.o{background:transparent;border:2px solid #E9B44C}
+  .t-tog{width:52%;height:30%;border-radius:999px;background:#5DA67A;position:relative}
+  .t-tog::after{content:"";position:absolute;right:8%;top:50%;transform:translateY(-50%);height:72%;aspect-ratio:1;border-radius:50%;background:#F4F1EA}
+  .t-in{width:100%;height:30%;border-radius:6px;border:1.5px solid #6B675E;position:relative}
+  .t-in::after{content:"";position:absolute;left:10%;top:50%;width:2px;height:50%;transform:translateY(-50%);background:#E9B44C}
+  .t-sw{display:flex;gap:6%;width:100%;justify-content:center}
+  .t-sw i{width:22%;aspect-ratio:1;border-radius:50%}
+  .t-sw i:nth-child(1){background:#E9B44C}.t-sw i:nth-child(2){background:#5DA67A}.t-sw i:nth-child(3){background:#D2471F}.t-sw i:nth-child(4){background:#7E9BC2}
+  .t-type{font-family:var(--serif);color:#F4F1EA;font-size:clamp(22px,3vw,40px);line-height:1}
+  .t-chk{width:34%;aspect-ratio:1;border-radius:6px;background:#E9B44C;position:relative}
+  .t-chk::after{content:"";position:absolute;left:34%;top:18%;width:24%;height:46%;border:solid #1C1B18;border-width:0 3px 3px 0;transform:rotate(45deg)}
+
+  /* SERVICES */
+  .services{background:var(--ink);color:var(--paper);border-top:0}
+  .services .eyebrow{color:#9C978B}
+  .services .sec-head p{color:#BDB8AC}
+  .svc{display:grid;grid-template-columns:80px 1.1fr 1.4fr 160px;gap:28px;padding:34px 0;border-top:1px solid #34322D;align-items:start}
+  .svc:last-child{border-bottom:1px solid #34322D}
+  .svc .num{font-family:var(--mono);font-size:13px;color:#8C877B;padding-top:10px}
+  .svc h3{font-family:var(--serif);font-size:clamp(30px,3vw,40px);line-height:1.05}
+  .svc p{color:#BDB8AC}
+  .svc ul{list-style:none;margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+  .svc li{font-size:13px;padding:4px 10px;border:1px solid #45423B;border-radius:999px;color:#D6D1C5}
+  .svc .price{text-align:right;font-size:14px;color:#8C877B;padding-top:8px}
+  .svc .price strong{display:block;color:var(--paper);font-weight:500;font-size:17px}
+
+  /* PROCESS */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--ink)}
+  .step{padding:28px 28px 0 0}
+  .step + .step{padding-left:28px;border-left:1px solid var(--line)}
+  .step .wk{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.06em;text-transform:uppercase}
+  .step h3{font-family:var(--serif);font-size:38px;margin:10px 0 12px;line-height:1}
+  .step p{color:var(--ink-2);font-size:16px}
+  .step .out{margin-top:20px;padding-top:14px;border-top:1px dashed var(--line);font-size:14px;color:var(--ink-3)}
+  .step .out b{color:var(--ink);font-weight:500}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(40px,6vw,96px);align-items:start}
+  .portrait{position:relative;aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;background:linear-gradient(170deg,#E8C9A8 0%,#C98F66 55%,#8A5638 100%)}
+  .portrait::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 40% at 80% 15%,rgba(255,240,220,.55),transparent 70%)}
+  .p-head{position:absolute;left:50%;top:22%;width:34%;aspect-ratio:.82;transform:translateX(-50%);border-radius:50% 50% 46% 46%;background:linear-gradient(160deg,#5A3A28,#2E1E15)}
+  .p-head::after{content:"";position:absolute;left:12%;right:12%;top:30%;bottom:-2%;border-radius:46% 46% 50% 50%;background:linear-gradient(170deg,#D9A27E,#B97C58)}
+  .p-body{position:absolute;left:50%;bottom:-8%;width:78%;height:44%;transform:translateX(-50%);border-radius:50% 50% 0 0/62% 62% 0 0;background:linear-gradient(175deg,#2D3B33,#18211C)}
+  .p-tag{position:absolute;left:16px;bottom:16px;right:16px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:#F4F1EA;letter-spacing:.04em}
+  .about-copy h2{margin-bottom:28px}
+  .about-copy p{color:var(--ink-2);margin-bottom:18px;max-width:600px}
+  .about-copy p.big{font-family:var(--serif);font-size:clamp(24px,2.4vw,30px);line-height:1.25;color:var(--ink)}
+  .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:36px;padding-top:28px;border-top:1px solid var(--line)}
+  .facts h4{font-family:var(--mono);font-size:12px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+  .facts ul{list-style:none;font-size:15px;color:var(--ink-2)}
+  .facts li{padding:5px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px}
+  .facts li span{color:var(--ink-3)}
+
+  /* TESTIMONIALS */
+  .quotes{display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:auto auto;gap:clamp(16px,2.4vw,28px)}
+  .q{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(28px,3.4vw,44px);display:flex;flex-direction:column;justify-content:space-between;gap:32px}
+  .q.lead{grid-row:span 2;background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+  .q blockquote{font-family:var(--serif);font-size:clamp(22px,2.1vw,28px);line-height:1.25}
+  .q.lead blockquote{font-size:clamp(30px,3.4vw,46px);line-height:1.1}
+  .q blockquote::before{content:"\201C";display:block;font-size:2.2em;line-height:.6;margin-bottom:10px;opacity:.5}
+  .who{display:flex;align-items:center;gap:14px;font-size:15px}
+  .who i{width:44px;height:44px;border-radius:50%;flex:none}
+  .who b{display:block;font-weight:500}
+  .who span{color:var(--ink-3);font-size:14px}
+  .q.lead .who span{color:#FFD9C8}
+  .av1{background:linear-gradient(135deg,#FFE3D3,#F3A57F)}
+  .av2{background:linear-gradient(135deg,#B7C99A,#5E8A3A)}
+  .av3{background:linear-gradient(135deg,#BFD3E6,#2F4E73)}
+
+  /* CONTACT */
+  .contact{text-align:center}
+  .contact h2{font-size:clamp(52px,9vw,128px);max-width:1000px;margin:18px auto 28px}
+  .contact .lede{color:var(--ink-2);max-width:560px;margin:0 auto 38px;font-size:19px}
+  .contact .hero-cta{justify-content:center}
+  .mail{display:inline-block;font-family:var(--serif);font-size:clamp(28px,4vw,48px);text-decoration:none;border-bottom:2px solid var(--accent);line-height:1.1;margin-bottom:40px;transition:color .2s}
+  .mail:hover{color:var(--accent)}
+  .terms{display:grid;grid-template-columns:repeat(3,1fr);max-width:900px;margin:72px auto 0;border-top:1px solid var(--line);text-align:left}
+  .terms div{padding:22px 22px 0 0}
+  .terms div + div{padding-left:22px;border-left:1px solid var(--line)}
+  .terms h4{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:400;margin-bottom:8px}
+  .terms p{font-size:15px;color:var(--ink-2)}
+
+  /* FOOTER */
+  footer{background:var(--ink);color:#BDB8AC;padding:64px 0 32px}
+  .foot-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px;padding-bottom:56px;border-bottom:1px solid #34322D}
+  .foot-top .logo{color:var(--paper);font-size:32px}
+  .foot-top p{margin-top:14px;font-size:15px;max-width:320px}
+  .foot-top h4{font-family:var(--mono);font-size:12px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:#8C877B;margin-bottom:14px}
+  .foot-top ul{list-style:none;font-size:15px;line-height:2}
+  .foot-top a{text-decoration:none;transition:color .2s}
+  .foot-top a:hover{color:var(--paper)}
+  .foot-big{font-family:var(--serif);font-size:clamp(64px,17vw,240px);line-height:.85;color:#2A2925;letter-spacing:-.02em;padding:40px 0 24px;white-space:nowrap;overflow:hidden}
+  .foot-bot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:#8C877B}
+
+  /* RESPONSIVE */
+  @media (max-width:960px){
+    .nav ul{display:none}
+    .hero-grid,.sec-head,.about-grid{grid-template-columns:1fr}
+    .sec-head p{justify-self:start}
+    .svc{grid-template-columns:1fr;gap:12px}
+    .svc .num{padding-top:0}
+    .svc .price{text-align:left}
+    .steps{grid-template-columns:repeat(2,1fr)}
+    .step,.step + .step{padding:28px 20px 28px 0;border-left:0}
+    .step:nth-child(even){padding-left:20px;border-left:1px solid var(--line)}
+    .step:nth-child(n+3){border-top:1px solid var(--line)}
+    .quotes{grid-template-columns:1fr}
+    .q.lead{grid-row:auto}
+    .foot-top{grid-template-columns:1fr 1fr}
+    .foot-top > div:first-child{grid-column:1/-1}
+    .portrait{max-width:460px}
+  }
+  @media (max-width:640px){
+    body{font-size:16px}
+    .work-grid{grid-template-columns:1fr}
+    .case-meta{flex-direction:column}
+    .case .tags{text-align:left}
+    .steps{grid-template-columns:1fr}
+    .step,.step + .step,.step:nth-child(even){padding:24px 0;border-left:0}
+    .step + .step{border-top:1px solid var(--line)}
+    .stats{grid-template-columns:repeat(3,1fr);gap:12px}
+    .facts{grid-template-columns:1fr}
+    .terms{grid-template-columns:1fr}
+    .terms div,.terms div + div{padding:18px 0;border-left:0}
+    .terms div + div{border-top:1px solid var(--line)}
+    .nav .btn{padding:9px 14px;font-size:13px}
+    .btn{padding:13px 18px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important;scroll-behavior:auto !important}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <nav class="wrap" aria-label="Main">
+    <a class="logo" href="#top"><i></i>Saskia Wren</a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#kind-words">Kind words</a></li>
+    </ul>
+    <a class="btn btn-primary" href="#contact">Start a project</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- 1. HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <span class="status"><i></i>Booking two projects for February 2027</span>
+    <h1>Product design for teams who would rather <em>ship</em> than argue about it.</h1>
+    <div class="hero-grid">
+      <div>
+        <p class="hero-lede">I'm Saskia Wren, an independent product designer in Copenhagen. For eleven years I've helped startups and scale-ups turn tangled workflows into calm, clear software that people actually finish using.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#work">See selected work <span class="arr">&rarr;</span></a>
+          <a class="btn btn-ghost" href="#contact">Book an intro call</a>
+        </div>
+      </div>
+      <div class="stats">
+        <div><strong>11</strong><span>years designing products</span></div>
+        <div><strong>43</strong><span>releases shipped with clients</span></div>
+        <div><strong>9 of 10</strong><span>clients come back for more</span></div>
+      </div>
+    </div>
+    <div class="clients">
+      <span class="eyebrow">Recent clients</span>
+      <span class="wm a">Fieldnote</span>
+      <span class="wm b">Harbor</span>
+      <span class="wm c">tandem</span>
+      <span class="wm e">Kestrel</span>
+      <span class="wm d">Quire</span>
+      <span class="wm c">Møller&nbsp;Health</span>
+    </div>
+  </div>
+</section>
+
+<!-- 2. WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow"><b>01</b> / Selected work</span>
+        <h2>Four projects, <em>four</em> very different problems.</h2>
+      </div>
+      <p>Each one started with a team that knew something was wrong but couldn't agree on what. Here's what we found, what we made, and what changed afterwards.</p>
+    </div>
+
+    <div class="work-grid">
+      <a class="case" href="#contact" aria-label="Fieldnote case study: ask about this project">
+        <div class="case-vis v1" aria-hidden="true">
+          <div class="phone"><div class="screen">
+            <div class="ring"></div>
+            <div class="bars"><i style="height:40%"></i><i style="height:62%"></i><i style="height:48%"></i><i style="height:88%"></i><i style="height:70%"></i></div>
+            <div class="pill-row"><i></i><i></i><i style="width:60%"></i></div>
+          </div></div>
+        </div>
+        <div class="case-meta">
+          <div>
+            <h3>Fieldnote</h3>
+            <p>Soil sensors for small farms. I rebuilt the setup flow so a grower can pair a probe in a muddy field with one gloved hand.</p>
+            <span class="result"><b>40 → 9 min</b> average setup time</span>
+          </div>
+          <div class="tags">2026<br>Mobile app<br>Lead designer</div>
+        </div>
+      </a>
+
+      <a class="case" href="#contact" aria-label="Harbor case study: ask about this project">
+        <div class="case-vis v2" aria-hidden="true">
+          <div class="window">
+            <div class="win-side"><i></i><i></i><i></i><i></i><i style="width:60%"></i></div>
+            <div class="win-main">
+              <div class="win-top"><i></i><i></i></div>
+              <div class="cal">
+                <i class="f1"></i><i></i><i class="f2"></i><i class="f1"></i><i></i>
+                <i></i><i class="f3"></i><i class="f1"></i><i></i><i class="f2"></i>
+                <i class="f2"></i><i class="f1"></i><i></i><i class="f1"></i><i></i>
+                <i></i><i></i><i class="f1"></i><i class="f3"></i><i class="f1"></i>
+                <i class="f1"></i><i class="f2"></i><i></i><i></i><i class="f1"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="case-meta">
+          <div>
+            <h3>Harbor</h3>
+            <p>Scheduling for physiotherapy clinics. A new week view and gentle reminder flow that made rebooking easier than not showing up.</p>
+            <span class="result"><b>−31%</b> missed appointments</span>
+          </div>
+          <div class="tags">2025<br>Web dashboard<br>Sole designer</div>
+        </div>
+      </a>
+
+      <a class="case" href="#contact" aria-label="Tandem case study: ask about this project">
+        <div class="case-vis v3" aria-hidden="true">
+          <div class="phone"><div class="chat">
+            <div class="bub l">Hej! Hvordan går det?</div>
+            <div class="bub hint">tap a word to hear it</div>
+            <div class="bub r">Det går godt, tak! Og dig?</div>
+            <div class="bub l">Super. Same time Thursday?</div>
+            <div class="compose"></div>
+          </div></div>
+        </div>
+        <div class="case-meta">
+          <div>
+            <h3>Tandem</h3>
+            <p>A language-exchange app. We swapped an empty chat box for guided first conversations, so strangers stopped freezing on hello.</p>
+            <span class="result"><b>12% → 21%</b> day-30 retention</span>
+          </div>
+          <div class="tags">2024<br>iOS &amp; Android<br>Design partner</div>
+        </div>
+      </a>
+
+      <a class="case" href="#contact" aria-label="Kestrel case study: ask about this project">
+        <div class="case-vis v4" aria-hidden="true">
+          <div class="ds">
+            <div class="tile"><div class="t-btn"></div></div>
+            <div class="tile"><div class="t-tog"></div></div>
+            <div class="tile"><div class="t-type">Aa</div></div>
+            <div class="tile"><div class="t-in"></div></div>
+            <div class="tile"><div class="t-sw"><i></i><i></i><i></i><i></i></div></div>
+            <div class="tile"><div class="t-chk"></div></div>
+          </div>
+        </div>
+        <div class="case-meta">
+          <div>
+            <h3>Kestrel</h3>
+            <p>Freight tracking for mid-size logistics firms. One design system to replace three products' worth of mismatched screens.</p>
+            <span class="result"><b>140</b> components, adopted by 3 teams</span>
+          </div>
+          <div class="tags">2023 – 24<br>Design system<br>Systems lead</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 3. SERVICES -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow"><b>02</b> / Services</span>
+        <h2>Ways we can <em>work</em> together.</h2>
+      </div>
+      <p>Fixed scope, fixed price, and a clear finish line. If your project doesn't fit one of these, tell me what you need and I'll shape something that does.</p>
+    </div>
+
+    <div class="svc">
+      <span class="num">A</span>
+      <h3>Product sprint</h3>
+      <div>
+        <p>Two weeks to turn a fuzzy idea or a stuck feature into a tested prototype and a plan your engineers can start on Monday.</p>
+        <ul><li>Stakeholder interviews</li><li>Clickable prototype</li><li>5 user tests</li></ul>
+      </div>
+      <div class="price"><strong>€8,500</strong>2 weeks</div>
+    </div>
+    <div class="svc">
+      <span class="num">B</span>
+      <h3>End-to-end product design</h3>
+      <div>
+        <p>I join your team as the designer from research to release, working inside your rituals, your tools and your sprint cadence.</p>
+        <ul><li>Research</li><li>UX &amp; UI</li><li>Build support</li><li>Launch QA</li></ul>
+      </div>
+      <div class="price"><strong>from €18,000</strong>6 – 12 weeks</div>
+    </div>
+    <div class="svc">
+      <span class="num">C</span>
+      <h3>Design systems</h3>
+      <div>
+        <p>A component library and documentation that designers and developers both trust, built from what you already have instead of from scratch.</p>
+        <ul><li>Audit</li><li>Tokens</li><li>Figma library</li><li>Usage docs</li></ul>
+      </div>
+      <div class="price"><strong>from €22,000</strong>8 – 14 weeks</div>
+    </div>
+    <div class="svc">
+      <span class="num">D</span>
+      <h3>UX audit</h3>
+      <div>
+        <p>A focused review of your product's most important flow, with a ranked list of fixes and annotated screens your team can act on right away.</p>
+        <ul><li>Heuristic review</li><li>Analytics read</li><li>Fix roadmap</li></ul>
+      </div>
+      <div class="price"><strong>€3,200</strong>5 days</div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. PROCESS -->
+<section id="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow"><b>03</b> / Process</span>
+        <h2>No black box. <em>No</em> big reveal.</h2>
+      </div>
+      <p>You see the work every week, while it's still cheap to change. Most projects follow this rhythm, stretched or squeezed to fit.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="wk">Week 1</span>
+        <h3>Listen</h3>
+        <p>I talk to your team, your customers and your data until I can explain the problem better than the brief does.</p>
+        <div class="out"><b>You get:</b> a one-page problem statement</div>
+      </div>
+      <div class="step">
+        <span class="wk">Week 2</span>
+        <h3>Frame</h3>
+        <p>We agree on what success looks like and which ideas are worth testing. Then we cut the rest, kindly but firmly.</p>
+        <div class="out"><b>You get:</b> success metrics and flow maps</div>
+      </div>
+      <div class="step">
+        <span class="wk">Weeks 3 – 8</span>
+        <h3>Make</h3>
+        <p>Prototypes, real users, revisions. Engineers review early so nothing I hand over is a surprise or a fantasy.</p>
+        <div class="out"><b>You get:</b> tested, dev-ready designs</div>
+      </div>
+      <div class="step">
+        <span class="wk">Launch +</span>
+        <h3>Ship</h3>
+        <p>I stay through build and release, answering questions and checking the details that tend to slip in the last week.</p>
+        <div class="out"><b>You get:</b> a launch review at 30 days</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. ABOUT -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="portrait" role="img" aria-label="Illustrated portrait of Saskia Wren">
+      <div class="p-head"></div>
+      <div class="p-body"></div>
+      <div class="p-tag"><span>Saskia Wren</span><span>Copenhagen, DK</span></div>
+    </div>
+    <div class="about-copy">
+      <span class="eyebrow"><b>04</b> / About</span>
+      <h2>Hi, I'm <em>Saskia.</em></h2>
+      <p class="big">I like the unglamorous parts of software: the settings page, the error message, the moment someone comes back after three weeks away and needs to remember where they were.</p>
+      <p>I studied interaction design in Malmö, then spent six years in-house, most recently as lead designer at Møller Health, where I helped rebuild a patient portal used by 1.2 million people. In 2021 I went independent so I could work across more problems with fewer meetings.</p>
+      <p>Today I take on four or five projects a year, usually with teams of five to fifty. I write as much as I draw, I'm happiest in a shared Figma file with an engineer, and I'll tell you early if I think the thing we're building shouldn't be built.</p>
+      <div class="facts">
+        <div>
+          <h4>Background</h4>
+          <ul>
+            <li>Independent <span>2021 – now</span></li>
+            <li>Møller Health <span>2018 – 21</span></li>
+            <li>Quire <span>2015 – 18</span></li>
+            <li>MA, Malmö University <span>2015</span></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Good to know</h4>
+          <ul>
+            <li>Languages <span>English, Danish, Dutch</span></li>
+            <li>Time zone <span>CET, flexible</span></li>
+            <li>Works with <span>Figma, Linear, Notion</span></li>
+            <li>Speaks at <span>Design Matters, UX Copenhagen</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. TESTIMONIALS -->
+<section id="kind-words">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow"><b>05</b> / Kind words</span>
+        <h2>From the people who <em>hired</em> me.</h2>
+      </div>
+      <p>I asked a few recent clients to say what working together was actually like. I didn't edit their answers, though I was tempted to.</p>
+    </div>
+    <div class="quotes">
+      <figure class="q lead">
+        <blockquote>Saskia found the real problem in our onboarding in her first week. Our own team had been circling it for a year. Setup support tickets dropped by more than half the month we launched.</blockquote>
+        <figcaption class="who"><i class="av1"></i><div><b>Anouk Bervoets</b><span>Co-founder &amp; CEO, Fieldnote</span></div></figcaption>
+      </figure>
+      <figure class="q">
+        <blockquote>The first designer our engineers asked to keep. Her files are so clear we stopped scheduling handoff meetings.</blockquote>
+        <figcaption class="who"><i class="av2"></i><div><b>Rasmus Holt</b><span>Head of Engineering, Kestrel</span></div></figcaption>
+      </figure>
+      <figure class="q">
+        <blockquote>She told us not to build the feature we hired her for, then showed us what our clinics needed instead. Best money we spent all year.</blockquote>
+        <figcaption class="who"><i class="av3"></i><div><b>Priya Raman</b><span>Product Director, Harbor</span></div></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 7. CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <span class="eyebrow"><b>06</b> / Contact</span>
+    <h2>Got something <em>worth</em> fixing?</h2>
+    <p class="lede">Tell me what you're building, where it hurts and when you'd like to start. I reply to every message within two working days.</p>
+    <a class="mail" href="mailto:hello@saskiawren.design">hello@saskiawren.design</a>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="mailto:hello@saskiawren.design?subject=New%20project">Email me about a project <span class="arr">&rarr;</span></a>
+      <a class="btn btn-ghost" href="mailto:hello@saskiawren.design?subject=Intro%20call">Request a 20-minute call</a>
+    </div>
+    <div class="terms">
+      <div><h4>Next opening</h4><p>February 2027. Sprints can sometimes start sooner.</p></div>
+      <div><h4>Budgets</h4><p>Most projects land between €8,500 and €40,000.</p></div>
+      <div><h4>Where</h4><p>Remote across Europe, on-site in Copenhagen or Malmö.</p></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- 8. FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a class="logo" href="#top"><i></i>Saskia Wren</a>
+        <p>Independent product designer helping teams make software that feels obvious in hindsight.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul>
+          <li><a href="#contact">LinkedIn</a></li>
+          <li><a href="#contact">Read.cv</a></li>
+          <li><a href="#contact">Dribbble</a></li>
+          <li><a href="#contact">Newsletter</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <ul>
+          <li>Jægersborggade 14</li>
+          <li>2200 Copenhagen N</li>
+          <li><a href="mailto:hello@saskiawren.design">hello@saskiawren.design</a></li>
+          <li>CVR 41 88 20 57</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-big" aria-hidden="true">Saskia Wren</div>
+    <div class="foot-bot">
+      <span>&copy; 2026 Saskia Wren Design ApS. All rights reserved.</span>
+      <span>Designed and built by hand in Copenhagen.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

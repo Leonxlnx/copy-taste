@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aldgrave Studio | Architects, Edinburgh</title>
+<meta name="description" content="Aldgrave Studio is an Edinburgh architecture practice designing homes, civic buildings and restorations in timber, stone and lime across Scotland and the north of England.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --stone:#ECE7DE;
+  --stone-2:#E2DBCF;
+  --paper:#F6F3EE;
+  --ink:#1D1C1A;
+  --ink-2:#4A4741;
+  --ink-3:#7A756C;
+  --line:#CFC7B9;
+  --oxide:#9A4A2C;
+  --oxide-dark:#7C3A21;
+  --moss:#5C6450;
+  --night:#23262A;
+  --serif:"Fraunces", Georgia, "Times New Roman", serif;
+  --sans:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --wrap:1240px;
+  --gutter:clamp(16px, 4vw, 48px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-0.015em;margin:0;line-height:1.08}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter)}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--ink-3);display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:28px;height:1px;background:currentColor}
+section{padding:clamp(80px,11vw,140px) 0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--oxide);outline-offset:3px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 24px;font:500 15px/1 var(--sans);text-decoration:none;border:1px solid var(--ink);transition:background .2s,color .2s,border-color .2s}
+.btn-solid{background:var(--ink);color:var(--paper)}
+.btn-solid:hover{background:var(--oxide);border-color:var(--oxide)}
+.btn-ghost{background:transparent;color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--paper)}
+.btn .arr{transition:transform .2s}
+.btn:hover .arr{transform:translateX(3px)}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:20;background:rgba(236,231,222,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:24px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;font-family:var(--serif);font-size:21px;letter-spacing:-.01em}
+.logo-mark{width:22px;height:22px;background:linear-gradient(135deg,var(--ink) 50%,transparent 50%);border:1.5px solid var(--ink)}
+.nav ul{list-style:none;display:flex;gap:32px;margin:0;padding:0}
+.nav ul a{text-decoration:none;font-size:14px;color:var(--ink-2)}
+.nav ul a:hover{color:var(--ink)}
+.nav .btn{padding:11px 18px;font-size:14px}
+@media (max-width:860px){.nav ul{display:none}}
+
+/* Hero */
+.hero{padding:clamp(48px,7vw,88px) 0 clamp(80px,10vw,120px)}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(32px,5vw,72px);align-items:end}
+.hero h1{font-size:clamp(44px,7vw,96px);font-weight:300;margin:28px 0 28px}
+.hero h1 em{font-style:italic;color:var(--oxide)}
+.hero .lede{font-size:clamp(17px,1.5vw,19px);color:var(--ink-2);max-width:31em}
+.hero .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:40px}
+.hero-meta{display:flex;gap:32px;margin-top:56px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3);flex-wrap:wrap}
+.hero-meta strong{display:block;color:var(--ink);font-weight:500;font-size:14px}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
+
+/* Painted plates (CSS stand-ins for photography) */
+.plate{position:relative;overflow:hidden;background:var(--stone-2)}
+.plate > *{position:absolute}
+.plate figcaption{position:absolute;left:16px;bottom:14px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.85);z-index:5}
+
+/* Hero plate: house on a slope at dusk */
+.p-hero{aspect-ratio:4/5;background:linear-gradient(180deg,#B7AFA6 0%,#CDB9A2 46%,#D9B48E 62%,#C99A76 70%)}
+.p-hero .sun{width:22%;aspect-ratio:1;border-radius:50%;left:62%;top:44%;background:radial-gradient(circle,#F3DCB8 0%,rgba(243,220,184,0) 70%)}
+.p-hero .far{inset:auto 0 30% 0;height:22%;background:#8F8579;clip-path:polygon(0 60%,18% 34%,34% 52%,52% 18%,70% 46%,86% 30%,100% 48%,100% 100%,0 100%)}
+.p-hero .near{inset:auto 0 0 0;height:40%;background:linear-gradient(180deg,#5A5E4E,#3C3F35);clip-path:polygon(0 30%,40% 14%,100% 0,100% 100%,0 100%)}
+.p-hero .house{left:14%;bottom:30%;width:68%;height:20%;background:linear-gradient(90deg,#2C2A27 0 62%,#3A3733 62%);clip-path:polygon(0 30%,100% 0,100% 100%,0 100%)}
+.p-hero .glow{left:22%;bottom:31.5%;width:30%;height:9%;background:linear-gradient(180deg,#F2C98E,#E0A262);box-shadow:0 0 40px 6px rgba(242,190,120,.45)}
+.p-hero .mullions{left:22%;bottom:31.5%;width:30%;height:9%;background:repeating-linear-gradient(90deg,transparent 0 18%,#2C2A27 18% 20%)}
+.p-hero .chimney{left:66%;bottom:44%;width:4%;height:8%;background:#2C2A27}
+.p-hero .wall{left:0;right:0;bottom:22%;height:2px;background:rgba(240,230,215,.35)}
+
+/* Studio */
+.studio{background:var(--paper)}
+.studio-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(40px,6vw,96px)}
+.studio h2{font-size:clamp(34px,4.4vw,58px);margin-top:24px}
+.studio .body p{font-size:18px;color:var(--ink-2);margin-bottom:20px;max-width:36em}
+.studio .body p:first-child{font-family:var(--serif);font-size:clamp(22px,2.2vw,28px);line-height:1.4;color:var(--ink)}
+.figures{display:grid;grid-template-columns:repeat(4,1fr);margin-top:clamp(56px,7vw,88px);border-top:1px solid var(--line)}
+.figures div{padding:28px 24px 0 0}
+.figures div + div{padding-left:24px;border-left:1px solid var(--line)}
+.figures b{display:block;font-family:var(--serif);font-weight:300;font-size:clamp(40px,4.6vw,60px);line-height:1;letter-spacing:-.02em}
+.figures span{display:block;margin-top:10px;font-size:14px;color:var(--ink-3)}
+@media (max-width:900px){.studio-grid{grid-template-columns:1fr}.figures{grid-template-columns:1fr 1fr}.figures div:nth-child(3){padding-left:0;border-left:0}.figures div{padding-bottom:28px}}
+
+/* Work */
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:32px;margin-bottom:clamp(40px,5vw,64px);flex-wrap:wrap}
+.section-head h2{font-size:clamp(34px,4.4vw,58px);margin-top:20px;max-width:14em}
+.section-head p{max-width:26em;color:var(--ink-2)}
+.work-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,2.4vw,32px) clamp(16px,2vw,28px)}
+.project{grid-column:span 6;text-decoration:none}
+.project.wide{grid-column:span 7}
+.project.narrow{grid-column:span 5}
+.project .plate{aspect-ratio:4/3;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.project:hover .plate{transform:scale(.985)}
+.project .info{display:flex;justify-content:space-between;gap:16px;padding-top:18px;border-top:1px solid var(--ink);margin-top:18px}
+.project h3{font-size:24px}
+.project .where{font-size:14px;color:var(--ink-3);margin-top:4px}
+.project .tag{font-size:13px;color:var(--ink-2);white-space:nowrap;text-align:right}
+.project .note{margin-top:12px;color:var(--ink-2);font-size:15px;max-width:34em}
+@media (max-width:800px){.project,.project.wide,.project.narrow{grid-column:1/-1}}
+
+/* Saltings House: low coastal house, overcast */
+.p-salt{background:linear-gradient(180deg,#C9CCCB 0%,#DADAD5 55%,#B9B4A5 56%,#A39C88 100%)}
+.p-salt .sea{left:0;right:0;top:50%;height:6%;background:linear-gradient(180deg,#9FA6A6,#B8BCB8)}
+.p-salt .dune{left:0;right:0;bottom:0;height:40%;background:linear-gradient(180deg,#B3A98F,#8E8670);clip-path:polygon(0 18%,30% 8%,60% 16%,100% 4%,100% 100%,0 100%)}
+.p-salt .body{left:16%;width:58%;bottom:34%;height:20%;background:linear-gradient(90deg,#6D6458,#5A5248)}
+.p-salt .roof{left:14%;width:62%;bottom:54%;height:12%;background:#3E3B37;clip-path:polygon(0 100%,50% 0,100% 100%)}
+.p-salt .slats{left:16%;width:58%;bottom:34%;height:20%;background:repeating-linear-gradient(90deg,transparent 0 6px,rgba(0,0,0,.14) 6px 7px)}
+.p-salt .win{left:44%;width:18%;bottom:36%;height:12%;background:linear-gradient(180deg,#2B2F31,#454A4C)}
+.p-salt .grass{left:0;right:0;bottom:30%;height:6%;background:repeating-linear-gradient(100deg,transparent 0 3px,rgba(90,96,74,.5) 3px 4px)}
+
+/* Kirkgate Library: stone civic facade, arcade */
+.p-kirk{background:linear-gradient(180deg,#D6D2C8,#C7C0B1)}
+.p-kirk .facade{left:10%;right:10%;top:16%;bottom:0;background:linear-gradient(180deg,#B9A88E,#A8977D)}
+.p-kirk .coursing{left:10%;right:10%;top:16%;bottom:0;background:repeating-linear-gradient(180deg,transparent 0 22px,rgba(70,55,40,.18) 22px 23px)}
+.p-kirk .arcade{left:16%;right:16%;bottom:0;height:42%;background:repeating-linear-gradient(90deg,#2E2B27 0 14%,transparent 14% 20%)}
+.p-kirk .upper{left:16%;right:16%;top:28%;height:16%;background:repeating-linear-gradient(90deg,#4C4A44 0 6%,transparent 6% 20%)}
+.p-kirk .lamp{left:16%;right:16%;bottom:0;height:42%;background:linear-gradient(180deg,rgba(240,196,130,.0) 30%,rgba(240,196,130,.35));mix-blend-mode:screen}
+.p-kirk .parapet{left:8%;right:8%;top:14%;height:3%;background:#8C7C65}
+
+/* Braid Hill Workshop: timber sawtooth roofs */
+.p-braid{background:linear-gradient(180deg,#DCD3C3,#E7DFD1 60%,#9EA08C 60%,#7F8270)}
+.p-braid .saw{left:6%;right:6%;top:36%;height:16%;background:#3A3631;clip-path:polygon(0 100%,0 40%,16% 0,16% 40%,33% 0,33% 40%,50% 0,50% 40%,67% 0,67% 40%,84% 0,84% 40%,100% 0,100% 100%)}
+.p-braid .hall{left:6%;right:6%;top:52%;height:20%;background:linear-gradient(90deg,#B98A5C,#A87A4F)}
+.p-braid .boards{left:6%;right:6%;top:52%;height:20%;background:repeating-linear-gradient(90deg,transparent 0 5px,rgba(60,40,20,.18) 5px 6px)}
+.p-braid .door{left:40%;width:20%;top:56%;height:16%;background:linear-gradient(180deg,#2B2824,#3A3530)}
+.p-braid .tree{left:80%;top:30%;width:14%;height:42%;background:radial-gradient(ellipse at 50% 40%,#636B52 0 55%,transparent 56%)}
+
+/* Tarbet Boathouse: dark gable over water at dusk */
+.p-tarb{background:linear-gradient(180deg,#3F4650 0%,#6D6E72 42%,#A88E7A 58%,#2D3238 58.5%,#20252B 100%)}
+.p-tarb .hills{left:0;right:0;top:40%;height:18%;background:#2F343A;clip-path:polygon(0 70%,20% 30%,38% 55%,60% 10%,80% 45%,100% 25%,100% 100%,0 100%)}
+.p-tarb .gable{left:34%;width:30%;top:34%;height:25%;background:#15181B;clip-path:polygon(0 38%,50% 0,100% 38%,100% 100%,0 100%)}
+.p-tarb .open{left:42%;width:14%;top:46%;height:13%;background:linear-gradient(180deg,#E9B676,#C5814A);box-shadow:0 0 30px rgba(233,182,118,.5)}
+.p-tarb .reflect{left:42%;width:14%;top:59%;height:22%;background:repeating-linear-gradient(180deg,rgba(233,182,118,.55) 0 3px,transparent 3px 8px);opacity:.7}
+.p-tarb .jetty{left:20%;width:44%;top:58.5%;height:1.5%;background:#111}
+
+/* Practice */
+.practice{background:var(--night);color:#EAE5DC}
+.practice .eyebrow{color:#A9A398}
+.practice .section-head p{color:#BDB7AC}
+.services{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(234,229,220,.22)}
+.service{padding:32px 28px 8px 0}
+.service + .service{padding-left:28px;border-left:1px solid rgba(234,229,220,.22)}
+.service .num{font-family:var(--serif);font-size:15px;color:#C9805F}
+.service h3{font-size:26px;margin:18px 0 14px}
+.service p{font-size:15px;color:#BDB7AC}
+.service ul{list-style:none;padding:0;margin:22px 0 0;font-size:14px;color:#D9D3C8}
+.service li{padding:9px 0;border-top:1px solid rgba(234,229,220,.12)}
+@media (max-width:1000px){.services{grid-template-columns:1fr 1fr}.service:nth-child(3){padding-left:0;border-left:0}.service{padding-bottom:40px}}
+@media (max-width:600px){.services{grid-template-columns:1fr}.service + .service{padding-left:0;border-left:0;border-top:1px solid rgba(234,229,220,.22)}}
+
+/* Process */
+.process-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:clamp(40px,6vw,96px);align-items:start}
+.process h2{font-size:clamp(34px,4.4vw,58px);margin:20px 0 24px}
+.process .intro p{color:var(--ink-2);max-width:26em}
+.process .plate{aspect-ratio:3/2;margin-top:40px}
+.steps{list-style:none;margin:0;padding:0;counter-reset:step}
+.steps li{display:grid;grid-template-columns:72px 1fr auto;gap:20px;padding:30px 0;border-top:1px solid var(--line)}
+.steps li:last-child{border-bottom:1px solid var(--line)}
+.steps .n{font-family:var(--serif);font-size:40px;font-weight:300;line-height:1;color:var(--oxide)}
+.steps h3{font-size:24px;margin-bottom:8px}
+.steps p{color:var(--ink-2);font-size:15px;max-width:34em}
+.steps .dur{font-size:13px;color:var(--ink-3);white-space:nowrap;padding-top:6px}
+@media (max-width:900px){.process-grid{grid-template-columns:1fr}}
+@media (max-width:560px){.steps li{grid-template-columns:48px 1fr}.steps .dur{grid-column:2}.steps .n{font-size:30px}}
+
+/* Process plate: drawing desk, plan on paper */
+.p-desk{background:linear-gradient(160deg,#8C7257,#6F5A44)}
+.p-desk .sheet{left:12%;top:12%;width:62%;height:76%;background:#F1ECE2;transform:rotate(-4deg);box-shadow:0 18px 30px rgba(0,0,0,.25)}
+.p-desk .plan{left:20%;top:22%;width:46%;height:54%;transform:rotate(-4deg);border:3px solid #3A3631;background:
+  linear-gradient(#3A3631,#3A3631) 40% 0/2px 60% no-repeat,
+  linear-gradient(#3A3631,#3A3631) 0 60%/70% 2px no-repeat,
+  linear-gradient(#3A3631,#3A3631) 70% 100%/2px 40% no-repeat,
+  repeating-linear-gradient(0deg,transparent 0 11px,rgba(58,54,49,.08) 11px 12px)}
+.p-desk .model{right:8%;top:40%;width:22%;height:30%;background:linear-gradient(90deg,#E6DCC8 0 55%,#CDBFA6 55%);clip-path:polygon(0 30%,55% 0,100% 20%,100% 100%,0 100%);box-shadow:0 10px 18px rgba(0,0,0,.3)}
+.p-desk .pencil{left:56%;top:74%;width:26%;height:2.4%;background:linear-gradient(90deg,#2B2824 0 6%,#E3B15A 6% 92%,#C9A07A 92%);transform:rotate(-24deg)}
+
+/* Voices */
+.voices{background:var(--paper)}
+.quote-lead{display:grid;grid-template-columns:1fr;gap:28px;margin-bottom:clamp(56px,7vw,88px)}
+.quote-lead blockquote{margin:0;font-family:var(--serif);font-weight:300;font-size:clamp(28px,3.6vw,48px);line-height:1.22;letter-spacing:-.015em;max-width:24em}
+.quote-lead blockquote::before{content:"\201C";color:var(--oxide)}
+.quote-lead blockquote::after{content:"\201D";color:var(--oxide)}
+.cite{font-size:14px;color:var(--ink-3)}
+.cite strong{color:var(--ink);font-weight:500}
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,40px)}
+.quotes figure{margin:0;padding-top:24px;border-top:1px solid var(--ink)}
+.quotes blockquote{margin:0 0 20px;font-size:17px;color:var(--ink-2)}
+@media (max-width:900px){.quotes{grid-template-columns:1fr}}
+
+/* Contact */
+.contact{background:var(--oxide);color:#F6EFE7}
+.contact-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(40px,6vw,96px);align-items:end}
+.contact .eyebrow{color:#EBCFBF}
+.contact h2{font-size:clamp(40px,5.8vw,80px);font-weight:300;margin:24px 0 28px}
+.contact .lede{font-size:18px;color:#F2DED2;max-width:30em}
+.contact .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:40px}
+.contact .btn-solid{background:#F6EFE7;color:var(--oxide-dark);border-color:#F6EFE7}
+.contact .btn-solid:hover{background:var(--ink);color:#F6EFE7;border-color:var(--ink)}
+.contact .btn-ghost{border-color:#F6EFE7;color:#F6EFE7}
+.contact .btn-ghost:hover{background:#F6EFE7;color:var(--oxide-dark)}
+.details{display:grid;gap:0;border-top:1px solid rgba(246,239,231,.35)}
+.details div{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid rgba(246,239,231,.35);font-size:15px}
+.details dt{color:#EBCFBF;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding-top:2px}
+.details dd{margin:0}
+.details a{text-decoration:none;border-bottom:1px solid rgba(246,239,231,.5)}
+.details a:hover{border-color:#F6EFE7}
+@media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
+@media (max-width:420px){.details div{grid-template-columns:1fr;gap:4px}}
+
+/* Footer */
+footer{background:var(--ink);color:#BDB7AC;padding:clamp(64px,8vw,96px) 0 32px}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
+footer .logo{color:#F2EDE4}
+footer .logo-mark{background:linear-gradient(135deg,#F2EDE4 50%,transparent 50%);border-color:#F2EDE4}
+footer .tagline{margin-top:20px;max-width:22em;font-size:15px}
+footer h4{font:600 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#F2EDE4;margin:6px 0 20px}
+footer ul{list-style:none;margin:0;padding:0;font-size:15px}
+footer li{margin-bottom:10px}
+footer a{text-decoration:none}
+footer a:hover{color:#F2EDE4}
+.foot-base{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:72px;padding-top:24px;border-top:1px solid #3A3834;font-size:13px;color:#8C877E}
+@media (max-width:860px){.foot-grid{grid-template-columns:1fr 1fr}.foot-grid > div:first-child{grid-column:1/-1}}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="Aldgrave Studio home"><span class="logo-mark" aria-hidden="true"></span>Aldgrave</a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#studio">Studio</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#practice">Practice</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#voices">Clients</a></li>
+      </ul>
+    </nav>
+    <a href="#contact" class="btn btn-solid">Start a project</a>
+  </div>
+</header>
+
+<main>
+
+<!-- 1. Hero -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Architects &middot; Edinburgh &middot; Since 2011</p>
+      <h1>Buildings that settle into <em>their ground.</em></h1>
+      <p class="lede">Aldgrave Studio designs homes, libraries, workshops and restorations across Scotland and the north of England. We build with timber, stone and lime, and we start every project on the site, not at the desk.</p>
+      <div class="actions">
+        <a href="#work" class="btn btn-solid">See selected work <span class="arr" aria-hidden="true">&rarr;</span></a>
+        <a href="#contact" class="btn btn-ghost">Book a site visit</a>
+      </div>
+      <div class="hero-meta">
+        <div><strong>14 people</strong>Architects, a landscape designer and a conservation specialist</div>
+        <div><strong>RIAS Chartered Practice</strong>Registered with the ARB</div>
+      </div>
+    </div>
+    <figure class="plate p-hero" style="margin:0" role="img" aria-label="Illustration of a low timber house with a lit window, set into a hillside at dusk">
+      <span class="sun"></span><span class="far"></span><span class="near"></span>
+      <span class="house"></span><span class="chimney"></span><span class="glow"></span><span class="mullions"></span><span class="wall"></span>
+      <figcaption>Corrie Field House, Perthshire, 2025</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 2. Studio -->
+<section class="studio" id="studio">
+  <div class="wrap">
+    <div class="studio-grid">
+      <div>
+        <p class="eyebrow">The studio</p>
+        <h2>A small practice that stays with a building until it is lived in.</h2>
+      </div>
+      <div class="body">
+        <p>Isla Aldgrave and Tomas Reyne founded the studio in a former cooperage in Leith with one conviction: a good building begins with a long look at the place it will stand.</p>
+        <p>Fifteen years on, we are still a single team in a single room. Every project is led by a partner from first sketch to final snag, and the people who draw your building are the people who stand on site with your contractor.</p>
+        <p>We favour materials that weather well and can be repaired by local trades. We design for low running energy, model daylight before we fix a window, and treat a tight budget as a brief, not an obstacle.</p>
+      </div>
+    </div>
+    <div class="figures">
+      <div><b>68</b><span>Buildings completed</span></div>
+      <div><b>11</b><span>Regional design awards</span></div>
+      <div><b>40%</b><span>Of our work is reuse of existing buildings</span></div>
+      <div><b>1</b><span>Partner leading every project</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Work -->
+<section class="work" id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Selected work</p>
+        <h2>Four recent buildings, four very different sites.</h2>
+      </div>
+      <p>A sample from the last three years. Full case studies, drawings and cost summaries are available on request for any project.</p>
+    </div>
+    <div class="work-grid">
+      <a href="#contact" class="project wide">
+        <figure class="plate p-salt" style="margin:0" role="img" aria-label="Illustration of a long timber-clad house behind coastal dunes">
+          <span class="sea"></span><span class="dune"></span><span class="roof"></span><span class="body"></span><span class="slats"></span><span class="win"></span><span class="grass"></span>
+        </figure>
+        <div class="info">
+          <div><h3>Saltings House</h3><p class="where">Aberlady, East Lothian</p></div>
+          <p class="tag">Private house<br>2024</p>
+        </div>
+        <p class="note">A three-bedroom home behind the dunes, clad in larch that will silver within five winters. Passivhaus-certified, heated by a single air-source pump.</p>
+      </a>
+      <a href="#contact" class="project narrow">
+        <figure class="plate p-kirk" style="margin:0" role="img" aria-label="Illustration of a sandstone civic building with an arcade at street level">
+          <span class="facade"></span><span class="coursing"></span><span class="parapet"></span><span class="upper"></span><span class="arcade"></span><span class="lamp"></span>
+        </figure>
+        <div class="info">
+          <div><h3>Kirkgate Library</h3><p class="where">Linlithgow, West Lothian</p></div>
+          <p class="tag">Civic, reuse<br>2023</p>
+        </div>
+        <p class="note">An 1890s drill hall turned town library. We kept the stone shell, opened the arcade to the street and added a reading room under the old trusses.</p>
+      </a>
+      <a href="#contact" class="project narrow">
+        <figure class="plate p-braid" style="margin:0" role="img" aria-label="Illustration of a timber workshop with a sawtooth roof">
+          <span class="saw"></span><span class="hall"></span><span class="boards"></span><span class="door"></span><span class="tree"></span>
+        </figure>
+        <div class="info">
+          <div><h3>Braid Hill Workshops</h3><p class="where">Edinburgh</p></div>
+          <p class="tag">Workplace<br>2025</p>
+        </div>
+        <p class="note">Twelve makers' studios for a furniture cooperative, under north-facing sawtooth roofs that give even light all day. Built in cross-laminated timber in nine weeks.</p>
+      </a>
+      <a href="#contact" class="project wide">
+        <figure class="plate p-tarb" style="margin:0" role="img" aria-label="Illustration of a dark gabled boathouse on a loch at dusk, with a lit opening reflected in the water">
+          <span class="hills"></span><span class="jetty"></span><span class="gable"></span><span class="open"></span><span class="reflect"></span>
+        </figure>
+        <div class="info">
+          <div><h3>Tarbet Boathouse</h3><p class="where">Loch Lomond, Argyll</p></div>
+          <p class="tag">Restoration<br>2024</p>
+        </div>
+        <p class="note">A collapsed Victorian boathouse rebuilt on its original footings as a rowing club and small guest room. The stone came from the ruin; the slate came from the next glen.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Practice -->
+<section class="practice" id="practice">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">What we do</p>
+        <h2>Four kinds of work, one way of working.</h2>
+      </div>
+      <p>We take on around ten projects a year so that each one gets proper attention. Fees are fixed per stage and agreed before we begin.</p>
+    </div>
+    <div class="services">
+      <article class="service">
+        <span class="num">01</span>
+        <h3>Homes</h3>
+        <p>New houses, extensions and whole-house retrofits for people who plan to stay a long time.</p>
+        <ul><li>New-build houses</li><li>Extensions and alterations</li><li>Passivhaus and EnerPHit</li></ul>
+      </article>
+      <article class="service">
+        <span class="num">02</span>
+        <h3>Civic &amp; cultural</h3>
+        <p>Libraries, community halls, schools and galleries, designed with the people who will use them.</p>
+        <ul><li>Public consultation</li><li>Competition entries</li><li>Accessible design audits</li></ul>
+      </article>
+      <article class="service">
+        <span class="num">03</span>
+        <h3>Reuse &amp; repair</h3>
+        <p>Giving old buildings a second life, from listed farmsteads to post-war industrial sheds.</p>
+        <ul><li>Listed building consent</li><li>Conservation surveys</li><li>Lime and stone repair</li></ul>
+      </article>
+      <article class="service">
+        <span class="num">04</span>
+        <h3>Landscape</h3>
+        <p>Gardens, courtyards and small masterplans that treat the outdoors as part of the building.</p>
+        <ul><li>Site and garden design</li><li>Planting and drainage</li><li>Small-site masterplans</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Process -->
+<section class="process" id="process">
+  <div class="wrap process-grid">
+    <div class="intro">
+      <p class="eyebrow">How a project runs</p>
+      <h2>Clear stages, honest timelines.</h2>
+      <p>Most houses take eighteen months to two years from first meeting to moving in. You will know the fee, the programme and the next decision at every stage.</p>
+      <figure class="plate p-desk" style="margin:40px 0 0" role="img" aria-label="Illustration of a floor plan drawing and a card model on a timber desk">
+        <span class="sheet"></span><span class="plan"></span><span class="model"></span><span class="pencil"></span>
+      </figure>
+    </div>
+    <ol class="steps">
+      <li>
+        <span class="n">1</span>
+        <div><h3>Walk the site</h3><p>We spend a day on your land or in your building, with you. We measure the light, the wind and the views, and we listen to how you want to live or work.</p></div>
+        <span class="dur">Weeks 1&ndash;3</span>
+      </li>
+      <li>
+        <span class="n">2</span>
+        <div><h3>Sketch and test</h3><p>Three distinct options, each with card models and a cost range from our quantity surveyor. You choose one direction and we refine it together.</p></div>
+        <span class="dur">Weeks 4&ndash;12</span>
+      </li>
+      <li>
+        <span class="n">3</span>
+        <div><h3>Secure consent</h3><p>We prepare and submit planning and building warrant drawings, and meet the planners in person. Most of our applications are approved first time.</p></div>
+        <span class="dur">Months 3&ndash;8</span>
+      </li>
+      <li>
+        <span class="n">4</span>
+        <div><h3>Build it well</h3><p>We tender to contractors we trust, then visit site every week. The partner who drew your first sketch signs off the finished building.</p></div>
+        <span class="dur">Months 8&ndash;22</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- 6. Voices -->
+<section class="voices" id="voices">
+  <div class="wrap">
+    <p class="eyebrow">Client voices</p>
+    <div class="quote-lead" style="margin-top:32px">
+      <blockquote>They spent the first afternoon just sitting in our field. Two years later the house frames exactly the view they found that day.</blockquote>
+      <p class="cite"><strong>Ruth and Callum Imrie</strong> &middot; Corrie Field House, Perthshire</p>
+    </div>
+    <div class="quotes">
+      <figure>
+        <blockquote>The library came in under budget and on time, which in local government is close to a miracle. Visitor numbers have tripled since it opened.</blockquote>
+        <figcaption class="cite"><strong>Fiona Baird</strong> &middot; Head of Libraries, West Lothian Council</figcaption>
+      </figure>
+      <figure>
+        <blockquote>Aldgrave understood that a workshop is a tool. Every bench gets north light, every door fits a pallet, and the heating bill is a third of our old unit.</blockquote>
+        <figcaption class="cite"><strong>Dev Mistry</strong> &middot; Chair, Braid Hill Makers Cooperative</figcaption>
+      </figure>
+      <figure>
+        <blockquote>We expected a fight with the conservation officer. Instead Isla walked the ruin with her and came back with consent and a list of stonemasons.</blockquote>
+        <figcaption class="cite"><strong>Hamish Laird</strong> &middot; Secretary, Tarbet Rowing Club</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Contact -->
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <p class="eyebrow">Start a project</p>
+      <h2>Tell us about the place you want to build.</h2>
+      <p class="lede">Send us a few lines about your site, your plans and your rough budget. A partner will reply within two working days, and the first site visit is free within 60 miles of Edinburgh.</p>
+      <div class="actions">
+        <a href="mailto:hello@aldgrave.studio?subject=New%20project%20enquiry" class="btn btn-solid">Email the studio <span class="arr" aria-hidden="true">&rarr;</span></a>
+        <a href="tel:+441315550184" class="btn btn-ghost">Call 0131 555 0184</a>
+      </div>
+    </div>
+    <dl class="details">
+      <div><dt>Studio</dt><dd>The Cooperage, 22 Coburg Street<br>Leith, Edinburgh EH6 6ET</dd></div>
+      <div><dt>Email</dt><dd><a href="mailto:hello@aldgrave.studio">hello@aldgrave.studio</a></dd></div>
+      <div><dt>Hours</dt><dd>Monday to Friday, 9am to 5.30pm</dd></div>
+      <div><dt>Careers</dt><dd>We hire once a year, in spring. <a href="mailto:jobs@aldgrave.studio">jobs@aldgrave.studio</a></dd></div>
+    </dl>
+  </div>
+</section>
+
+</main>
+
+<!-- 8. Footer -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="logo"><span class="logo-mark" aria-hidden="true"></span>Aldgrave Studio</a>
+        <p class="tagline">Architecture, landscape and repair for buildings meant to last a century or more.</p>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <ul><li><a href="#studio">About</a></li><li><a href="#process">Process</a></li><li><a href="#voices">Clients</a></li><li><a href="mailto:jobs@aldgrave.studio">Careers</a></li></ul>
+      </div>
+      <div>
+        <h4>Work</h4>
+        <ul><li><a href="#work">Selected projects</a></li><li><a href="#practice">Homes</a></li><li><a href="#practice">Civic &amp; cultural</a></li><li><a href="#practice">Reuse &amp; repair</a></li></ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul><li><a href="mailto:hello@aldgrave.studio">hello@aldgrave.studio</a></li><li><a href="tel:+441315550184">0131 555 0184</a></li><li>22 Coburg Street, Leith</li></ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>&copy; 2026 Aldgrave Studio Ltd. Registered in Scotland, SC438712.</span>
+      <span>RIAS Chartered Practice &middot; ARB registered architects</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

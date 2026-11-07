@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halyard House | A 12-room hotel on Port Ellery Harbor, Maine</title>
+<meta name="description" content="Halyard House is a twelve-room hotel in an 1884 sail loft on Port Ellery Harbor, Maine. Breakfast included, dinner at The Cutting Table, open April through December.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f5f0e7;
+    --paper-2: #ece4d6;
+    --ink: #1c2830;
+    --ink-soft: #4a5660;
+    --line: #d8cfbf;
+    --rust: #a94f2c;
+    --rust-dark: #8c3f21;
+    --sea: #5f7d7a;
+    --night: #17222a;
+    --serif: "Fraunces", Georgia, "Times New Roman", serif;
+    --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --wrap: 1180px;
+    --gutter: clamp(20px, 5vw, 56px);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.1; letter-spacing: -0.01em; }
+  h2 { font-size: clamp(34px, 4.6vw, 54px); }
+  h3 { font-size: 26px; }
+  .eyebrow {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--rust); margin-bottom: 18px; display: block;
+  }
+  .lede { font-size: 19px; color: var(--ink-soft); max-width: 36em; }
+  section { padding: clamp(80px, 11vw, 140px) 0; }
+
+  /* Buttons */
+  .btn {
+    display: inline-block; text-decoration: none; font-weight: 600; font-size: 15px;
+    padding: 15px 26px; border-radius: 2px; transition: background .2s, color .2s, border-color .2s;
+    border: 1px solid transparent;
+  }
+  .btn-primary { background: var(--rust); color: #fff; }
+  .btn-primary:hover { background: var(--rust-dark); }
+  .btn-ghost { border-color: var(--ink); color: var(--ink); }
+  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+  .btn:focus-visible, .nav a:focus-visible { outline: 2px solid var(--rust); outline-offset: 3px; }
+
+  /* Nav */
+  .nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(245, 240, 231, 0.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 24px; }
+  .logo { font-family: var(--serif); font-size: 22px; text-decoration: none; letter-spacing: 0.01em; white-space: nowrap; }
+  .logo span { color: var(--rust); }
+  .nav ul { list-style: none; display: flex; gap: 32px; font-size: 15px; }
+  .nav ul a { text-decoration: none; color: var(--ink-soft); }
+  .nav ul a:hover { color: var(--ink); }
+  .nav .btn { padding: 11px 20px; font-size: 14px; }
+
+  /* Hero */
+  .hero { padding: clamp(48px, 7vw, 88px) 0 clamp(80px, 10vw, 120px); }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(36px, 6vw, 80px); align-items: center; }
+  .hero h1 { font-size: clamp(46px, 6.6vw, 84px); font-weight: 300; margin-bottom: 28px; }
+  .hero h1 em { font-style: italic; color: var(--rust); }
+  .hero .lede { margin-bottom: 40px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 14px; }
+  .hero-meta { display: flex; gap: 36px; margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-soft); flex-wrap: wrap; }
+  .hero-meta strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 26px; color: var(--ink); }
+
+  /* Harbor scene (hero image stand-in) */
+  .scene {
+    position: relative; aspect-ratio: 4 / 5; border-radius: 2px; overflow: hidden;
+    background: linear-gradient(180deg, #b9c9cc 0%, #e8d4bd 38%, #f1c79f 52%, #e9a982 58%);
+  }
+  .scene .sun {
+    position: absolute; left: 58%; top: 44%; width: 18%; aspect-ratio: 1; border-radius: 50%;
+    background: radial-gradient(circle, #fff3dc 0%, #ffd9a8 60%, rgba(255, 217, 168, 0) 72%);
+  }
+  .scene .hills {
+    position: absolute; left: 0; right: 0; top: 50%; height: 10%;
+    background:
+      radial-gradient(ellipse 60% 100% at 18% 100%, #7e8a86 60%, transparent 61%),
+      radial-gradient(ellipse 50% 80% at 82% 100%, #8d9894 60%, transparent 61%);
+  }
+  .scene .water {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 42%;
+    background:
+      repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0 1px, transparent 1px 13px),
+      linear-gradient(180deg, #c99a80 0%, #6f8a88 45%, #3e5659 100%);
+  }
+  .scene .glint {
+    position: absolute; left: 56%; top: 59%; width: 22%; height: 22%;
+    background: repeating-linear-gradient(180deg, rgba(255, 240, 214, 0.55) 0 2px, transparent 2px 11px);
+    filter: blur(0.6px);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 70%);
+            mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 70%);
+  }
+  .scene .boat {
+    position: absolute; left: 22%; top: 60%; width: 18%; height: 3%;
+    background: #2a363b; border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  }
+  .scene .boat::before {
+    content: ""; position: absolute; left: 44%; bottom: 100%; width: 2px; height: 520%; background: #2a363b;
+  }
+  .scene .boat::after {
+    content: ""; position: absolute; left: calc(44% + 3px); bottom: 140%; width: 0; height: 0;
+    border-left: 34px solid #f4ece0; border-top: 70px solid transparent;
+  }
+  .scene figcaption {
+    position: absolute; left: 20px; bottom: 18px; right: 20px;
+    color: rgba(255, 255, 255, 0.9); font-size: 13px; letter-spacing: 0.02em;
+  }
+
+  /* Story */
+  .story { background: var(--paper-2); }
+  .story-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(40px, 7vw, 96px); align-items: start; }
+  .story-text p { margin-bottom: 20px; color: var(--ink-soft); }
+  .story-text p:first-of-type { font-size: 19px; color: var(--ink); }
+  .loft {
+    margin-top: 44px; aspect-ratio: 16 / 10; position: relative; overflow: hidden; border-radius: 2px;
+    background:
+      repeating-linear-gradient(90deg, transparent 0 15.5%, #5b4434 15.5% 17%),
+      linear-gradient(180deg, #4a3a2f 0%, #6f5644 30%, #c8a888 60%, #8a6d56 100%);
+  }
+  .loft::before {
+    content: ""; position: absolute; left: 50%; top: 18%; width: 22%; aspect-ratio: 1; transform: translateX(-50%);
+    border-radius: 50%; border: 6px solid #3d2f25;
+    background: radial-gradient(circle, #f6e8d3 0%, #e6cfae 70%);
+    box-shadow: 0 0 80px 30px rgba(246, 232, 211, 0.35);
+  }
+  .loft::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 26%;
+    background: repeating-linear-gradient(90deg, #7a5d47 0 9%, #6c513d 9% 18%);
+  }
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px 40px; margin-top: 40px; }
+  .stats div { border-top: 1px solid var(--line); padding-top: 16px; }
+  .stats strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 40px; line-height: 1.1; }
+  .stats span { font-size: 15px; color: var(--ink-soft); }
+
+  /* Section headers */
+  .head { display: flex; justify-content: space-between; align-items: end; gap: 40px; margin-bottom: 56px; flex-wrap: wrap; }
+  .head .lede { max-width: 30em; }
+
+  /* Rooms */
+  .rooms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .room { display: flex; flex-direction: column; }
+  .room-photo { aspect-ratio: 4 / 3; border-radius: 2px; position: relative; overflow: hidden; margin-bottom: 24px; }
+  .room-photo.harbor {
+    background:
+      linear-gradient(90deg, transparent 0 30%, #ece2d2 30% 70%, transparent 70%) 0 0 / 100% 62% no-repeat,
+      linear-gradient(180deg, #a9bfc0 0%, #d7d2c3 62%, #b89f86 62%, #a68b72 100%);
+  }
+  .room-photo.harbor::before {
+    content: ""; position: absolute; left: 34%; right: 34%; top: 8%; height: 46%;
+    background:
+      linear-gradient(90deg, transparent 48%, #ece2d2 48% 52%, transparent 52%),
+      linear-gradient(180deg, #b7cdd0 0%, #e9d5bd 55%, #6f8a88 56%, #557070 100%);
+  }
+  .room-photo.harbor::after {
+    content: ""; position: absolute; left: 12%; right: 12%; bottom: 10%; height: 22%;
+    background: #f3eee6; border-top: 10px solid #d7c9b5; border-radius: 2px;
+  }
+  .room-photo.suite {
+    background:
+      repeating-linear-gradient(90deg, transparent 0 22%, #6b5040 22% 25%) 0 0 / 100% 30% no-repeat,
+      linear-gradient(180deg, #8a6c55 0%, #c9b294 30%, #e2d3bd 70%, #9c8169 70%, #8a705a 100%);
+  }
+  .room-photo.suite::after {
+    content: ""; position: absolute; left: 50%; bottom: 14%; width: 46%; height: 26%; transform: translateX(-50%);
+    background: #f6f3ee; border-radius: 0 0 50% 50% / 0 0 70% 70%;
+    box-shadow: inset 0 6px 0 #dcd4c8;
+  }
+  .room-photo.rigging {
+    background: radial-gradient(circle at 50% 42%, #f2dcc0 0 17%, #3e3129 17% 19%, transparent 19%),
+      linear-gradient(180deg, #5d4a3c 0%, #7c6450 55%, #b49a7f 55%, #a08670 100%);
+  }
+  .room-photo.rigging::after {
+    content: ""; position: absolute; left: 22%; right: 22%; bottom: 12%; height: 20%;
+    background: #eae2d4; border-top: 12px solid #c0ad95; border-radius: 2px;
+  }
+  .room-tag {
+    position: absolute; top: 14px; left: 14px; z-index: 1; background: var(--paper); color: var(--ink);
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 10px;
+  }
+  .room h3 { margin-bottom: 10px; }
+  .room p { color: var(--ink-soft); font-size: 16px; margin-bottom: 18px; }
+  .room ul { list-style: none; font-size: 14px; color: var(--ink-soft); margin-bottom: 22px; }
+  .room li { padding: 7px 0; border-top: 1px solid var(--line); }
+  .room .price { margin-top: auto; display: flex; justify-content: space-between; align-items: baseline; padding-top: 16px; border-top: 1px solid var(--ink); }
+  .room .price strong { font-family: var(--serif); font-weight: 400; font-size: 28px; }
+  .room .price a { font-size: 15px; font-weight: 600; color: var(--rust); text-decoration: none; }
+  .room .price a:hover { text-decoration: underline; }
+
+  /* Dining */
+  .dining { background: var(--night); color: #efe7da; }
+  .dining .eyebrow { color: #e0a07f; }
+  .dining .lede { color: #b9b5ad; }
+  .dining-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 7vw, 96px); align-items: center; }
+  .table-scene {
+    aspect-ratio: 1 / 1; border-radius: 2px; position: relative; overflow: hidden;
+    background:
+      radial-gradient(ellipse 70% 40% at 50% 0%, rgba(255, 196, 140, 0.35), transparent 70%),
+      linear-gradient(180deg, #2b2621 0%, #3b3128 55%, #6a5340 55%, #4f3d2f 100%);
+  }
+  .table-scene .lamp {
+    position: absolute; left: 50%; top: 0; width: 2px; height: 24%; background: #1a1714; transform: translateX(-50%);
+  }
+  .table-scene .lamp::after {
+    content: ""; position: absolute; left: 50%; top: 100%; transform: translateX(-50%);
+    width: 90px; height: 44px; background: #c86f43; border-radius: 90px 90px 4px 4px;
+    box-shadow: 0 40px 120px 40px rgba(255, 190, 130, 0.28);
+  }
+  .table-scene .plate {
+    position: absolute; top: 64%; width: 22%; aspect-ratio: 1; border-radius: 50%;
+    background: radial-gradient(circle, #e8dccb 0 46%, #f4ece0 47% 100%);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+  }
+  .table-scene .p1 { left: 18%; }
+  .table-scene .p2 { right: 18%; }
+  .table-scene .glass {
+    position: absolute; top: 58%; left: 47%; width: 6%; height: 12%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(170, 60, 50, 0.7) 60%);
+    border-radius: 0 0 40% 40%;
+  }
+  .dining h2 { margin-bottom: 24px; }
+  .dining .lede { margin-bottom: 36px; }
+  .menu { border-top: 1px solid #3a4650; margin-bottom: 36px; }
+  .menu div { display: flex; justify-content: space-between; gap: 20px; padding: 16px 0; border-bottom: 1px solid #3a4650; }
+  .menu span { font-size: 16px; }
+  .menu small { display: block; color: #9a978f; font-size: 14px; }
+  .menu b { font-weight: 500; font-family: var(--serif); font-size: 19px; white-space: nowrap; }
+  .hours { font-size: 15px; color: #b9b5ad; margin-bottom: 32px; }
+  .hours strong { color: #efe7da; font-weight: 600; }
+  .dining .btn-ghost { border-color: #efe7da; color: #efe7da; }
+  .dining .btn-ghost:hover { background: #efe7da; color: var(--night); }
+
+  /* Harbor experiences */
+  .ex-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--ink); }
+  .ex { padding: 32px 28px 8px 0; }
+  .ex + .ex { padding-left: 28px; border-left: 1px solid var(--line); }
+  .ex .num { font-family: var(--serif); font-size: 15px; color: var(--rust); display: block; margin-bottom: 40px; }
+  .ex h3 { font-size: 23px; margin-bottom: 12px; }
+  .ex p { font-size: 15px; color: var(--ink-soft); margin-bottom: 16px; }
+  .ex .detail { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--sea); }
+
+  /* Testimonials */
+  .reviews { background: var(--paper-2); }
+  .reviews-head { text-align: center; margin-bottom: 64px; }
+  .reviews-head .lede { margin: 18px auto 0; }
+  .quote-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 28px; }
+  .quote { background: var(--paper); padding: 40px 36px; border-radius: 2px; display: flex; flex-direction: column; }
+  .quote blockquote { font-family: var(--serif); font-size: 21px; line-height: 1.45; margin-bottom: 28px; }
+  .quote.big blockquote { font-size: 27px; font-weight: 300; }
+  .quote cite { margin-top: auto; font-style: normal; font-size: 14px; color: var(--ink-soft); }
+  .quote cite strong { display: block; color: var(--ink); font-weight: 600; font-size: 15px; }
+  .stars { color: var(--rust); letter-spacing: 3px; font-size: 14px; margin-bottom: 20px; }
+
+  /* Plan your stay */
+  .plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 7vw, 96px); }
+  .plan h2 { margin-bottom: 24px; }
+  .plan .lede { margin-bottom: 40px; }
+  .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 32px; }
+  .facts h4 { font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); margin-bottom: 6px; }
+  .facts p { font-size: 15px; color: var(--ink-soft); }
+  .reserve { background: var(--ink); color: #efe7da; padding: clamp(32px, 4vw, 52px); border-radius: 2px; align-self: start; }
+  .reserve h3 { font-size: 32px; margin-bottom: 14px; }
+  .reserve > p { color: #b9b5ad; font-size: 16px; margin-bottom: 30px; }
+  .season { border-top: 1px solid #3a4650; margin-bottom: 32px; }
+  .season div { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid #3a4650; font-size: 15px; }
+  .season span:last-child { color: #e0a07f; font-weight: 600; white-space: nowrap; }
+  .reserve .actions { margin-bottom: 26px; }
+  .reserve .btn-ghost { border-color: #efe7da; color: #efe7da; }
+  .reserve .btn-ghost:hover { background: #efe7da; color: var(--ink); }
+  .reserve small { display: block; color: #9a978f; font-size: 14px; line-height: 1.55; }
+
+  /* Footer */
+  footer { background: var(--night); color: #b9b5ad; padding: 88px 0 40px; font-size: 15px; }
+  .foot-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 64px; border-bottom: 1px solid #2f3b44; }
+  footer .logo { color: #efe7da; font-size: 28px; display: inline-block; margin-bottom: 16px; }
+  footer .logo span { color: #e0a07f; }
+  footer h4 { color: #efe7da; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 18px; }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 10px; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: #efe7da; }
+  .foot-note { max-width: 24em; }
+  .foot-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 28px; font-size: 13px; color: #7f8a90; flex-wrap: wrap; }
+
+  /* Responsive */
+  @media (max-width: 980px) {
+    .nav ul { display: none; }
+    .hero-grid, .story-grid, .dining-grid, .plan-grid { grid-template-columns: 1fr; }
+    .scene { aspect-ratio: 4 / 3; }
+    .rooms-grid { grid-template-columns: 1fr 1fr; }
+    .ex-grid { grid-template-columns: 1fr 1fr; }
+    .ex:nth-child(3) { padding-left: 0; border-left: 0; }
+    .quote-grid { grid-template-columns: 1fr; }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+    .table-scene { aspect-ratio: 16 / 10; }
+  }
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .nav .wrap { height: 64px; }
+    .logo { font-size: 20px; }
+    .rooms-grid, .ex-grid, .facts, .foot-grid { grid-template-columns: 1fr; }
+    .ex, .ex + .ex { padding: 28px 0 8px; border-left: 0; }
+    .ex + .ex { border-top: 1px solid var(--line); }
+    .ex .num { margin-bottom: 20px; }
+    .hero-meta { gap: 24px; }
+    .quote { padding: 32px 26px; }
+    .quote.big blockquote { font-size: 23px; }
+    .actions .btn { flex: 1 1 auto; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="logo" href="#top">Halyard <span>House</span></a>
+    <ul>
+      <li><a href="#story">The Loft</a></li>
+      <li><a href="#rooms">Rooms</a></li>
+      <li><a href="#dining">Dining</a></li>
+      <li><a href="#harbor">The Harbor</a></li>
+      <li><a href="#plan">Plan a Stay</a></li>
+    </ul>
+    <a class="btn btn-primary" href="#plan">Book a room</a>
+  </div>
+</nav>
+
+<!-- 1. Hero -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Port Ellery, Maine &middot; Since 2019</span>
+      <h1>Sleep where the <em>sails</em> were made.</h1>
+      <p class="lede">Halyard House is a twelve-room hotel inside an 1884 sail loft on Port Ellery Harbor. Wide pine floors, windows that face the water, and a breakfast worth setting an alarm for.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#plan">Check availability</a>
+        <a class="btn btn-ghost" href="#rooms">See the rooms</a>
+      </div>
+      <div class="hero-meta">
+        <div><strong>12</strong>rooms, no two alike</div>
+        <div><strong>40</strong>steps to the water</div>
+        <div><strong>Apr&ndash;Dec</strong>open for the season</div>
+      </div>
+    </div>
+    <figure class="scene" role="img" aria-label="Illustration of Port Ellery Harbor at sunrise with a single sailboat on the water">
+      <div class="sun"></div>
+      <div class="hills"></div>
+      <div class="water"></div>
+      <div class="glint"></div>
+      <div class="boat"></div>
+      <figcaption>Port Ellery Harbor, 6:12 a.m., from the window of Room 9</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 2. Story -->
+<section class="story" id="story">
+  <div class="wrap story-grid">
+    <div>
+      <span class="eyebrow">The building</span>
+      <h2>Built in 1884. Restored one beam at a time.</h2>
+      <div class="loft" role="img" aria-label="Illustration of the restored loft with timber beams and a round window"></div>
+    </div>
+    <div class="story-text">
+      <p>For sixty years, the Ashby Sail Loft cut and stitched canvas for the schooners that worked this coast. The top floor was left open so a full mainsail could be laid flat, and the round window at the gable end let the sailmakers check the wind before they started.</p>
+      <p>When Nora and Tomas Ruel bought the building in 2016, it had been a boat-storage shed for decades. They spent three years on it. The original spruce beams stayed. So did the sailmakers' pencil marks on the north wall, which you can still read from the stairs.</p>
+      <p>What they added was quiet: good beds, thick walls between rooms, real hot water, and windows big enough to make the harbor part of the room. There are no televisions. Nobody has asked for one yet.</p>
+      <div class="stats">
+        <div><strong>1884</strong><span>Year the loft was raised</span></div>
+        <div><strong>3 years</strong><span>Of restoration before we opened</span></div>
+        <div><strong>11 of 12</strong><span>Rooms with a harbor view</span></div>
+        <div><strong>2</strong><span>Owners who live on site</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Rooms -->
+<section id="rooms">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="eyebrow">Rooms &amp; suites</span>
+        <h2>Twelve rooms. Three ways to stay.</h2>
+      </div>
+      <p class="lede">Every room has a king or queen bed made with Maine wool blankets, a rain shower, and coffee from Tidewater Roasters down the street. Breakfast is included in every rate.</p>
+    </div>
+    <div class="rooms-grid">
+      <article class="room">
+        <div class="room-photo harbor" role="img" aria-label="Illustration of a Harbor Room with a tall window over the bed"><span class="room-tag">8 rooms</span></div>
+        <h3>Harbor Room</h3>
+        <p>Bright second-floor rooms with a tall window over the bed and the working harbor right outside. The best seat for watching lobster boats head out at dawn.</p>
+        <ul>
+          <li>Queen bed &middot; 260 sq ft</li>
+          <li>Harbor view, window seat</li>
+          <li>Rain shower, heated floor</li>
+        </ul>
+        <div class="price"><span>From <strong>$245</strong> / night</span><a href="#plan">Reserve &rarr;</a></div>
+      </article>
+      <article class="room">
+        <div class="room-photo suite" role="img" aria-label="Illustration of a Loft Suite with exposed beams and a freestanding tub"><span class="room-tag">3 suites</span></div>
+        <h3>Loft Suite</h3>
+        <p>Third-floor suites under the original beams, with a sitting area, a freestanding soaking tub, and a desk that faces the water. Room to spread out for a long weekend.</p>
+        <ul>
+          <li>King bed &middot; 420 sq ft</li>
+          <li>Exposed 1884 beams</li>
+          <li>Soaking tub and separate shower</li>
+        </ul>
+        <div class="price"><span>From <strong>$385</strong> / night</span><a href="#plan">Reserve &rarr;</a></div>
+      </article>
+      <article class="room">
+        <div class="room-photo rigging" role="img" aria-label="Illustration of the Rigging Room with its round gable window"><span class="room-tag">Only one</span></div>
+        <h3>The Rigging Room</h3>
+        <p>The whole top of the gable, built around the round window where the sailmakers read the weather. It sees the harbor, the lighthouse, and the open water past the point.</p>
+        <ul>
+          <li>King bed &middot; 540 sq ft</li>
+          <li>Round window, 270&deg; views</li>
+          <li>Private deck with a wood stove</li>
+        </ul>
+        <div class="price"><span>From <strong>$460</strong> / night</span><a href="#plan">Reserve &rarr;</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Dining -->
+<section class="dining" id="dining">
+  <div class="wrap dining-grid">
+    <div class="table-scene" role="img" aria-label="Illustration of a candlelit table for two under a copper pendant lamp">
+      <div class="lamp"></div>
+      <div class="plate p1"></div>
+      <div class="glass"></div>
+      <div class="plate p2"></div>
+    </div>
+    <div>
+      <span class="eyebrow">The Cutting Table</span>
+      <h2>Breakfast is included. Dinner is worth staying in for.</h2>
+      <p class="lede">Our 28-seat restaurant sits on the ground floor where the canvas was once cut. Chef Ines Varga cooks what the boats and the farms on the peninsula bring in that morning, and the menu changes most nights.</p>
+      <div class="menu">
+        <div><span>Hake in brown butter<small>Sea beans, new potatoes, lemon</small></span><b>$34</b></div>
+        <div><span>Peninsula lamb shoulder<small>Charred carrots, mint, yogurt</small></span><b>$38</b></div>
+        <div><span>Blueberry buckle<small>Brown sugar crumb, cultured cream</small></span><b>$12</b></div>
+      </div>
+      <p class="hours"><strong>Breakfast</strong> daily, 7:30&ndash;10:30 a.m. for hotel guests &nbsp;&middot;&nbsp; <strong>Dinner</strong> Wednesday&ndash;Sunday, 5:30&ndash;9 p.m., open to everyone</p>
+      <a class="btn btn-ghost" href="#plan">Reserve a table</a>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Harbor experiences -->
+<section id="harbor">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="eyebrow">The harbor</span>
+        <h2>Four good ways to spend a morning.</h2>
+      </div>
+      <p class="lede">Port Ellery is small enough to walk end to end in twenty minutes. Here is what we tell guests to do first. Ask at the front desk and we'll set any of it up for you.</p>
+    </div>
+    <div class="ex-grid">
+      <div class="ex">
+        <span class="num">01</span>
+        <h3>Row the peapod</h3>
+        <p>Take our cedar rowboat around the moorings before the wind comes up. Life jackets and a thermos of coffee are in the boat.</p>
+        <span class="detail">Free for guests &middot; 6&ndash;9 a.m.</span>
+      </div>
+      <div class="ex">
+        <span class="num">02</span>
+        <h3>Walk to Ellery Light</h3>
+        <p>A flat shore path from our front door to the 1857 lighthouse at the point, past tide pools and a bench that's always empty.</p>
+        <span class="detail">2.1 miles each way</span>
+      </div>
+      <div class="ex">
+        <span class="num">03</span>
+        <h3>Sail the Margaret Ames</h3>
+        <p>A two-hour afternoon sail on a 1912 wooden schooner, crewed by our neighbors at Ellery Schooner Co. Guests get first pick of seats.</p>
+        <span class="detail">$68 per person &middot; June&ndash;Sept</span>
+      </div>
+      <div class="ex">
+        <span class="num">04</span>
+        <h3>Sit in the dock sauna</h3>
+        <p>A wood-fired sauna at the end of our pier. Heat up, climb down the ladder into the Atlantic, and repeat until it feels reasonable.</p>
+        <span class="detail">Book a 90-minute slot</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Testimonials -->
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="reviews-head">
+      <span class="eyebrow">From the guest book</span>
+      <h2>People come back. Some book the same room.</h2>
+    </div>
+    <div class="quote-grid">
+      <figure class="quote big">
+        <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>We woke up in the Rigging Room to fog rolling off the water and the sound of a bell buoy. I didn't look at my phone until the drive home. We've already booked October.</blockquote>
+        <cite><strong>Dana &amp; Marcus Holt</strong>Hartford, Connecticut &middot; Third stay</cite>
+      </figure>
+      <figure class="quote">
+        <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>The hake at The Cutting Table was the best thing I ate all year, and breakfast the next morning nearly beat it.</blockquote>
+        <cite><strong>Priya Raman</strong>Brooklyn, New York</cite>
+      </figure>
+      <figure class="quote">
+        <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>Tomas walked us down to the dock at 6 a.m. to show us how to row the peapod. That's the kind of place this is.</blockquote>
+        <cite><strong>Graham Whitlock</strong>Toronto, Ontario</cite>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Plan your stay -->
+<section class="plan" id="plan">
+  <div class="wrap plan-grid">
+    <div>
+      <span class="eyebrow">Plan your stay</span>
+      <h2>Everything you'll want to know before you come.</h2>
+      <p class="lede">We keep things simple. If your question isn't answered here, call the front desk and Nora or Tomas will pick up.</p>
+      <div class="facts">
+        <div><h4>Check-in &amp; out</h4><p>Check-in from 3 p.m., checkout by 11 a.m. We'll hold your bags all day either way.</p></div>
+        <div><h4>Getting here</h4><p>2 hours 15 minutes north of Portland on Route 1. Free parking behind the building.</p></div>
+        <div><h4>Dogs</h4><p>Two Harbor Rooms on the ground floor welcome dogs, with a bed and bowls waiting. $35 per stay.</p></div>
+        <div><h4>Children</h4><p>Guests of every age are welcome. Loft Suites fit a rollaway for a child under 12 at no charge.</p></div>
+        <div><h4>Cancellations</h4><p>Free cancellation up to 14 days before arrival. After that, we refund what we're able to rebook.</p></div>
+        <div><h4>Accessibility</h4><p>Room 2 is fully accessible with a roll-in shower. The restaurant and dock are step-free.</p></div>
+      </div>
+    </div>
+    <aside class="reserve" aria-label="Reservations">
+      <h3>Reserve a room</h3>
+      <p>Book directly with us for the best rate, a free bottle of cider from Ellery Orchards, and late checkout when we can manage it.</p>
+      <div class="season">
+        <div><span>Spring &middot; April&ndash;May</span><span>from $245</span></div>
+        <div><span>Summer &middot; June&ndash;August</span><span>from $325</span></div>
+        <div><span>Fall &middot; September&ndash;October</span><span>from $295</span></div>
+        <div><span>Winter &middot; November&ndash;December</span><span>from $225</span></div>
+      </div>
+      <div class="actions">
+        <a class="btn btn-primary" href="mailto:stay@halyardhouse.com?subject=Room%20request">Request your dates</a>
+        <a class="btn btn-ghost" href="tel:+12075550184">Call (207) 555-0184</a>
+      </div>
+      <small>Two-night minimum on summer weekends. We reply to every request within one business day, usually by lunchtime.</small>
+    </aside>
+  </div>
+</section>
+
+<!-- 8. Footer -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="#top">Halyard <span>House</span></a>
+        <p class="foot-note">A twelve-room hotel in the 1884 Ashby Sail Loft, run by the people who restored it.</p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li>14 Wharf Street</li>
+          <li>Port Ellery, Maine 04857</li>
+          <li>Open April 1 to December 31</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+12075550184">(207) 555-0184</a></li>
+          <li><a href="mailto:stay@halyardhouse.com">stay@halyardhouse.com</a></li>
+          <li>Front desk 7 a.m. to 10 p.m.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#rooms">Rooms &amp; suites</a></li>
+          <li><a href="#dining">The Cutting Table</a></li>
+          <li><a href="#harbor">The harbor</a></li>
+          <li><a href="#plan">Plan a stay</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Halyard House. All rights reserved.</span>
+      <span>Closed January through March. See you in spring.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
